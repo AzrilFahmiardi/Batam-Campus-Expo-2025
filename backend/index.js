@@ -29,6 +29,37 @@ app.get('/universitas', async (req,res) => {
 
 //ENDPOINT PRODI
 
+// Route gacorr
+app.get('/:kode_univ', async (req, res) => {
+    const { kode_univ } = req.params;
+    try {
+        const [hasil_univ] = await db.query("SELECT * FROM universitas WHERE kode_univ = ?", [kode_univ]);
+        if (hasil_univ.length > 0) {
+            res.json({ hasilUniv: hasil_univ[0] });
+        } else {
+            res.status(404).json({ message: 'Universitas tidak ditemukan' });
+        }
+    } catch (error) {
+        console.error('Error fetching university data:', error);
+        res.status(500).json({ message: 'Error fetching university data' });
+    }
+});
+
+
+app.get('/:kode_univ/jurusan', async (req, res) => {
+    const { kode_univ } = req.params;
+    try {
+        const [jurusan] = await db.query("SELECT * FROM jurusan WHERE kode_univ = ?", [kode_univ]);
+        if (jurusan.length > 0) {
+            res.json({ hasilJurusan: jurusan })
+        } else {
+            res.status(404).json({ message: 'Jurusan tidak ditemukan untuk universitas ini' });
+        }
+    } catch (error) {
+        console.error('Error fetching majors:', error);
+        res.status(500).json({ message: 'Error fetching majors' });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
