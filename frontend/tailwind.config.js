@@ -10,6 +10,9 @@ export default {
       backgroundImage: {
         "orange-red-gradient": "linear-gradient(to right, #EB5E0B, #9E0202)",
       },
+      colors: {
+        "orange-surface": "#EB5E0B",
+      },
     },
   },
   plugins: [],

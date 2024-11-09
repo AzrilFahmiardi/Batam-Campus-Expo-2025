@@ -1,15 +1,15 @@
-import contactLogo from '../assets/images/contactLogo.png';
-import contactBackground from '../assets/images/contactBackground.png';
+import contactLogo from "../../assets/images/contactLogo.png";
+import contactBackground from "../../assets/images/contactBackground.png";
 
 const Contact = () => {
   return (
     <div className="relative px-11 py-20">
-      <img src={contactBackground} className="absolute bottom-0" />
-      <div className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1">
-        <div className="grid place-items-center p-20">
+      <img src={contactBackground} className="absolute bottom-0 left-0 -z-10" />
+      <div className="grid md:grid-cols-2">
+        <div className="grid place-items-center py-10 md:p-20">
           <img src={contactLogo} alt="logo batam campus expo" />
         </div>
-        <div className="flex flex-col justify-center gap-10 p-5">
+        <div className="flex flex-col justify-center gap-10 p-4">
           <p className="text-center font-pixelify text-xl text-red-800 md:text-3xl">
             Send Us a Message
           </p>
@@ -36,7 +36,7 @@ const Contact = () => {
             ></textarea>
             <button
               type="submit"
-              className="bg-orange-red-gradient rounded-full py-3 font-pixelify text-lg font-semibold text-white md:text-xl"
+              className="rounded-full bg-orange-red-gradient py-3 font-pixelify text-lg font-semibold text-white duration-200 hover:brightness-75 md:text-xl"
             >
               Send
             </button>
