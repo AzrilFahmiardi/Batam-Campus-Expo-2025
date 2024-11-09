@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,9 +10,9 @@ const Header = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -23,8 +24,8 @@ const Header = () => {
     <header
       className={`fixed left-0 right-0 px-5 py-5 lg:px-[65px] flex justify-between items-center transition-all duration-300 ${
         isScrolled
-          ? "bg-[#3892C7] rounded-lg mt-5 mx-5 lg:mx-10 shadow-md"
-          : "bg-transparent"
+          ? 'bg-[#3892C7] rounded-full mt-5 mx-5 lg:mx-10 shadow-md'
+          : 'bg-transparent'
       }`}
       style={{ zIndex: 10 }}
     >
@@ -33,7 +34,7 @@ const Header = () => {
         <img
           src="./src/assets/images/batamexpo-logo.svg"
           alt="logo"
-          className="h-10 lg:h-12 w-auto max-w-[240px]"
+          className="w-auto max-w-[240px]"
         />
       </div>
 
@@ -46,27 +47,27 @@ const Header = () => {
 
       {/* Nav - Hidden on Mobile and Tablet */}
       <nav className={`hidden lg:flex items-center space-x-8`}>
-        <a href="#home" className="text-white font-black hover:text-gray-200">
+        <NavLink to={'/'} className="text-white font-black hover:text-gray-200">
           Home
-        </a>
-        <a
-          href="#voting"
+        </NavLink>
+        <NavLink
+          to={'/voting'}
           className="text-white font-medium hover:text-gray-200"
         >
           Voting
-        </a>
-        <a
-          href="#kampus"
+        </NavLink>
+        <NavLink
+          to={'/kampus'}
           className="text-white font-medium hover:text-gray-200"
         >
           Kampus
-        </a>
-        <a
-          href="#kegiatan"
+        </NavLink>
+        <NavLink
+          to={'/kegiatan'}
           className="text-white font-medium hover:text-gray-200"
         >
           Kegiatan
-        </a>
+        </NavLink>
 
         {/* Separator */}
         <img

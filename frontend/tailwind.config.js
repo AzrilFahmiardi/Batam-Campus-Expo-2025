@@ -7,6 +7,9 @@ export default {
         montserrat: ["Montserrat", "sans-serif"],
         pixelify: ["Pixelify Sans", "sans-serif"],
       },
+      backgroundImage: {
+        "orange-red-gradient": "linear-gradient(to right, #EB5E0B, #9E0202)",
+      },
     },
   },
   plugins: [],
