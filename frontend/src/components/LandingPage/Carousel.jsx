@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules";
 
 const Carousel = () => {
   return (
-    <div className="bg-orange-surface px-20">
+    <div className="px-20">
       <Swiper
         slidesPerView={1}
         autoplay={{

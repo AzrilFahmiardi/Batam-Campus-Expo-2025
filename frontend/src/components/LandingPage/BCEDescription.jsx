@@ -1,16 +1,11 @@
-import BCEBlue from "../../assets/images/LandingPage/BCEBlue.png";
 import AboutCloud1 from "../../assets/images/LandingPage/AboutCloud1.png";
 import AboutCloud2 from "../../assets/images/LandingPage/AboutCloud2.png";
+import BCEBlue from "../../assets/images/LandingPage/BCEBlue.png";
 import Dice from "../../assets/images/LandingPage/Dice.png";
-import DiceDivider from "../../assets/images/LandingPage/DiceDivider.png";
 
 const BCEDescription = () => {
   return (
-    <div className="bg-orange-surface relative -z-20 grid grid-rows-2 place-items-center justify-center gap-1 px-11 py-20 md:grid-cols-2 md:grid-rows-1 md:gap-20 md:px-20 md:py-60">
-      <img
-        src={DiceDivider}
-        className="absolute left-0 top-0 z-10 -translate-y-1/2"
-      />
+    <div className="relative -z-20 grid grid-rows-2 place-items-center justify-center gap-1 px-11 py-20 md:grid-cols-2 md:grid-rows-1 md:gap-20 md:px-20 md:py-60">
       <img src={AboutCloud1} className="absolute left-0 top-10 -z-10" />
       <img
         src={AboutCloud2}
