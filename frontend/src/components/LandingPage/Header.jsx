@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,9 +10,9 @@ const Header = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -22,10 +22,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 right-0 px-5 py-5 lg:px-[65px] flex justify-between items-center transition-all duration-300 ${
+      className={`fixed left-0 right-0 flex items-center justify-between px-5 py-5 transition-all duration-300 lg:px-[65px] ${
         isScrolled
-          ? 'bg-[#3892C7] rounded-full mt-5 mx-5 lg:mx-10 shadow-md'
-          : 'bg-transparent'
+          ? "mx-5 mt-5 rounded-full bg-[#3892C7] shadow-md lg:mx-10"
+          : "bg-transparent"
       }`}
       style={{ zIndex: 10 }}
     >
@@ -46,25 +46,25 @@ const Header = () => {
       </div>
 
       {/* Nav - Hidden on Mobile and Tablet */}
-      <nav className={`hidden lg:flex items-center space-x-8`}>
-        <NavLink to={'/'} className="text-white font-black hover:text-gray-200">
+      <nav className={`hidden items-center space-x-8 lg:flex`}>
+        <NavLink to={"/"} className="font-black text-white hover:text-gray-200">
           Home
         </NavLink>
         <NavLink
-          to={'/voting'}
-          className="text-white font-medium hover:text-gray-200"
+          to={"/voting"}
+          className="font-medium text-white hover:text-gray-200"
         >
           Voting
         </NavLink>
         <NavLink
-          to={'/kampus'}
-          className="text-white font-medium hover:text-gray-200"
+          to={"/kampus"}
+          className="font-medium text-white hover:text-gray-200"
         >
           Kampus
         </NavLink>
         <NavLink
-          to={'/kegiatan'}
-          className="text-white font-medium hover:text-gray-200"
+          to={"/kegiatan"}
+          className="font-medium text-white hover:text-gray-200"
         >
           Kegiatan
         </NavLink>
@@ -77,8 +77,8 @@ const Header = () => {
         />
 
         {/* Sign Up Button */}
-        <button className="px-[18px] py-2 bg-white rounded-[10px] flex items-center">
-          <a href="#" className="text-blue-500 font-medium">
+        <button className="flex items-center rounded-[10px] bg-white px-[18px] py-2">
+          <a href="#" className="font-medium text-blue-500">
             Sign up
           </a>
         </button>
@@ -86,30 +86,30 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-16 right-5 bg-[#3892C7] rounded-lg p-5 flex flex-col space-y-4 lg:hidden shadow-lg">
-          <a href="#home" className="text-white font-black hover:text-gray-200">
+        <div className="absolute right-5 top-16 flex flex-col space-y-4 rounded-lg bg-[#3892C7] p-5 shadow-lg lg:hidden">
+          <a href="#home" className="font-black text-white hover:text-gray-200">
             Home
           </a>
           <a
             href="#voting"
-            className="text-white font-medium hover:text-gray-200"
+            className="font-medium text-white hover:text-gray-200"
           >
             Voting
           </a>
           <a
             href="#kampus"
-            className="text-white font-medium hover:text-gray-200"
+            className="font-medium text-white hover:text-gray-200"
           >
             Kampus
           </a>
           <a
             href="#kegiatan"
-            className="text-white font-medium hover:text-gray-200"
+            className="font-medium text-white hover:text-gray-200"
           >
             Kegiatan
           </a>
-          <button className="px-4 py-2 bg-white rounded-md mt-2">
-            <a href="#" className="text-blue-500 font-medium">
+          <button className="mt-2 rounded-md bg-white px-4 py-2">
+            <a href="#" className="font-medium text-blue-500">
               Sign up
             </a>
           </button>

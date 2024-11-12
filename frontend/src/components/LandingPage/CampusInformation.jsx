@@ -23,7 +23,7 @@ const CampusInformation = () => {
           </div>
           <Link
             to={"/kampus"}
-            className="bg-blue-pixel-gradient pixel-border-selengkapnya block py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90"
+            className="pixel-border-selengkapnya block bg-blue-pixel-gradient py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90"
           >
             Selengkapnya
           </Link>
