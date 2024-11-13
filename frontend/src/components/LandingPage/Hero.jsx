@@ -4,6 +4,7 @@ import CloudBottomLeft from "../../assets/images/LandingPage/CloudBottomLeft.png
 import CloudBesideCountdown from "../../assets/images/LandingPage/CloudBesideCountdown.png";
 import CloudHeroTopLeft from "../../assets/images/LandingPage/CloudHeroTopLeft.png";
 import CloudHeroTopRight from "../../assets/images/LandingPage/CloudHeroTopRight.png";
+import PinLocation from "../../assets/images/LandingPage/location.png";
 import "animate.css";
 
 const Hero = () => {
@@ -59,12 +60,21 @@ const Hero = () => {
         className="animate__animated animate__fadeInRight animate__slower absolute bottom-10 right-0 -z-10 md:w-1/3"
       />
 
-      {/* Hero section with zoomIn effect */}
-      <div className="animate__animated animate__zoomIn animate__slower relative flex h-auto w-full max-w-screen-lg flex-col items-center justify-center">
-        <img
-          src="./src/assets/images/Hero-Logo.svg"
-          className="mb-8 sm:mb-10 md:mb-12"
-        />
+      <div className="animate__animated animate__zoomIn animate__slower relative flex h-auto w-full max-w-screen-lg flex-col items-center justify-center px-10 sm:px-5">
+        <img src="./src/assets/images/Hero-Logo.svg" className="" />
+        <div className="mb-3 font-montserrat text-sm text-white">
+          <div className="mb-2 inline-flex items-center justify-start gap-[10px] rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
+            <img src={PinLocation} alt="" />
+            <p>
+              Jl. Yang jauh jangan lupa pulang, Kec. Kenangan, Rumah yang tak
+              dirindukan
+            </p>
+          </div>
+          <div className="inline-flex items-center justify-start gap-[10px] rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
+            <img src={PinLocation} alt="" />
+            <p>Jl. Berdua tapi gak jadian, Kec. Harapan, Kota Batam</p>
+          </div>
+        </div>
         <div className="relative flex justify-center">
           <img
             src={CloudBesideCountdown}

@@ -1,29 +1,38 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import AboutCloud1 from "../../assets/images/LandingPage/AboutCloud1.png";
 import AboutCloud2 from "../../assets/images/LandingPage/AboutCloud2.png";
 import BCEBlue from "../../assets/images/LandingPage/BCEBlue.png";
 import Dice from "../../assets/images/LandingPage/Dice.png";
 
+AOS.init();
+
 const BCEDescription = () => {
   return (
-    <div className="relative -z-20 grid grid-rows-2 place-items-center justify-center gap-1 px-5 md:grid-cols-2 md:grid-rows-1 md:px-20 md:py-48">
+    <div className="relative flex flex-col items-center px-10 pb-12 pt-24 sm:gap-10 md:flex-row md:px-10 md:pb-28 md:pt-44 lg:px-20 lg:pt-60">
+      <img
+        src={Dice}
+        className="absolute bottom-24 right-0 -z-10 max-w-[100px] md:max-w-[120px] md:translate-y-20 lg:max-w-[150px]"
+      />
       <img
         src={AboutCloud1}
-        className="absolute left-0 top-32 -z-10 max-w-[180px]"
+        className="absolute -z-10 max-w-[100px] -translate-x-32 -translate-y-12 md:max-w-[200px] md:-translate-x-20 md:-translate-y-40 lg:max-w-[280px] lg:-translate-x-36 lg:-translate-y-56"
       />
 
       <img
         src={AboutCloud2}
-        className="absolute -left-32 bottom-0 -z-10 max-w-[180px] md:bottom-20 md:left-1/2 md:-translate-x-full"
+        className="absolute -z-10 max-w-[100px] translate-x-24 translate-y-20 md:max-w-[170px] md:translate-x-64 md:translate-y-20 lg:max-w-[200px] lg:translate-x-80 lg:translate-y-28"
       />
 
-      <img
-        src={Dice}
-        className="absolute bottom-5 right-0 -z-10 max-w-[100px] md:max-w-[150px]"
-      />
+      <div className="mb-3 flex w-fit flex-col items-center md:mb-10 md:p-10">
+        <img
+          src={BCEBlue}
+          className="max-w-[220px] md:max-w-[320px] lg:max-w-[430px]"
+          alt="BCE Blue"
+        />
+      </div>
 
-      <img src={BCEBlue} className="max-w-[400px]" />
-
-      <p className="text-justify font-montserrat text-white">
+      <p className="w-[300px] text-justify font-montserrat text-sm text-white md:w-full md:text-lg">
         Lorem ipsum dolor sit amet consectetur. Ut sed pellentesque urna proin
         suscipit quis non. Dolor et lacinia dis cras dolor nunc. Vivamus orci
         diam amet tincidunt. Eu libero elit in porttitor dignissim a.

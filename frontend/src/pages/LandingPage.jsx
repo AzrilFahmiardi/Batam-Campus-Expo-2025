@@ -15,14 +15,15 @@ const LandingPage = () => {
     <div>
       <Header />
       <Hero />
-      <div className="relative -z-20 bg-landing-page-background-gradient pb-20">
+      <div className="relative -z-20 bg-[#EB5E0B]">
         <img
           src={DiceDivider}
           className="absolute left-0 top-0 z-10 -translate-y-1/2"
         />
         <BCEDescription />
         <Carousel />
-        <CampusInformation />
+      </div>
+      <div className="relative -z-20 bg-landing-page-background-gradient pb-20">
         <TopLeaderboard />
       </div>
       <div className="relative">
