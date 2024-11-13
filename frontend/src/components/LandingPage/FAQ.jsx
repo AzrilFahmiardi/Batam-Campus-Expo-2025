@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 
 import FAQbg from "../../assets/images/LandingPage/FAQ-bg.png";
-import FButton from "../../assets/images/LandingPage/FAQ-button.png";
 import QSMark from "../../assets/images/LandingPage/QuestionMark.png";
 import SQSMark from "../../assets/images/LandingPage/Single-Question-Mark.png";
 import Coin from "../../assets/images/LandingPage/FAQ-Coin.png";
+import FAQAccordion from "./FAQAccordion";
 
 const FAQ = () => {
-  const [expanded, setExpanded] = useState(Array(3).fill(false));
-
-  const handleClick = (index) => {
-    setExpanded((prev) =>
-      prev.map((isExpanded, i) => (i === index ? !isExpanded : isExpanded)),
-    );
-  };
-
   return (
     <section className="relative h-auto">
       <img src={FAQbg} className="opacity-1 absolute w-full" />
@@ -39,32 +31,11 @@ const FAQ = () => {
         </div>
 
         {faqData.map((item, index) => (
-          <div key={index} className="relative mt-5 w-full drop-shadow-2xl">
-            <div className="FAQ-border p-5 sm:p-5 md:p-7 lg:p-10">
-              <article className="flex flex-row items-center justify-between">
-                <h3 className="font-pixelify text-sm font-bold md:text-xl lg:text-3xl">
-                  {item.question}
-                </h3>
-                <button
-                  onClick={() => handleClick(index)}
-                  className="ml-4 mt-0"
-                >
-                  <img
-                    src={FButton}
-                    className={`w-[40%] transform transition-transform duration-300 sm:w-[50%] md:w-[65%] lg:w-[80%] ${
-                      expanded[index] ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-              </article>
-
-              {expanded[index] && (
-                <article className="mt-4 font-montserrat text-xs sm:text-sm">
-                  <p>{item.answer}</p>
-                </article>
-              )}
-            </div>
-          </div>
+          <FAQAccordion
+            question={item.question}
+            answer={item.answer}
+            key={index}
+          />
         ))}
 
         <div className="mt-5 w-full text-center drop-shadow-2xl">

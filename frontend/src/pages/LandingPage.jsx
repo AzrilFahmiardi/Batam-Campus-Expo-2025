@@ -1,18 +1,19 @@
+import { Fragment } from "react";
+import CoinDriver from "../assets/images/LandingPage/Coin-transisi.png";
+import DiceDivider from "../assets/images/LandingPage/DiceDivider.png";
 import BCEDescription from "../components/LandingPage/BCEDescription";
-import CampusInformation from "../components/LandingPage/CampusInformation";
 import Carousel from "../components/LandingPage/Carousel";
 import Contact from "../components/LandingPage/Contact";
+import FAQ from "../components/LandingPage/FAQ";
 import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
-import FAQ from "../components/LandingPage/FAQ";
-import DiceDivider from "../assets/images/LandingPage/DiceDivider.png";
-import CoinDriver from "../assets/images/LandingPage/Coin-transisi.png";
+import Footer from "../components/LandingPage/Footer";
 
 const LandingPage = () => {
   return (
-    <div>
+    <Fragment>
       <Header />
       <Hero />
       <div className="relative -z-20 bg-[#EB5E0B]">
@@ -36,7 +37,8 @@ const LandingPage = () => {
         <Location />
         <Contact />
       </div>
-    </div>
+      <Footer />
+    </Fragment>
   );
 };
 export default LandingPage;

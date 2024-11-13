@@ -8,7 +8,7 @@ import { Autoplay } from "swiper/modules";
 
 const Carousel = () => {
   return (
-    <div className="p-10 md:px-10 lg:px-20">
+    <div className="p-10">
       <img
         src={ShadowCarousel}
         alt="Shadow"

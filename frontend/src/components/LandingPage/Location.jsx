@@ -48,9 +48,9 @@ const Maps = ({ mapUrl, description }) => {
         <iframe
           src={mapUrl}
           className="size-[300px] rounded-2xl border-0 shadow-xl md:h-[300px] md:w-[500px] md:shadow-2xl 2xl:h-[400px] 2xl:w-[600px]"
-          allowfullscreen=""
+          allowFullScreen=""
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
       <p className="px-10 py-5 text-center font-pixelify font-bold">

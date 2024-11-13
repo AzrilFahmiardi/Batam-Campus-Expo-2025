@@ -1,8 +1,26 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import BarBackground from "../../assets/images/LandingPage/BarBackground.png";
 import CoinBackground from "../../assets/images/LandingPage/CoinBackground.png";
+import createChart from "../../utils/renderChart";
 
 const TopLeaderboard = () => {
+  const data = [
+    { campus: "Universitas Harvard", votes: 4025 },
+    { campus: "Institut Teknologi Massachusetts", votes: 1882 },
+    { campus: "Politeknik Negeri Singapore", votes: 1809 },
+    { campus: "Universitas Boston", votes: 1322 },
+    { campus: "Universitas Tokyo", votes: 1122 },
+  ];
+
+  useEffect(() => {
+    const chart = createChart("chartdiv", data);
+
+    return () => {
+      chart.dispose();
+    };
+  }, []);
+
   return (
     <div className="relative space-y-10 px-10 py-20 md:px-36">
       <img
@@ -19,12 +37,13 @@ const TopLeaderboard = () => {
           <i>booth</i> dikegiatan offline nanti !!!
         </p>
       </div>
-      <div className="mx-auto max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl">
-        {/* nanti height nya ganti klo udah ada chartnya */}
-        <div className="h-[400px]"></div>
+      <div className="mx-auto max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-3xl">
+        <div className="h-[400px]">
+          <div id="chartdiv" className="h-full"></div>
+        </div>
         <Link
           to={"/kampus"}
-          className="bg-blue-pixel-gradient pixel-border-selengkapnya block py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90 md:text-2xl"
+          className="pixel-border-selengkapnya block bg-blue-pixel-gradient py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90 md:text-2xl"
         >
           Vote Universitas Favoritmu Sekarang!
         </Link>
