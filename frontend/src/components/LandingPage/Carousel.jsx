@@ -1,13 +1,20 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import itb from "../../assets/images/itb.png";
+import ShadowCarousel from "../../assets/images/LandingPage/shadow-carousel.png";
 
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 
 const Carousel = () => {
   return (
-    <div className="p-10 md:px-10 lg:px-20 lg:py-0">
+    <div className="p-10 md:px-10 lg:px-20">
+      <img
+        src={ShadowCarousel}
+        alt="Shadow"
+        className="absolute inset-x-0 -bottom-1 -z-10 mx-auto"
+      />
+
       <Swiper
         autoplay={{
           delay: 2500,
