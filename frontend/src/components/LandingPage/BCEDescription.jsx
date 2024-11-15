@@ -10,7 +10,7 @@ AOS.init();
 
 const BCEDescription = () => {
   return (
-    <div className="relative flex flex-col items-center px-10 pb-12 pt-24 sm:gap-10 md:flex-row md:px-10 md:pb-2 md:pt-40 lg:px-20 lg:pt-60">
+    <div className="relative flex flex-col items-center px-10 pb-12 pt-24 sm:gap-10 md:flex-row md:px-10 md:pb-10 md:pt-40 lg:px-20 lg:pt-60">
       <img
         src={Dice}
         className="absolute bottom-24 right-0 -z-10 max-w-[100px] md:max-w-[120px] md:translate-y-20 lg:max-w-[150px]"

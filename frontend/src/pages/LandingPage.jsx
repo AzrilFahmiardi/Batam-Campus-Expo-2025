@@ -9,6 +9,7 @@ import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
+import CampusInformation from "../components/LandingPage/CampusInformation";
 import Footer from "../components/LandingPage/Footer";
 
 const LandingPage = () => {
@@ -16,7 +17,7 @@ const LandingPage = () => {
     <Fragment>
       <Header />
       <Hero />
-      <div className="relative -z-20 bg-[#EB5E0B]">
+      <div className="relative -z-20 bg-[#EB5E0B] pb-20">
         <img
           src={DiceDivider}
           className="absolute left-0 top-0 z-10 -translate-y-1/2"
@@ -25,6 +26,7 @@ const LandingPage = () => {
         <Carousel />
       </div>
       <div className="relative -z-20 bg-landing-page-background-gradient pb-20">
+        <CampusInformation />
         <TopLeaderboard />
       </div>
       <div className="relative">
