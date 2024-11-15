@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pixel-border {
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    90% 5%,
+    95% 5%,
+    95% 10%,
+    100% 10%,
+    100% 90%,
+    95% 90%,
+    95% 95%,
+    90% 95%,
+    90% 100%,
+    10% 100%,
+    10% 95%,
+    5% 95%,
+    5% 90%,
+    0% 90%,
+    0% 10%,
+    5% 10%,
+    5% 5%,
+    10% 5%
+  );
+}
+.pixel-border-selengkapnyas {
+  clip-path: polygon(
+    5% 0%,
+    95% 0%,
+    95% 15%,
+    98% 15%,
+    98% 25%,
+    100% 25%,
+    100% 75%,
+    98% 75%,
+    98% 95%,
+    95% 95%,
+    95% 100%,
+    10% 100%
+  );
+}
+
+.pixel-border-selengkapnya {
+  clip-path: polygon(
+    5% 0%,
+    95% 0%,
+    95% 15%,
+    98% 15%,
+    98% 25%,
+    100% 25%,
+    100% 75%,
+    98% 75%,
+    98% 90%,
+    95% 90%,
+    95% 100%,
+    10% 100%,
+    5% 100%,
+    5% 90%,
+    2% 90%,
+    2% 75%,
+    0% 75%,
+    0% 25%,
+    2% 25%,
+    2% 15%,
+    5% 15%,
+    5% 0%
+  );
+}
+
+.detailed-pixel-border {
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    90% 3%,
+    93% 3%,
+    93% 5%,
+    95% 5%,
+    95% 7%,
+    97% 7%,
+    97% 10%,
+    100% 10%,
+    100% 90%,
+    97% 90%,
+    97% 93%,
+    95% 93%,
+    95% 95%,
+    93% 95%,
+    93% 97%,
+    90% 97%,
+    90% 100%,
+    10% 100%,
+    10% 97%,
+    7% 97%,
+    7% 95%,
+    5% 95%,
+    5% 93%,
+    3% 93%,
+    3% 90%,
+    0% 90%,
+    0% 10%,
+
+    3% 10%,
+    3% 7%,
+    5% 7%,
+    5% 5%,
+    7% 5%,
+    7% 3%,
+    10% 3%
+  );
+}
+
+.FAQ-border {
+  clip-path: polygon(
+    0 17%,
+    3% 17%,
+    3% 8%,
+    5% 8%,
+    5% 0,
+    95% 0,
+    95% 8%,
+    97% 8%,
+    97% 17%,
+    100% 17%,
+    100% 83%,
+    97% 83%,
+    97% 92%,
+    95% 92%,
+    95% 100%,
+    5% 100%,
+    5% 92%,
+    3% 92%,
+    3% 83%,
+    0 83%
+  );
+  background-color: white;
+}
+
+.custom-loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%, #eb5e0b);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 16px), #000 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 16px), #000 0);
+  animation: s3 1s infinite linear;
+}
+@keyframes s3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+g[aria-labelledby],
+g[filter*="filter-id"],
+g[stroke="#3cabff"] {
+  display: none;
+}
