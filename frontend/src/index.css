@@ -161,3 +161,41 @@ g[filter*="filter-id"],
 g[stroke="#3cabff"] {
   display: none;
 }
+
+@media screen and (min-width: 1024px) {
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+}
+
+.custom-scrollbar-red::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #eb5e0b, #9e0202);
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-radius: 20px;
+}
+
+.custom-scrollbar-red::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff7f50, #ff4500);
+}
+
+.custom-scrollbar-blue::-webkit-scrollbar-thumb {
+  background: #166191;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-radius: 20px;
+}
+
+.custom-scrollbar-blue::-webkit-scrollbar-thumb:hover {
+  background: #6dd5fa;
+}
