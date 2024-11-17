@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BCEBlue from "../../assets/images/LandingPage/BCEBlue.png";
+import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
 
 const Footer = () => {
   return (
