@@ -13,6 +13,7 @@ export default {
           "linear-gradient(90deg, #5CC4FF 0%, #0062B8 100%)",
         "landing-page-background-gradient":
           "linear-gradient(to bottom, #EC5F0C, #A20703)",
+        "campus-page-background-gradient" : 'linear-gradient(to bottom, #2980B9 0%, #6DD5FA 10%, #D2F3FF 100%)'
       },
       colors: {
         "orange-surface": "#EB5E0B",
