@@ -1,44 +1,43 @@
-import { color } from '@amcharts/amcharts4/core';
 import React from 'react';
 import Select from 'react-select';
 
 const Dropdown = ({ onSelect }) => {
   const provinces = [
-    { value: 'Semua Lokasi', label: 'Semua Lokasi' },
-    { value: 'Aceh', label: 'Aceh' },
-    { value: 'Sumatera Utara', label: 'Sumatera Utara' },
+    // { value: 'Semua Lokasi', label: 'Semua Lokasi' },
+    // { value: 'Aceh', label: 'Aceh' },
+    // { value: 'Sumatera Utara', label: 'Sumatera Utara' },
     { value: 'Sumatera Barat', label: 'Sumatera Barat' },
     { value: 'Riau', label: 'Riau' },
-    { value: 'Kepulauan Riau', label: 'Kepulauan Riau' },
-    { value: 'Jambi', label: 'Jambi' },
+    // { value: 'Kepulauan Riau', label: 'Kepulauan Riau' },  
+    // { value: 'Jambi', label: 'Jambi' },
     { value: 'Sumatera Selatan', label: 'Sumatera Selatan' },
-    { value: 'Kepulauan Bangka Belitung', label: 'Kepulauan Bangka Belitung' },
-    { value: 'Bengkulu', label: 'Bengkulu' },
-    { value: 'Lampung', label: 'Lampung' },
-    { value: 'DKI Jakarta', label: 'DKI Jakarta' },
-    { value: 'Banten', label: 'Banten' },
+    // { value: 'Kepulauan Bangka Belitung', label: 'Kepulauan Bangka Belitung' },
+    // { value: 'Bengkulu', label: 'Bengkulu' },
+    // { value: 'Lampung', label: 'Lampung' },
+    // { value: 'DKI Jakarta', label: 'DKI Jakarta' },
+    // { value: 'Banten', label: 'Banten' },
     { value: 'Jawa Barat', label: 'Jawa Barat' },
     { value: 'Jawa Tengah', label: 'Jawa Tengah' },
     { value: 'DI Yogyakarta', label: 'DI Yogyakarta' },
     { value: 'Jawa Timur', label: 'Jawa Timur' },
-    { value: 'Bali', label: 'Bali' },
-    { value: 'Nusa Tenggara Barat', label: 'Nusa Tenggara Barat' },
-    { value: 'Nusa Tenggara Timur', label: 'Nusa Tenggara Timur' },
-    { value: 'Kalimantan Barat', label: 'Kalimantan Barat' },
-    { value: 'Kalimantan Tengah', label: 'Kalimantan Tengah' },
-    { value: 'Kalimantan Selatan', label: 'Kalimantan Selatan' },
-    { value: 'Kalimantan Timur', label: 'Kalimantan Timur' },
-    { value: 'Kalimantan Utara', label: 'Kalimantan Utara' },
-    { value: 'Sulawesi Utara', label: 'Sulawesi Utara' },
-    { value: 'Gorontalo', label: 'Gorontalo' },
-    { value: 'Sulawesi Tengah', label: 'Sulawesi Tengah' },
-    { value: 'Sulawesi Barat', label: 'Sulawesi Barat' },
+    // { value: 'Bali', label: 'Bali' },
+    // { value: 'Nusa Tenggara Barat', label: 'Nusa Tenggara Barat' },
+    // { value: 'Nusa Tenggara Timur', label: 'Nusa Tenggara Timur' },
+    // { value: 'Kalimantan Barat', label: 'Kalimantan Barat' },
+    // { value: 'Kalimantan Tengah', label: 'Kalimantan Tengah' },
+    // { value: 'Kalimantan Selatan', label: 'Kalimantan Selatan' },
+    // { value: 'Kalimantan Timur', label: 'Kalimantan Timur' },
+    // { value: 'Kalimantan Utara', label: 'Kalimantan Utara' },
+    // { value: 'Sulawesi Utara', label: 'Sulawesi Utara' },
+    // { value: 'Gorontalo', label: 'Gorontalo' },
+    // { value: 'Sulawesi Tengah', label: 'Sulawesi Tengah' },
+    // { value: 'Sulawesi Barat', label: 'Sulawesi Barat' },
     { value: 'Sulawesi Selatan', label: 'Sulawesi Selatan' },
-    { value: 'Sulawesi Tenggara', label: 'Sulawesi Tenggara' },
-    { value: 'Maluku', label: 'Maluku' },
-    { value: 'Maluku Utara', label: 'Maluku Utara' },
-    { value: 'Papua', label: 'Papua' },
-    { value: 'Papua Barat', label: 'Papua Barat' }
+    // { value: 'Sulawesi Tenggara', label: 'Sulawesi Tenggara' },
+    // { value: 'Maluku', label: 'Maluku' },
+    // { value: 'Maluku Utara', label: 'Maluku Utara' },
+    // { value: 'Papua', label: 'Papua' },
+    // { value: 'Papua Barat', label: 'Papua Barat' }
   ];
 
   const customStyles = {
@@ -46,12 +45,12 @@ const Dropdown = ({ onSelect }) => {
       ...provided,
       borderRadius: '1.5rem',
       backgroundImage: 'linear-gradient(to right, #9E0202, #EB5E0B)',
-      borderColor: state.isFocused ? '#3B82F6' : '#D1D5DB',
+      borderColor: 'transparent',
       fontFamily: 'Poppins',
       color: '#fff',
-      boxShadow: state.isFocused ? '0 0 0 1px #3B82F6' : 'none',
+      boxShadow: 'none',
       '&:hover': {
-        borderColor: '#3B82F6'
+        borderColor: 'transparent'
       },
       padding: '2px 5px',
       width: '400px'
@@ -63,19 +62,31 @@ const Dropdown = ({ onSelect }) => {
         : state.isFocused 
           ? '#bd8f75'
           : 'white',
-      color: state.isSelected ? 'white' : '#374151', 
-      cursor: 'pointer'
+      color: state.isSelected || state.isFocused ? 'white' : '#374151',
+      cursor: 'pointer',
+      fontFamily: 'Poppins'
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: '#fff', 
+      color: '#fff',
+      fontFamily: 'Poppins'
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: '#fff',
+      fontFamily: 'Poppins'
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#fff',
+      fontFamily: 'Poppins'
     }),
     menu: (provided) => ({
       ...provided,
-      color: '#fff', 
       borderRadius: '0.5rem',
       marginTop: '4px',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      fontFamily: 'Poppins'
     }),
     menuPortal: (provided) => ({
       ...provided,
@@ -84,9 +95,7 @@ const Dropdown = ({ onSelect }) => {
   };
 
   const handleChange = (selectedOption) => {
-    if (onSelect) {
-      onSelect(selectedOption.value);
-    }
+    onSelect(selectedOption.value);
   };
 
   return (
