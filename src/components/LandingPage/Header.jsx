@@ -27,7 +27,7 @@ const Header = () => {
           ? "mx-5 mt-5 rounded-full bg-[#3892C7] shadow-md lg:mx-10"
           : "bg-transparent"
       }`}
-      style={{ zIndex: 20 }}
+      style={{ zIndex: 10 }}
     >
       <div className="flex items-center space-x-8">
         {/* Logo */}
