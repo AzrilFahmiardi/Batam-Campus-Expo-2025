@@ -1,57 +1,110 @@
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { color } from '@amcharts/amcharts4/core';
+import React from 'react';
+import Select from 'react-select';
 
-export default function Dropdown() {
+const Dropdown = ({ onSelect }) => {
+  const provinces = [
+    { value: 'Semua Lokasi', label: 'Semua Lokasi' },
+    { value: 'Aceh', label: 'Aceh' },
+    { value: 'Sumatera Utara', label: 'Sumatera Utara' },
+    { value: 'Sumatera Barat', label: 'Sumatera Barat' },
+    { value: 'Riau', label: 'Riau' },
+    { value: 'Kepulauan Riau', label: 'Kepulauan Riau' },
+    { value: 'Jambi', label: 'Jambi' },
+    { value: 'Sumatera Selatan', label: 'Sumatera Selatan' },
+    { value: 'Kepulauan Bangka Belitung', label: 'Kepulauan Bangka Belitung' },
+    { value: 'Bengkulu', label: 'Bengkulu' },
+    { value: 'Lampung', label: 'Lampung' },
+    { value: 'DKI Jakarta', label: 'DKI Jakarta' },
+    { value: 'Banten', label: 'Banten' },
+    { value: 'Jawa Barat', label: 'Jawa Barat' },
+    { value: 'Jawa Tengah', label: 'Jawa Tengah' },
+    { value: 'DI Yogyakarta', label: 'DI Yogyakarta' },
+    { value: 'Jawa Timur', label: 'Jawa Timur' },
+    { value: 'Bali', label: 'Bali' },
+    { value: 'Nusa Tenggara Barat', label: 'Nusa Tenggara Barat' },
+    { value: 'Nusa Tenggara Timur', label: 'Nusa Tenggara Timur' },
+    { value: 'Kalimantan Barat', label: 'Kalimantan Barat' },
+    { value: 'Kalimantan Tengah', label: 'Kalimantan Tengah' },
+    { value: 'Kalimantan Selatan', label: 'Kalimantan Selatan' },
+    { value: 'Kalimantan Timur', label: 'Kalimantan Timur' },
+    { value: 'Kalimantan Utara', label: 'Kalimantan Utara' },
+    { value: 'Sulawesi Utara', label: 'Sulawesi Utara' },
+    { value: 'Gorontalo', label: 'Gorontalo' },
+    { value: 'Sulawesi Tengah', label: 'Sulawesi Tengah' },
+    { value: 'Sulawesi Barat', label: 'Sulawesi Barat' },
+    { value: 'Sulawesi Selatan', label: 'Sulawesi Selatan' },
+    { value: 'Sulawesi Tenggara', label: 'Sulawesi Tenggara' },
+    { value: 'Maluku', label: 'Maluku' },
+    { value: 'Maluku Utara', label: 'Maluku Utara' },
+    { value: 'Papua', label: 'Papua' },
+    { value: 'Papua Barat', label: 'Papua Barat' }
+  ];
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      borderRadius: '1.5rem',
+      backgroundImage: 'linear-gradient(to right, #9E0202, #EB5E0B)',
+      borderColor: state.isFocused ? '#3B82F6' : '#D1D5DB',
+      fontFamily: 'Poppins',
+      color: '#fff',
+      boxShadow: state.isFocused ? '0 0 0 1px #3B82F6' : 'none',
+      '&:hover': {
+        borderColor: '#3B82F6'
+      },
+      padding: '2px 5px',
+      width: '400px'
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected 
+        ? '#9E0202' 
+        : state.isFocused 
+          ? '#bd8f75'
+          : 'white',
+      color: state.isSelected ? 'white' : '#374151', 
+      cursor: 'pointer'
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: '#fff', 
+    }),
+    menu: (provided) => ({
+      ...provided,
+      color: '#fff', 
+      borderRadius: '0.5rem',
+      marginTop: '4px',
+      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+    }),
+    menuPortal: (provided) => ({
+      ...provided,
+      zIndex: 9999
+    })
+  };
+
+  const handleChange = (selectedOption) => {
+    if (onSelect) {
+      onSelect(selectedOption.value);
+    }
+  };
+
   return (
-    <Menu as="div" className="relative items-start text-left mt-[200px] ">
-      <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-xl text-white bg-gradient-to-l from-[#EB5E0B] to-[#9E0202] px-20 py-2 text-[1.2em] font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          Semua Lokasi
-          <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
-        </MenuButton>
-      </div>
+    <div data-aos="zoom-in" data-aos-duration="1000" className="relative">
+      <Select
+        defaultValue={provinces[0]}
+        options={provinces}
+        onChange={handleChange}
+        styles={customStyles}
+        isSearchable={true}
+        menuPortalTarget={document.body}
+        menuPosition="fixed"
+        classNames={{
+          container: () => "w-full"
+        }}
+      />
+    </div>
+  );
+};
 
-      <MenuItems
-        transition
-        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-      >
-        <div className="py-1">
-          <MenuItem>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
-            >
-              Account settings
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
-            >
-              Support
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
-            >
-              License
-            </a>
-          </MenuItem>
-          <form action="#" method="POST">
-            <MenuItem>
-              <button
-                type="submit"
-                className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
-              >
-                Sign out
-              </button>
-            </MenuItem>
-          </form>
-        </div>
-      </MenuItems>
-    </Menu>
-  )
-}
+export default Dropdown;
