@@ -1,12 +1,42 @@
+import { useState,useEffect } from "react";
 import logo from "../../assets/images/Hero-Logo.svg";
 import headline from "../../assets/images/CampusPage/find-your-future.svg"
 import CloudHeroTopRight from "../../assets/images/LandingPage/CloudHeroTopRight.png";
 import CloudHeroTopLeft from "../../assets/images/LandingPage/CloudHeroTopLeft.png";
-
+import Dropdown from "./Dropdown";
+import axios from 'axios'
 
 import CampusCard from "./CampusCard"
 
+const url = 'http://localhost:5000'
+
 const CampusContainer = () => {
+
+    const [universities, setUniversities] =useState([])
+
+
+    const getAllUniversity = async () => {
+        try {
+
+            const result = await axios.get(`${url}/universitas`)
+            console.log(result.data);
+            setUniversities(result.data)
+            
+            
+        } catch (err) {
+            console.error('Error fetching university: ', err)
+            
+        }
+    }
+
+    useEffect(() => {
+        getAllUniversity();
+      }, []);
+
+
+
+
+
     return(
         <section
             className="relative -z-20 flex h-auto flex-col items-center justify-start overflow-hidden py-10  text-center bg-campus-page-background-gradient sm:py-14 md:py-16 lg:py-20 xl:py-24"
@@ -24,35 +54,18 @@ const CampusContainer = () => {
             <img src={headline} alt="headline" />
         </div>
         {/* BUAT FILTER DAN DROPDOWN DISINI NANTI (MALAS) */}
-        <div className="grid grid-cols-4 gap-5 mt-[300px]">
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
-            <CampusCard />
 
-        </div>
+        <Dropdown />
+
+        <div className="flex justify-center flex-wrap gap-5 mt-[100px] px-10">
+        {universities.length > 0 ? (
+          universities.map((university, index) => (
+            <CampusCard key={index} university={university} />
+          ))
+        ) : (
+          <p>Loading universities...</p>
+        )}
+      </div>
         </section>  
     );
 }

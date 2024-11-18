@@ -9,6 +9,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(cors());
+
 app.get("/", (req, res) => {
     res.status(200).send("OK");
 });

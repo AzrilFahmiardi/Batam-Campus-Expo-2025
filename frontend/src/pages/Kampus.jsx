@@ -7,7 +7,7 @@ import CampusContainer from "../components/CampusPage/CampusContainer";
 
 const Kampus = () => {
   return (
-    <Fragment>
+    <Fragment >
       <Header />
       <CampusContainer />
       
