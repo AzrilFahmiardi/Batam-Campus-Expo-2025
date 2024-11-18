@@ -9,12 +9,8 @@ import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
-<<<<<<< HEAD
 import CampusInformation from "../components/LandingPage/CampusInformation";
-import Footer from "../components/LandingPage/Footer";
-=======
 import Footer from "../components/Footer";
->>>>>>> origin/voting-page
 
 const LandingPage = () => {
   return (
