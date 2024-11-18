@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 const Dropdown = ({ onSelect }) => {
   const provinces = [
-    // { value: 'Semua Lokasi', label: 'Semua Lokasi' },
+    { value: 'Semua Lokasi', label: 'Semua Lokasi' },
     // { value: 'Aceh', label: 'Aceh' },
     // { value: 'Sumatera Utara', label: 'Sumatera Utara' },
     { value: 'Sumatera Barat', label: 'Sumatera Barat' },
