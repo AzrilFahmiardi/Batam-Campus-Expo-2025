@@ -6,12 +6,9 @@ import VoteItem from "../components/Vote/VoteItem";
 import Popup from "../components/Vote/PopUp";
 import CampusTable from "../components/Vote/CampusTable";
 import CampusTableItem from "../components/Vote/CampusTableItem";
-import Bar from "../assets/images/Voting/bar.png";
-import Cloudone from "../assets/images/Voting/cloud1.png";
-import Cloudtwo from "../assets/images/LandingPage/AboutCloud1.png";
-import cloudthree from "../assets/images/Voting/cloud3.png";
-import CloudBottomLeft from "../assets/images/LandingPage/CloudBottomLeft.png";
-import CloudBottomRight from "../assets/images/LandingPage/CloudBottomRight.png";
+import BackgroundBars from "../components/Vote/BackgroundBars";
+import BackgroundClouds from "../components/Vote/BackgroundClouds";
+import TopWinners from "../components/Vote/TopWinners";
 import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
 import ftShadow from "../assets/images/Voting/ft-shadow.png";
 
@@ -34,6 +31,27 @@ const Voting = () => {
     }
   }, [selectedCount]);
 
+  const sampleVotingData = [
+    {
+      id: 1,
+      name: "Institut Teknologi Bandung",
+      image: itb,
+      votes: 12345,
+    },
+    {
+      id: 2,
+      name: "Universitas Indonesia",
+      image: itb, // Replace with actual UI image
+      votes: 11234,
+    },
+    {
+      id: 3,
+      name: "Universitas Gadjah Mada",
+      image: itb, // Replace with actual UGM image
+      votes: 10123,
+    },
+  ];
+
   return (
     <Fragment>
       <Popup
@@ -44,64 +62,12 @@ const Voting = () => {
       />
       <Header />
       <div className="relative z-10 h-[200vh] bg-blue-gradient p-10 sm:h-[250vh] md:h-[280vh]">
-        {/* bar */}
-        <div className="absolute inset-0">
-          <img
-            src={Bar}
-            className="absolute -bottom-12 left-1/2 -z-20 h-[94%] w-[24%] -translate-x-[50%] md:-bottom-14 md:h-[95%] md:w-[20%] lg:-bottom-20 lg:h-[96%] lg:w-[17%]"
-          />
-          <img
-            src={Bar}
-            className="absolute -bottom-24 right-1/2 -z-10 h-[92%] w-[24%] -translate-x-[20%] md:-bottom-32 md:h-[93%] md:w-[20%] lg:-bottom-40 lg:h-[94%] lg:w-[17%]"
-          />
-          <img
-            src={Bar}
-            className="absolute -bottom-24 left-1/2 -z-10 h-[90%] w-[24%] translate-x-[20%] md:-bottom-32 md:h-[91%] md:w-[20%] lg:-bottom-40 lg:h-[92%] lg:w-[17%]"
-          />
-        </div>
+        <BackgroundBars />
+        <BackgroundClouds />
 
-        {/* cloud */}
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src={Cloudone}
-            className="absolute -right-16 w-[30%] translate-y-20 sm:-right-20 md:w-[20%] lg:-right-32 lg:translate-y-16"
-            alt="Cloud decoration"
-          />
-          <img
-            src={Cloudtwo}
-            className="absolute left-1/4 top-20 -z-10 w-[25%] sm:left-[32%] sm:w-[18%]"
-          />
-          <img
-            src={cloudthree}
-            className="absolute -left-5 top-[23%] w-[30%] sm:top-1/4 sm:w-[20%]"
-          />
-          <img
-            src={cloudthree}
-            className="absolute -right-12 top-[25%] w-[35%] sm:-right-5 sm:top-[28%] sm:w-[20%]"
-          />
-          <img
-            src={Cloudone}
-            className="absolute left-1/4 top-[45%] w-[30%] sm:top-[42%] sm:w-[20%]"
-            alt="Cloud decoration"
-          />
-          <img
-            src={Cloudtwo}
-            className="left-2- absolute bottom-1/3 w-[30%] sm:bottom-1/4 sm:left-14 sm:w-[18%]"
-          />
-          <img
-            src={CloudBottomLeft}
-            className="absolute bottom-0 left-0 -z-30 w-1/2"
-          />
-          <img
-            src={CloudBottomRight}
-            className="absolute bottom-0 right-0 -z-30 w-1/2"
-          />
-        </div>
-
-        <div className="mt-32 h-[25vh] bg-[#ffffff6b] sm:h-[35vh]"></div>
-
+        <TopWinners votingData={sampleVotingData} />
         <div className="container mx-auto mb-16 px-2 md:mb-20 md:mt-10 lg:mb-32">
-          <p className="mb-2 text-center font-pixelify text-2xl text-white md:text-4xl lg:mb-4 lg:text-5xl">
+          <p className="mb-2 text-center font-pixelify text-xl text-white md:text-4xl lg:mb-4 lg:text-5xl">
             Top Leaderboard From Voting
           </p>
           <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[80%]">
@@ -111,6 +77,7 @@ const Voting = () => {
                   {Array.from({ length: 20 }, (_, index) => index + 1).map(
                     (item) => (
                       <CampusTableItem
+                        key={item}
                         img={itb}
                         name="Institut Teknologi Bandung"
                         vote={12345}

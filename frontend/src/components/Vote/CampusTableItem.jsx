@@ -6,7 +6,7 @@ const CampusTableItem = ({ img, name, vote }) => {
       </td>
       <td className="whitespace-nowrap bg-white p-2 font-montserrat sm:p-3 md:px-4 md:py-2">
         <div className="flex w-full items-center gap-2 sm:gap-3">
-          <div className="h-8 w-8 flex-shrink-0 overflow-hidden sm:h-10 sm:w-10 md:h-12 md:w-12">
+          <div className="h-8 w-7 flex-shrink-0 overflow-hidden sm:h-10 sm:w-10 md:h-12 md:w-12">
             <img src={img} alt={name} className="h-full w-full object-cover" />
           </div>
           <p className="flex-1 text-[11px] sm:line-clamp-1 sm:text-sm md:text-lg">
