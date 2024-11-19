@@ -24,9 +24,9 @@ const TopWinners = ({ votingData }) => {
       case 1:
         return "absolute left-1/2 -translate-x-1/2 top-0 z-30";
       case 2:
-        return "absolute left-[25%] -translate-x-1/2 bottom-0 z-20";
+        return "absolute left-[27%] -translate-x-1/2 bottom-14 z-20";
       case 3:
-        return "absolute left-[75%] -translate-x-1/2 bottom-0 z-20";
+        return "absolute left-[73%] -translate-x-1/2 bottom-2 z-20";
       default:
         return "";
     }
@@ -37,51 +37,30 @@ const TopWinners = ({ votingData }) => {
       case 1:
       case 2:
       case 3:
-        return "h-[14vh] w-auto sm:h-[20vh]";
+        return "h-[14vh] w-auto sm:h-[19vh]";
       default:
         return "";
     }
   };
 
-  // Only render if we have winners
-  if (winners.length === 0) {
-    return (
-      <div className="relative mt-32 h-[25vh] sm:h-[35vh]">
-        <div className="flex h-full items-center justify-center">
-          <p className="text-center font-pixelify text-xl text-blue-600">
-            No voting data available
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="relative mx-auto mt-32 h-[25vh] bg-pink-300 sm:h-[35vh]">
+    <div className="relative mx-auto h-[25vh] sm:h-[42vh] md:mt-12 md:w-[100vh]">
       {winners.map((winner) => (
         <div
           key={winner.id}
           className={`${getPositionStyles(winner.position)} flex flex-col items-center`}
         >
           <div
-            className={`relative ${getImageSize(winner.position)} border-1 overflow-hidden rounded-full bg-[#fff] p-1 shadow-xl transition-transform hover:scale-105`}
+            className={`relative ${getImageSize(winner.position)} border-1 rounded-full bg-[#fff] p-1 shadow-xl transition-transform hover:scale-105`}
           >
             <img
               src={winner.image}
               alt={winner.name}
-              className="h-full w-full object-contain"
+              className="h-full w-full"
             />
           </div>
         </div>
       ))}
-
-      {/* <div className="absolute bottom-0 left-0 right-0 flex h-[10vh] items-end justify-center">
-        <div className="flex w-[80%] justify-between">
-          <div className="h-[8vh] w-[30%] rounded-t-lg bg-blue-300"></div>
-          <div className="h-[10vh] w-[30%] rounded-t-lg bg-blue-400"></div>
-          <div className="h-[6vh] w-[30%] rounded-t-lg bg-blue-300"></div>
-        </div>
-      </div> */}
     </div>
   );
 };

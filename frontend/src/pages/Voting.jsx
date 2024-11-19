@@ -61,7 +61,7 @@ const Voting = () => {
         setIsOpen={setIsMax}
       />
       <Header />
-      <div className="relative z-10 h-[200vh] bg-blue-gradient p-10 sm:h-[250vh] md:h-[280vh]">
+      <div className="relative z-10 h-[200vh] bg-blue-gradient p-10 sm:h-[250vh] md:h-[280vh] lg:h-[280vh]">
         <BackgroundBars />
         <BackgroundClouds />
 
