@@ -41,13 +41,13 @@ const Voting = () => {
     {
       id: 2,
       name: "Universitas Indonesia",
-      image: itb, // Replace with actual UI image
+      image: itb,
       votes: 11234,
     },
     {
       id: 3,
       name: "Universitas Gadjah Mada",
-      image: itb, // Replace with actual UGM image
+      image: itb,
       votes: 10123,
     },
   ];
