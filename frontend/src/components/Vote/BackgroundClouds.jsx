@@ -26,7 +26,7 @@ const BackgroundClouds = () => {
       />
       <img
         src={Cloudone}
-        className="absolute left-1/4 top-[50%] w-[30%] sm:top-[42%] sm:w-[20%]"
+        className="absolute left-1/4 top-[44%] w-[30%] sm:top-[42%] sm:w-[20%]"
         alt="Cloud decoration"
       />
       <img

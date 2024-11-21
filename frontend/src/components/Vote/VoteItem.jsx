@@ -34,13 +34,13 @@ const VoteItem = ({
         className="hidden"
       />
       <div className="relative h-full">
-        <p className="text-left font-montserrat text-[10px] font-semibold text-white sm:text-lg md:text-base">
+        <p className="text-left font-montserrat text-[8px] font-semibold text-white sm:text-[12px] md:text-[12px] xl:text-base">
           {name}
         </p>
         <img
           src={image}
           draggable="false"
-          className="absolute bottom-0 right-0 aspect-square translate-x-[40%] translate-y-[40%] object-contain sm:w-full sm:translate-x-1/3 sm:translate-y-[30%]"
+          className="absolute bottom-0 right-0 aspect-square translate-x-8 translate-y-6 object-contain sm:w-[120px] sm:translate-x-10 sm:translate-y-9 md:w-full md:translate-x-1/3 md:translate-y-[30%]"
         />
       </div>
     </div>

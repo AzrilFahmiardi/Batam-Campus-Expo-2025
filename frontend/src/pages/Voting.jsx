@@ -61,17 +61,17 @@ const Voting = () => {
         setIsOpen={setIsMax}
       />
       <Header />
-      <div className="relative z-10 h-[200vh] bg-blue-gradient p-10 sm:h-[250vh] md:h-[280vh] lg:h-[280vh]">
+      <div className="relative z-10 h-auto bg-blue-gradient p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
         <BackgroundBars />
         <BackgroundClouds />
 
         <TopWinners votingData={sampleVotingData} />
-        <div className="container mx-auto mb-16 px-2 md:mb-20 md:mt-10 lg:mb-32">
-          <p className="mb-2 text-center font-pixelify text-xl text-white md:text-4xl lg:mb-4 lg:text-5xl">
+        <div className="container mx-auto mb-16 px-2 md:mb-20 lg:mb-32">
+          <p className="mb-2 text-center font-pixelify text-xl text-white sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">
             Top Leaderboard From Voting
           </p>
           <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[80%]">
-            <div className="custom-scrollbar flex flex-col rounded-lg border border-white bg-[rgba(255,255,255,0.5)] p-1 backdrop-blur-md lg:flex-row lg:p-5">
+            <div className="custom-scrollbar flex h-[240px] flex-col rounded-lg border border-white bg-[rgba(255,255,255,0.5)] p-1 backdrop-blur-md sm:h-[320px] md:h-[400px] lg:h-auto lg:flex-row lg:p-5">
               <div className="custom-scrollbar custom-scrollbar-blue h-[310px] grow overflow-y-auto">
                 <CampusTable>
                   {Array.from({ length: 20 }, (_, index) => index + 1).map(
@@ -90,8 +90,8 @@ const Voting = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-6 sm:py-8 md:py-10">
-          <div className="mx-auto sm:max-w-[80%]">
+        <div className="container mx-auto px-2 py-6 sm:px-4 sm:py-8 md:py-10">
+          <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[80%]">
             <div className="flex flex-col rounded-lg border border-white bg-[rgba(255,255,255,0.5)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:flex-row lg:p-5">
               <h1 className="vertical-text mb-4 inline-block text-center font-montserrat text-[15px] font-bold text-[#166191] sm:text-xl md:text-2xl lg:mb-0 lg:rotate-180 lg:whitespace-nowrap lg:pl-5 lg:text-4xl">
                 CHOOSE YOUR FAVORITE COLLEGE!!!
@@ -100,8 +100,8 @@ const Voting = () => {
                 className="grow space-y-2 sm:space-y-3 lg:space-y-4"
                 onSubmit={onSubmit}
               >
-                <div className="custom-scrollbar custom-scrollbar-red h-[500px] overflow-y-auto p-1 md:h-[700px] lg:p-3">
-                  <div className="grid w-full grid-cols-3 gap-1 sm:gap-3 md:gap-4 xl:grid-cols-5">
+                <div className="custom-scrollbar custom-scrollbar-red h-[400px] overflow-y-auto p-1 sm:h-[430px] md:h-[420px] lg:h-auto lg:p-3">
+                  <div className="grid-cols-fixed grid w-full grid-cols-3 gap-1 sm:grid-cols-4 sm:gap-3 md:gap-4 xl:grid-cols-5">
                     {Array.from({ length: 20 }, (_, index) => index + 1).map(
                       (item) => (
                         <VoteItem
@@ -137,7 +137,7 @@ const Voting = () => {
         />
         <img
           src={ftShadow}
-          className="absolute -top-20 left-1/4 w-[80%] translate-x-5"
+          className="absolute xl:-top-14 xl:left-1/4 xl:w-[67%] xl:translate-x-20"
         />
       </div>
       <Footer />
