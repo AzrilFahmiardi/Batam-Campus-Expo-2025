@@ -32,13 +32,17 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative px-11 py-20">
+    <div className="relative py-20 md:px-11">
       <img src={contactBackground} className="absolute bottom-0 left-0 -z-10" />
       <div className="grid md:grid-cols-2">
         <div className="grid place-items-center py-10 md:p-20">
-          <img src={contactLogo} alt="logo batam campus expo" />
+          <img
+            src={contactLogo}
+            alt="logo batam campus expo"
+            className="max-w-[280px] md:max-w-full"
+          />
         </div>
-        <div className="flex h-full flex-col gap-10 p-4">
+        <div className="flex h-full flex-col gap-5 p-4 md:gap-10">
           <p className="text-center font-pixelify text-xl text-red-800 md:text-3xl">
             Send Us a Message
           </p>

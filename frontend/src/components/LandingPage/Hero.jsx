@@ -45,7 +45,7 @@ const Hero = () => {
     >
       <img
         src={CloudHeroTopRight}
-        className="animate__animated animate__fadeInRight animate__slower absolute right-0 top-24 -z-10 max-w-36 md:max-w-full"
+        className="animate__animated animate__fadeInRight animate__slower absolute -right-10 top-24 -z-10 max-w-48 md:right-0 md:max-w-full"
       />
       <img
         src={CloudHeroTopLeft}
@@ -61,7 +61,7 @@ const Hero = () => {
       />
 
       <div className="animate__animated animate__zoomIn animate__slower relative flex h-auto w-full max-w-screen-lg flex-col items-center justify-center px-10 sm:px-5">
-        <img src="./src/assets/images/Hero-Logo.svg" className="" />
+        <img src="./src/assets/images/Hero-Logo.svg" className="mb-3 md:mb-0" />
         <div className="mb-3 font-montserrat text-sm text-white">
           <div className="mb-2 inline-flex items-center justify-start gap-[10px] rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
             <img src={PinLocation} alt="" />
@@ -78,7 +78,7 @@ const Hero = () => {
         <div className="relative flex justify-center">
           <img
             src={CloudBesideCountdown}
-            className="animate__animated animate__fadeIn animate__slower absolute bottom-0 left-0 z-10 max-w-52 translate-y-1/2 md:w-1/2 md:-translate-x-1/4 md:translate-y-1"
+            className="animate__animated animate__fadeIn animate__slower absolute -left-10 bottom-0 z-10 max-w-36 translate-y-1/2 md:left-0 md:w-1/2 md:max-w-52 md:-translate-x-1/4 md:translate-y-1"
           />
           <img
             src="./src/assets/images/count-down.svg"

@@ -22,12 +22,15 @@ const TopLeaderboard = () => {
   }, []);
 
   return (
-    <div className="relative space-y-10 px-10 py-20 md:px-36">
+    <div className="space-y-10 px-10 py-20 md:px-36">
       <img
         src={CoinBackground}
-        className="absolute -left-20 top-1/2 max-w-[250px]"
+        className="absolute -left-20 top-1/2 max-w-[200px] md:max-w-[250px]"
       />
-      <img src={BarBackground} className="absolute -bottom-40 right-0" />
+      <img
+        src={BarBackground}
+        className="absolute -bottom-20 right-0 max-w-40 md:-bottom-40 md:max-w-full"
+      />
       <div className="space-y-5">
         <h2 className="text-center font-pixelify text-4xl font-bold text-white md:text-6xl">
           Top Leaderboard From Voting
@@ -45,7 +48,7 @@ const TopLeaderboard = () => {
           to={"/kampus"}
           className="pixel-border-selengkapnya block bg-blue-pixel-gradient py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90 md:text-2xl"
         >
-          Vote Universitas Favoritmu Sekarang!
+          Vote Kampus Favoritmu Sekarang!
         </Link>
       </div>
     </div>

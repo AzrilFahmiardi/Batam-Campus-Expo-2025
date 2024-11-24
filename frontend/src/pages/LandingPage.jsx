@@ -24,7 +24,7 @@ const LandingPage = () => {
         <BCEDescription />
         <Carousel />
       </div>
-      <div className="relative -z-20 bg-landing-page-background-gradient pb-20">
+      <div className="relative -z-20 overflow-hidden bg-landing-page-background-gradient pb-20">
         <TopLeaderboard />
       </div>
       <div className="relative">

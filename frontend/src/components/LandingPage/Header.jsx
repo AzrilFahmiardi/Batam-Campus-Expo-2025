@@ -34,12 +34,12 @@ const Header = () => {
         <img
           src="./src/assets/images/batamexpo-logo.svg"
           alt="logo"
-          className="w-auto max-w-[240px]"
+          className="w-auto max-w-[180px] md:max-w-[240px]"
         />
       </div>
 
       {/* Hamburger Icon */}
-      <div className="lg:hidden">
+      <div className="flex translate-y-1 lg:hidden">
         <button onClick={toggleMenu}>
           <img src="./src/assets/images/menu.svg" alt="Menu" className="h-6" />
         </button>
