@@ -3,13 +3,13 @@ import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-zinc-950 py-12 text-white">
+    <footer className="py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Company Info */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block bg-blue-50 p-5">
-              <image src={BCEBlue} alt="Batam Campus Expo" />
+            <Link href="/" className="inline-block w-[60%] p-5 md:w-[80%]">
+              <img src={BCEBlue} alt="Batam Campus Expo" />
             </Link>
             <p className="text-sm leading-relaxed text-gray-300">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt

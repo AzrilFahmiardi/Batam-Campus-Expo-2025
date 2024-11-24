@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Chosen from "../../assets/images/Voting/chosen.png";
 
 const VoteItem = ({
   image,
@@ -22,7 +23,7 @@ const VoteItem = ({
       }}
       className={
         checkedClass +
-        "relative aspect-square overflow-hidden rounded-xl p-2 duration-200 odd:bg-vote-card-odd even:bg-vote-card-even hover:cursor-pointer hover:brightness-75 sm:w-full sm:p-2"
+        "relative aspect-square h-auto overflow-hidden rounded-md p-2 duration-200 odd:bg-white even:bg-white hover:cursor-pointer hover:brightness-75 sm:w-full sm:p-2"
       }
     >
       <input
@@ -33,16 +34,27 @@ const VoteItem = ({
         readOnly
         className="hidden"
       />
-      <div className="relative h-full">
-        <p className="text-left font-montserrat text-[8px] font-semibold text-white sm:text-[12px] md:text-[12px] xl:text-base">
-          {name}
-        </p>
-        <img
-          src={image}
-          draggable="false"
-          className="absolute bottom-0 right-0 aspect-square translate-x-8 translate-y-6 object-contain sm:w-[120px] sm:translate-x-10 sm:translate-y-9 md:w-full md:translate-x-1/3 md:translate-y-[30%]"
-        />
+      <div className="flex h-full flex-col items-center justify-center">
+        <div className="flex h-[75%] p-1">
+          <img
+            src={image}
+            draggable="false"
+            className="max-h-full w-full object-contain"
+            alt={name}
+          />
+        </div>
+        <div className="flex h-[30%] items-center">
+          <p className="text-center font-montserrat text-[5px] font-bold leading-tight sm:text-[6px] md:text-[7px] lg:text-[9px]">
+            {name}
+          </p>
+        </div>
       </div>
+
+      {checked && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+          <img src={Chosen} className="w-2/3 object-contain md:w-[40%]" />
+        </div>
+      )}
     </div>
   );
 };

@@ -9,7 +9,6 @@ import CampusTableItem from "../components/Vote/CampusTableItem";
 import BackgroundBars from "../components/Vote/BackgroundBars";
 import BackgroundClouds from "../components/Vote/BackgroundClouds";
 import TopWinners from "../components/Vote/TopWinners";
-import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
 import ftShadow from "../assets/images/Voting/ft-shadow.png";
 
 const Voting = () => {
@@ -70,11 +69,11 @@ const Voting = () => {
           <p className="mb-2 text-center font-pixelify text-xl text-white sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">
             Top Leaderboard From Voting
           </p>
-          <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[80%]">
-            <div className="custom-scrollbar flex h-[240px] flex-col rounded-lg border border-white bg-[rgba(255,255,255,0.5)] p-1 backdrop-blur-md sm:h-[320px] md:h-[400px] lg:h-auto lg:flex-row lg:p-5">
+          <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[85%]">
+            <div className="custom-scrollbar flex h-[480px] flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-1 backdrop-blur-md sm:h-[320px] md:h-[400px] lg:h-auto lg:flex-row lg:p-5">
               <div className="custom-scrollbar custom-scrollbar-blue h-[310px] grow overflow-y-auto">
                 <CampusTable>
-                  {Array.from({ length: 20 }, (_, index) => index + 1).map(
+                  {Array.from({ length: 25 }, (_, index) => index + 1).map(
                     (item) => (
                       <CampusTableItem
                         key={item}
@@ -91,18 +90,15 @@ const Voting = () => {
         </div>
 
         <div className="container mx-auto px-2 py-6 sm:px-4 sm:py-8 md:py-10">
-          <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[80%]">
-            <div className="flex flex-col rounded-lg border border-white bg-[rgba(255,255,255,0.5)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:flex-row lg:p-5">
-              <h1 className="vertical-text mb-4 inline-block text-center font-montserrat text-[15px] font-bold text-[#166191] sm:text-xl md:text-2xl lg:mb-0 lg:rotate-180 lg:whitespace-nowrap lg:pl-5 lg:text-4xl">
+          <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[85%]">
+            <div className="flex flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3">
+              <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
                 CHOOSE YOUR FAVORITE COLLEGE!!!
               </h1>
-              <form
-                className="grow space-y-2 sm:space-y-3 lg:space-y-4"
-                onSubmit={onSubmit}
-              >
-                <div className="custom-scrollbar custom-scrollbar-red h-[400px] overflow-y-auto p-1 sm:h-[430px] md:h-[420px] lg:h-auto lg:p-3">
-                  <div className="grid-cols-fixed grid w-full grid-cols-3 gap-1 sm:grid-cols-4 sm:gap-3 md:gap-4 xl:grid-cols-5">
-                    {Array.from({ length: 20 }, (_, index) => index + 1).map(
+              <form className="grow space-y-2 sm:space-y-3" onSubmit={onSubmit}>
+                <div className="custom-scrollbar custom-scrollbar-red h-[390px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
+                  <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
+                    {Array.from({ length: 25 }, (_, index) => index + 1).map(
                       (item) => (
                         <VoteItem
                           name={"Institut Teknologi Bandung"}
@@ -117,10 +113,10 @@ const Voting = () => {
                     )}
                   </div>
                 </div>
-                <div className="px-2 sm:px-3">
+                <div className="">
                   <button
                     type="submit"
-                    className="w-full rounded-xl bg-white py-2 font-montserrat text-lg font-bold duration-100 hover:bg-[#337ba8] hover:text-white sm:py-3 sm:text-xl"
+                    className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-red-800 py-1 font-montserrat text-base font-bold text-white duration-100 sm:rounded-full sm:py-4 sm:text-xl"
                   >
                     Vote Now!
                   </button>
@@ -130,17 +126,13 @@ const Voting = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-[30vh] overflow-hidden bg-landing-page-background-gradient md:h-[40vh] lg:h-[55vh]">
-        <img
-          src={BCEBlue}
-          className="absolute bottom-8 left-2 w-[30%] translate-x-5 md:bottom-10 md:left-5 lg:bottom-16 lg:left-10"
-        />
-        <img
+      <div className="relative z-0 overflow-hidden bg-gradient-to-b from-orange-600 to-red-800 pt-16 md:pt-40">
+        {/* <img
           src={ftShadow}
-          className="absolute xl:-top-14 xl:left-1/4 xl:w-[67%] xl:translate-x-20"
-        />
+          className="translate-x- absolute -top-2 left-20 -z-20 translate-y-2 scale-125 md:-top-10 md:left-32 lg:-top-[10%] lg:left-1/4 lg:w-[70%] lg:translate-x-12 lg:translate-y-3"
+        /> */}
+        <Footer />
       </div>
-      <Footer />
     </Fragment>
   );
 };
