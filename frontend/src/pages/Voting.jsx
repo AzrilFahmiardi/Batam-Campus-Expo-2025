@@ -96,7 +96,7 @@ const Voting = () => {
                 CHOOSE YOUR FAVORITE COLLEGE!!!
               </h1>
               <form className="grow space-y-2 sm:space-y-3" onSubmit={onSubmit}>
-                <div className="custom-scrollbar custom-scrollbar-red h-[390px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
+                <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
                   <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
                     {Array.from({ length: 25 }, (_, index) => index + 1).map(
                       (item) => (
@@ -116,7 +116,7 @@ const Voting = () => {
                 <div className="">
                   <button
                     type="submit"
-                    className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-red-800 py-1 font-montserrat text-base font-bold text-white duration-100 sm:rounded-full sm:py-4 sm:text-xl"
+                    className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-red-800 py-1 font-montserrat text-[10px] font-bold text-white duration-100 sm:rounded-full sm:py-4 sm:text-xl"
                   >
                     Vote Now!
                   </button>

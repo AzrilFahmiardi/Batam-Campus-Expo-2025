@@ -3,7 +3,7 @@ import LocationIconBackground from "../../assets/images/LocationIconBackground.p
 
 const Location = () => {
   return (
-    <div className="relative space-y-16 overflow-hidden p-5 px-11 py-20">
+    <div className="relative space-y-8 overflow-hidden p-5 px-11 md:space-y-16 md:py-20">
       <img
         src={LocationIconBackground}
         className="absolute -right-20 top-20 -z-10 max-w-56 md:top-0 md:max-w-full"
