@@ -5,7 +5,7 @@ import BCEDescription from "../components/LandingPage/BCEDescription";
 import Carousel from "../components/LandingPage/Carousel";
 import Contact from "../components/LandingPage/Contact";
 import FAQ from "../components/LandingPage/FAQ";
-import Header from "../components/LandingPage/Header";
+import Header from "../components/Header";
 import Hero from "../components/LandingPage/Hero";
 import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";

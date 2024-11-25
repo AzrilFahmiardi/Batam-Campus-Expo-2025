@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import Header from "../components/LandingPage/Header";
+import Header from "../components/Header";
 import itb from "../assets/images/itb.png";
 import Footer from "../components/Footer";
 import VoteItem from "../components/Vote/VoteItem";

@@ -1,23 +1,13 @@
 import { Fragment } from "react";
-import Header from "../components/LandingPage/Header";
+import Header from "../components/Header";
 import CampusContainer from "../components/CampusPage/CampusContainer";
-
-
-
 
 const Kampus = () => {
   return (
-    <Fragment >
+    <Fragment>
       <Header />
       <CampusContainer />
-      
-
-
     </Fragment>
-    
-
-
-
   );
 };
 export default Kampus;
