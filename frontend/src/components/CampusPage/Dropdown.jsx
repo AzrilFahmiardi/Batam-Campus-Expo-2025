@@ -53,7 +53,7 @@ const Dropdown = ({ onSelect }) => {
         borderColor: 'transparent'
       },
       padding: '2px 5px',
-      width: '400px'
+      width: '320px'
     }),
     option: (provided, state) => ({
       ...provided,

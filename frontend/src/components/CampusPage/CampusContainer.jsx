@@ -57,12 +57,12 @@ const CampusContainer = () => {
             </div>
 
             <div className="flex flex-col justify-start gap-10 mt-[200px]">
-                <div className="flex justify-center gap-10">
+                <div className="flex justify-center gap-10 flex-wrap">
                     <Dropdown onSelect={handleLocationSelect} />
                     <input 
                         type="text" 
                         placeholder="Cari Kampus" 
-                        className="border-2 border-[#EB5E0B] px-6 py-1 rounded-[1.5rem] font-montserrat w-[350px] text-[#EB5E0B] focus:border-[#EB5E0B] outline-none"
+                        className="border-2 border-[#EB5E0B] px-6 py-1 rounded-[1.5rem] font-montserrat w-[85vw] md:w-[390px] text-[#EB5E0B] focus:border-[#EB5E0B] outline-none"
                         value={searchUniversity}
                         onChange={(e) => setSearchUniversity(e.target.value)}
                         data-aos="zoom-in"
