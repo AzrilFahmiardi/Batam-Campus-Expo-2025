@@ -9,7 +9,7 @@ import Header from "../components/LandingPage/Header";
 import Hero from "../components/LandingPage/Hero";
 import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
-import CampusInformation from "../components/LandingPage/CampusInformation";
+// import CampusInformation from "../components/LandingPage/CampusInformation";
 import Footer from "../components/Footer";
 
 const LandingPage = () => {
@@ -25,8 +25,7 @@ const LandingPage = () => {
         <BCEDescription />
         <Carousel />
       </div>
-      <div className="relative -z-20 bg-landing-page-background-gradient pb-20">
-        <CampusInformation />
+      <div className="relative -z-20 overflow-hidden bg-landing-page-background-gradient pb-20">
         <TopLeaderboard />
       </div>
       <div className="relative">
@@ -39,7 +38,9 @@ const LandingPage = () => {
         <Location />
         <Contact />
       </div>
-      <Footer />
+      <div className="bg-footer-gradient">
+        <Footer />
+      </div>
     </Fragment>
   );
 };

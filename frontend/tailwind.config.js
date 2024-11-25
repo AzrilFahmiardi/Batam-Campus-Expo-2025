@@ -16,6 +16,9 @@ export default {
         "blue-gradient": "linear-gradient(to bottom, #166191, #6DD5FA)",
         "vote-card-odd": "linear-gradient(to bottom, #EB5E0B, #9E0202)",
         "vote-card-even": "linear-gradient(to bottom, #6DD5FA, #166191)",
+        "campus-page-background-gradient":
+          "linear-gradient(to bottom, #2980B9 0%, #6DD5FA 10%, #D2F3FF 100%)",
+        "footer-gradient": "linear-gradient(to bottom, #F97316, #991B1B)",
       },
       colors: {
         "orange-surface": "#EB5E0B",

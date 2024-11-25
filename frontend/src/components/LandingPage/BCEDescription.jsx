@@ -13,7 +13,7 @@ const BCEDescription = () => {
     <div className="relative flex flex-col items-center px-10 pb-12 pt-24 sm:gap-10 md:flex-row md:px-10 md:pb-10 md:pt-40 lg:px-20 lg:pt-60">
       <img
         src={Dice}
-        className="absolute bottom-24 right-0 -z-10 max-w-[100px] md:max-w-[120px] md:translate-y-20 lg:max-w-[150px]"
+        className="absolute bottom-0 right-0 -z-10 max-w-[100px] md:bottom-24 md:max-w-[120px] md:translate-y-20 lg:max-w-[150px]"
       />
       <img
         src={AboutCloud1}
@@ -22,7 +22,7 @@ const BCEDescription = () => {
 
       <img
         src={AboutCloud2}
-        className="absolute z-10 max-w-[100px] translate-x-24 translate-y-20 md:max-w-[170px] md:translate-x-64 md:translate-y-20 lg:max-w-[200px] lg:translate-x-80 lg:translate-y-28"
+        className="absolute z-10 max-w-[100px] translate-x-20 translate-y-20 md:max-w-[170px] md:translate-x-64 md:translate-y-20 lg:max-w-[200px] lg:translate-x-80 lg:translate-y-28"
       />
 
       <img
@@ -30,7 +30,7 @@ const BCEDescription = () => {
         className="absolute -z-10 hidden md:block md:-translate-x-[40%] md:translate-y-10 lg:translate-y-16"
       />
 
-      <div className="mb-3 flex w-fit flex-col items-center md:mb-10 md:p-10">
+      <div className="mb-5 flex w-fit flex-col items-center md:mb-10 md:p-10">
         <img
           src={BCEBlue}
           className="max-w-[220px] md:max-w-[320px] lg:max-w-[430px]"
