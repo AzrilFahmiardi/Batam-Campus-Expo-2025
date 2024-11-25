@@ -25,7 +25,7 @@ const CampusCard = ({university, delay}) => {
         <div data-aos="fade-up"  data-aos-duration="1000" data-aos-delay={delay} data-aos-once="true" className="md:pr-0 pr-[3.9rem] relative w-[90vw] md:w-[420px] h-[100px] md:h-[300px] bg-white rounded-xl grid grid-cols-2 md:flex md:flex-col">
             <div className="  relative w-[150px] sm:w-[700px] md:w-full ">
                 <img src={cardImage} alt="Campus Image" className=" rounded-l-xl md:rounded-bl-none md:rounded-t-xl h-[100px]  md:h-auto object-cover " />
-                <p className="absolute top-2 left-2 text-white text-[0.5em] md:text-md font-bold font-montserrat bg-gradient-to-b from-[#EB5E0B] to-[#9E0202] rounded-xl px-2 py-1">
+                <p className="absolute top-2 left-2 text-white text-[0.2em] md:text-[0.8em] font-bold font-montserrat bg-gradient-to-b from-[#EB5E0B] to-[#9E0202] rounded-xl px-2 py-1">
                 Rank {university.rank_international}
                 </p>
                 <p className="absolute bottom-6 md:bottom-2 right-1 sm:right-[60em] md:right-2 text-white text-[0.5em] md:text-[0.7em] font-bold font-montserrat bg-[#3A3A3A]/[.77] rounded-xl px-2 py-1">
