@@ -39,7 +39,7 @@ const FAQ = () => {
         ))}
 
         <div className="mt-5 w-full text-center drop-shadow-2xl">
-          <div className="FAQ-border bg-white p-4 sm:p-6 lg:p-9">
+          <div className="FAQ-border p-4 sm:p-6 lg:p-9">
             <button className="font-pixelify text-sm font-bold md:text-xl lg:text-3xl">
               More questions?
             </button>
@@ -64,7 +64,7 @@ const faqData = [
   {
     question: "Where does it come from?",
     answer:
-      "Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. ",
+      "Contrary to popular belief, Lorem Ipsum is not simply random text.",
   },
 ];
 

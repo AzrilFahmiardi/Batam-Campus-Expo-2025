@@ -87,23 +87,23 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="absolute right-5 top-16 flex flex-col space-y-4 rounded-lg bg-[#3892C7] p-5 shadow-lg lg:hidden">
-          <a href="/" className="font-black text-white hover:text-gray-200">
+          <a href="/home" className="font-black text-white hover:text-gray-200">
             Home
           </a>
           <a
-            href="voting"
+            href="/voting"
             className="font-medium text-white hover:text-gray-200"
           >
             Voting
           </a>
           <a
-            href="kampus"
+            href="/kampus"
             className="font-medium text-white hover:text-gray-200"
           >
             Kampus
           </a>
           <a
-            href="kegiatan"
+            href="/kegiatan"
             className="font-medium text-white hover:text-gray-200"
           >
             Kegiatan
