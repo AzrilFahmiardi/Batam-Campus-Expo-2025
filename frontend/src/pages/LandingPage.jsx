@@ -15,7 +15,7 @@ const LandingPage = () => {
   return (
     <Fragment>
       <Header />
-      <Hero />
+      <Hero id="hero" />
       <div className="relative -z-20 bg-[#EB5E0B]">
         <img
           src={DiceDivider}

@@ -60,7 +60,7 @@ const Voting = () => {
         setIsOpen={setIsMax}
       />
       <Header />
-      <div className="bg-blue-gradient relative z-10 h-auto p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
+      <div className="relative z-10 h-auto bg-blue-gradient p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
         <BackgroundBars />
         <BackgroundClouds />
 
@@ -126,7 +126,7 @@ const Voting = () => {
           </div>
         </div>
       </div>
-      <div className="bg-footer-gradient relative z-0 overflow-hidden pt-16 md:pt-40">
+      <div className="relative z-0 overflow-hidden bg-footer-gradient pt-16 md:pt-40">
         {/* <img
           src={ftShadow}
           className="translate-x- absolute -top-2 left-20 -z-20 translate-y-2 scale-125 md:-top-10 md:left-32 lg:-top-[10%] lg:left-1/4 lg:w-[70%] lg:translate-x-12 lg:translate-y-3"
