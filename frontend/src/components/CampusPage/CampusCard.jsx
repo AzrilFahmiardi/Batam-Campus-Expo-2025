@@ -32,8 +32,8 @@ const CampusCard = ({university, delay}) => {
                 Akreditasi {university.akreditasi}
                 </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-10 py-4 md:py-2 px-5  w-[300px]">
-                <img src={university.logo} alt="logo" className="w-10 md:w-full hidden  md:block"/>
+            <div className="flex flex-col md:flex-row gap-7 py-4 md:py-2 px-5  w-[300px]">
+                <img src={university.logo} alt="logo" className="w-[100px] md:w-cover md:object-cover p-1 hidden  md:block"/>
                 <div className="text-left font-montserrat">
                 <p className="font-bold text-[0.8em] md:text-[1.1em] text-[#3A3A3A] truncate max-w-[240px] my-2 md:mb-1">
                         {university.nama}
