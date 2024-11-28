@@ -6,8 +6,7 @@ const CampusCard = ({university, delay}) => {
 
     if (!university) {
         return (
-            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay={delay} data-aos-once="true" className="w-[420px] h-[300px] bg-white rounded-xl">
-                <div className="h-[180px] bg-gray-200 rounded-t-xl"></div>
+            <div data-aos="fade-up"  data-aos-duration="1000" data-aos-delay={delay} data-aos-once="true" className="cursor-pointer md:pr-0 pr-[3.9rem] relative w-[90vw] md:w-[420px] h-[100px] md:h-[300px] bg-white rounded-xl grid grid-cols-2 overflow-hidden md:flex md:flex-col">
                 <div className="flex gap-10 py-4 px-5">
                     <div className="w-16 h-16 bg-gray-200 rounded"></div>
                     <div className="flex-1">

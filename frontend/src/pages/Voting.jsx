@@ -56,27 +56,6 @@ const Voting = () => {
     }
   }, [selectedCount]);
 
-  const sampleVotingData = [
-    {
-      id: 1,
-      name: "Institut Teknologi Bandung",
-      image: itb,
-      votes: 12345,
-    },
-    {
-      id: 2,
-      name: "Universitas Indonesia",
-      image: itb,
-      votes: 11234,
-    },
-    {
-      id: 3,
-      name: "Universitas Gadjah Mada",
-      image: itb,
-      votes: 10123,
-    },
-  ];
-
   return (
     <Fragment>
       <Popup
@@ -123,8 +102,8 @@ const Voting = () => {
             </h1>
             <form className="grow space-y-2 sm:space-y-3" onSubmit={onSubmit}>
               <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
-                <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
-                {universities.map((uni, index) => (
+              <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7 place-items-center">
+              {universities.map((uni, index) => (
                   <VoteItem
                     key={uni.kode_univ}
                     name={uni.nama}  
