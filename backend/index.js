@@ -5,6 +5,8 @@ require("dotenv").config();
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const path = require('path');
+
 const fs = require('fs');
 
 const app = express();
@@ -14,7 +16,7 @@ app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }));
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 
@@ -118,14 +120,9 @@ app.get('/universitas', async (req, res) => {
         const [rows] = await db.query("SELECT * FROM universitas ORDER BY jumlah_voting DESC");
 
         const universities = rows.map(uni => {
-            if (uni.logo) {
-                const base64Logo = uni.logo.toString('base64');
-                uni.logo = `data:image/png;base64,${base64Logo}`;
-            }
-            if (uni.cardImage) {
-                const base64cardImage = uni.cardImage.toString('base64');
-                uni.cardImage = `data:image/png;base64,${base64cardImage}`;
-            }
+            uni.logo = `/LogoCampus/${uni.kode_univ}.png`;
+            uni.cardImage = `/CardImage/${uni.kode_univ}_1.jpg`;
+            
             return uni;
         });
 

@@ -28,13 +28,11 @@ const LandingPage = () => {
         style={{
           backgroundImage: `url(${DiceDivider})`,
           backgroundRepeat: 'repeat-x',
-          backgroundSize: 'contain', // Agar gambar menutupi area elemen
-          height: '70px', // Membuat tinggi div mengikuti konten
+          backgroundSize: 'contain',
+          height: '70px',
 
         }}
-      >
-        {/* Konten lain jika diperlukan */}
-      </div>
+      ></div>
         
         <BCEDescription />
         <Carousel />
@@ -43,11 +41,16 @@ const LandingPage = () => {
         <TopLeaderboard />
       </div>
       <div className="relative">
-        <img
-          src={CoinDriver}
-          alt=""
-          className="absolute left-0 top-0 -z-20 -translate-y-1/2"
-        />
+      <div
+        className="w-full absolute -top-8"
+        style={{
+          backgroundImage: `url(${CoinDriver})`,
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'contain',
+          height: '100px',
+
+        }}
+      ></div>
         <FAQ />
         <Location />
         <Contact />
