@@ -11,12 +11,18 @@ import BackgroundClouds from "../components/Vote/BackgroundClouds";
 import TopWinners from "../components/Vote/TopWinners";
 // import ftShadow from "../assets/images/Voting/ft-shadow.png";
 import { useAuth } from "../utils/AuthProvider";
+import { getAllUniversity } from "../utils/UniversityFetch";
 
 
 const Voting = () => {
   const { user, isLoggedIn, hasVoted } = useAuth();
   const [selectedCount, setSelectedCount] = useState(0);
   const [isMax, setIsMax] = useState(false);
+  const [universities, setUniversities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [topUniversities, setTopUniversities] = useState([]);
+
+
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +31,23 @@ const Voting = () => {
       console.log(key, value);
     }
   };
+
+  // FETCHING UNIVERSITIES DATA
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const data = await getAllUniversity();  
+            setUniversities(data);
+            setIsLoading(false);
+            setTopUniversities(data.slice(0,3))
+        } catch (err) {
+            console.error('Error fetching university data: ', err);
+            setIsLoading(false); 
+        }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (selectedCount > 5) {
@@ -67,7 +90,7 @@ const Voting = () => {
         <BackgroundBars />
         <BackgroundClouds />
 
-        <TopWinners votingData={sampleVotingData} />
+        <TopWinners votingData={universities} />
         <div className="container mx-auto mb-16 px-2 md:mb-20 lg:mb-32">
           <p className="mb-2 text-center font-pixelify text-xl text-white sm:text-3xl md:text-4xl lg:mb-4 lg:text-5xl">
             Top Leaderboard From Voting
@@ -76,16 +99,15 @@ const Voting = () => {
             <div className="custom-scrollbar flex h-[480px] flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-1 backdrop-blur-md sm:h-[320px] md:h-[400px] lg:h-auto lg:flex-row lg:p-5">
               <div className="custom-scrollbar custom-scrollbar-blue h-[310px] grow overflow-y-auto">
                 <CampusTable>
-                  {Array.from({ length: 25 }, (_, index) => index + 1).map(
-                    (item) => (
-                      <CampusTableItem
-                        key={item}
-                        img={itb}
-                        name="Institut Teknologi Bandung"
-                        vote={12345}
-                      />
-                    ),
-                  )}
+                {universities.map((uni,index) => ( 
+                    <CampusTableItem
+                      key={uni.kode_univ}
+                      number={index+1}
+                      img={uni.logo}  
+                      name={uni.nama}  
+                      vote={uni.jumlah_voting}  
+                    />
+                  ))}
                 </CampusTable>
               </div>
             </div>
@@ -101,19 +123,17 @@ const Voting = () => {
               <form className="grow space-y-2 sm:space-y-3" onSubmit={onSubmit}>
                 <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
                   <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
-                    {Array.from({ length: 25 }, (_, index) => index + 1).map(
-                      (item) => (
-                        <VoteItem
-                          name={"Institut Teknologi Bandung"}
-                          value={"itb"}
-                          key={item}
-                          image={itb}
-                          selectedCount={selectedCount}
-                          setSelectedCount={setSelectedCount}
-                          setIsMax={setIsMax}
-                        />
-                      ),
-                    )}
+                  {universities.map((uni, index) => (
+                    <VoteItem
+                      key={uni.kode_univ}
+                      name={uni.nama}  
+                      value={uni.kode_univ}  
+                      image={uni.logo}  
+                      selectedCount={selectedCount}
+                      setSelectedCount={setSelectedCount}
+                      setIsMax={setIsMax}
+                    />
+                  ))}
                   </div>
                 </div>
                 <div className="">

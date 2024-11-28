@@ -37,13 +37,13 @@ const TopWinners = ({ votingData }) => {
     <div className="relative mx-auto mt-12 h-[230px] w-[260px] sm:h-[260px] sm:w-[400px] md:mt-32 md:h-[260px] md:w-[500px] lg:h-[350px] lg:w-[700px]">
       {winners.map((winner) => (
         <div
-          key={winner.id}
+          key={winner.kode_univ}
           className={`${getPositionStyles(winner.position)} flex flex-col items-center`}
         >
           <div
             className={`border-1 relative h-[75px] w-auto rounded-full bg-[#fff] p-1 shadow-xl transition-transform hover:scale-105 sm:h-[100px] md:h-[125px] lg:h-[150px]`}
           >
-            <img src={winner.image} className="z-10 h-full w-full" />
+            <img src={winner.logo} className="z-10 h-full w-full" />
           </div>
           <img
             src={Shadow}

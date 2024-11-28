@@ -5,6 +5,7 @@ require("dotenv").config();
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -112,16 +113,28 @@ app.get("/", (req, res) => {
 });
 
 //ALL UNIVERSITAS
-app.get('/universitas', async (req,res) => {
-
+app.get('/universitas', async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT * FROM universitas");
-        res.json(rows);
+        const [rows] = await db.query("SELECT * FROM universitas ORDER BY jumlah_voting DESC");
+
+        const universities = rows.map(uni => {
+            if (uni.logo) {
+                const base64Logo = uni.logo.toString('base64');
+                uni.logo = `data:image/png;base64,${base64Logo}`;
+            }
+            if (uni.cardImage) {
+                const base64cardImage = uni.cardImage.toString('base64');
+                uni.cardImage = `data:image/png;base64,${base64cardImage}`;
+            }
+            return uni;
+        });
+
+        res.json(universities);
     } catch (error) {
         console.error('Error fetching universities:', error);
         res.status(500).send('Error fetching universities');
     }
-})
+});
 
 // UNIVERSITAS BY ID
 app.get('/:kode_univ', async (req, res) => {

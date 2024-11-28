@@ -4,11 +4,10 @@ import headline from "../../assets/images/CampusPage/find-your-future.svg"
 import CloudHeroTopRight from "../../assets/images/LandingPage/CloudHeroTopRight.png";
 import CloudHeroTopLeft from "../../assets/images/LandingPage/CloudHeroTopLeft.png";
 import Dropdown from "./Dropdown";
-import axios from 'axios'
+import { getAllUniversity } from "../../utils/UniversityFetch";
 
 import CampusCard from "./CampusCard"
 
-const url = 'http://localhost:5000'
 
 const CampusContainer = () => {
     const [universities, setUniversities] = useState([]);
@@ -16,18 +15,19 @@ const CampusContainer = () => {
     const [selectedLocation, setSelectedLocation] = useState("Semua Lokasi");
     const [isLoading, setIsLoading] = useState(true);
 
-    const getAllUniversity = async () => {
-        try {
-            const result = await axios.get(`${url}/universitas`);
-            setUniversities(result.data);
-            setIsLoading(false);
-        } catch (err) {
-            console.error('Error fetching university: ', err);
-        }
-    }
-
     useEffect(() => {
-        getAllUniversity();
+        const fetchData = async () => {
+            try {
+                const data = await getAllUniversity();  
+                setUniversities(data);
+                setIsLoading(false);
+            } catch (err) {
+                console.error('Error fetching university data: ', err);
+                setIsLoading(false); 
+            }
+        };
+
+        fetchData();
     }, []);
 
     const filteredUniversities = universities.filter(university => {
