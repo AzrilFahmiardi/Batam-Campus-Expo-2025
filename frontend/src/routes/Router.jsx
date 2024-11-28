@@ -5,6 +5,7 @@ import LandingPage from "../pages/LandingPage";
 import NotFound from "../pages/NotFound";
 import Voting from "../pages/Voting";
 import RouterErrorBoundary from "./RouterErrorBoundary";
+import { AuthProvider } from "../utils/AuthProvider";
 
 const routes = [
   {
@@ -35,5 +36,9 @@ const router = createBrowserRouter([
     children: routes,
   },
 ]);
-const Router = () => <RouterProvider router={router} />;
+const Router = () => (
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
+);
 export default Router;

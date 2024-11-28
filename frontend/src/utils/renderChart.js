@@ -36,12 +36,26 @@ const createChart = (chartId, data) => {
   series.depth = 100; // Adjust depth as needed
   series.angle = 90; // Set angle to 45 for diamond-like top shape
 
+  
+
   // Add label on top of each column
-  let labelBullet = series.bullets.push(new am4charts.LabelBullet());
-  labelBullet.label.text = "{campus}\n{valueY}"; // Display value on top
-  labelBullet.label.fill = am4core.color("#ffffff"); // Set label color to black
-  labelBullet.label.dy = -30; // Adjust position above each bar
-  labelBullet.label.className = "test";
+  // Label untuk campus (di atas)
+let campusLabelBullet = series.bullets.push(new am4charts.LabelBullet());
+campusLabelBullet.label.text = "{campus}";
+campusLabelBullet.label.fontSize = 11;
+campusLabelBullet.label.fill = am4core.color("#ffffff");
+campusLabelBullet.label.dy = -50; // Mengatur posisi di atas batang
+campusLabelBullet.label.horizontalCenter = "middle"; // Agar tetap horizontal di tengah
+
+// Label untuk valueY (di tengah)
+let valueLabelBullet = series.bullets.push(new am4charts.LabelBullet());
+valueLabelBullet.label.text = "{valueY}";
+valueLabelBullet.label.fontSize = 11;
+valueLabelBullet.label.fill = am4core.color("#ffffff");
+valueLabelBullet.label.dy = -30; // Menyesuaikan posisi ke tengah batang
+valueLabelBullet.label.horizontalCenter = "middle"; // Agar berada di tengah batang
+valueLabelBullet.label.verticalCenter = "middle"; // Menempatkan nilai di tengah vertikal
+
 
   // Hide tooltips and cursor lines
   series.tooltipText = ""; // No tooltip

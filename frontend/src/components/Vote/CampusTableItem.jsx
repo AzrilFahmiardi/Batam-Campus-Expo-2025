@@ -1,8 +1,8 @@
-const CampusTableItem = ({ img, name, vote }) => {
+const CampusTableItem = ({ number,img, name, vote }) => {
   return (
     <tr>
       <td className="w-[30px] whitespace-nowrap rounded-l-md bg-white p-2 px-3 text-center font-montserrat text-[12px] font-bold sm:w-[50px] sm:p-3 sm:text-xl md:w-[60px] md:text-lg lg:w-[80px] lg:text-xl">
-        1
+        {number}
       </td>
       <td className="whitespace-nowrap bg-white p-2 font-montserrat sm:p-3 md:px-4 md:py-2">
         <div className="flex w-full items-center gap-2 sm:gap-3">

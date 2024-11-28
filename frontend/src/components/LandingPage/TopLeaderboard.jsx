@@ -1,25 +1,45 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BarBackground from "../../assets/images/LandingPage/BarBackground.png";
 import CoinBackground from "../../assets/images/LandingPage/CoinBackground.png";
 import createChart from "../../utils/renderChart";
+import { getAllUniversity } from "../../utils/UniversityFetch";
 
 const TopLeaderboard = () => {
-  const data = [
-    { campus: "Universitas Harvard", votes: 4025 },
-    { campus: "Institut Teknologi Massachusetts", votes: 1882 },
-    { campus: "Politeknik Negeri Singapore", votes: 1809 },
-    { campus: "Universitas Boston", votes: 1322 },
-    { campus: "Universitas Tokyo", votes: 1122 },
-  ];
+  const [universities, setUniversities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  // FETCHIN FOR UNIVERSITIES CHART
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllUniversity();
+        const formattedData = data.slice(0, 4).map((uni) => ({
+          campus: uni.nama,      
+          votes: uni.jumlah_voting, 
+          logo: uni.logo,
+        }));
+        setUniversities(formattedData);
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Error fetching university data: ", err);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
 
   useEffect(() => {
-    const chart = createChart("chartdiv", data);
+    if (universities.length > 0) {
+      const chart = createChart("chartdiv", universities);
 
-    return () => {
-      chart.dispose();
-    };
-  }, []);
+      return () => chart.dispose();
+    }
+  }, [universities]);
 
   return (
     <div className="space-y-10 px-10 py-20 md:px-36">
