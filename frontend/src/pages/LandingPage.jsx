@@ -23,10 +23,19 @@ const LandingPage = () => {
       <Header user={user}/>
       <Hero id="hero" />
       <div className="relative -z-20 bg-[#EB5E0B]">
-        <img
-          src={DiceDivider}
-          className="absolute left-0 top-0 z-10 -translate-y-1/2"
-        />
+      <div
+        className="w-full absolute -top-5"
+        style={{
+          backgroundImage: `url(${DiceDivider})`,
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'contain', // Agar gambar menutupi area elemen
+          height: '70px', // Membuat tinggi div mengikuti konten
+
+        }}
+      >
+        {/* Konten lain jika diperlukan */}
+      </div>
+        
         <BCEDescription />
         <Carousel />
       </div>
