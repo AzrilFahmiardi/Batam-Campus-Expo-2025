@@ -10,8 +10,11 @@ import BackgroundBars from "../components/Vote/BackgroundBars";
 import BackgroundClouds from "../components/Vote/BackgroundClouds";
 import TopWinners from "../components/Vote/TopWinners";
 // import ftShadow from "../assets/images/Voting/ft-shadow.png";
+import { useAuth } from "../utils/AuthProvider";
+
 
 const Voting = () => {
+  const { user, isLoggedIn, hasVoted } = useAuth();
   const [selectedCount, setSelectedCount] = useState(0);
   const [isMax, setIsMax] = useState(false);
 
@@ -59,7 +62,7 @@ const Voting = () => {
         isOpen={isMax}
         setIsOpen={setIsMax}
       />
-      <Header />
+      <Header user={user}/>
       <div className="relative z-10 h-auto bg-blue-gradient p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
         <BackgroundBars />
         <BackgroundClouds />

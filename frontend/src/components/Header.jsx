@@ -3,8 +3,12 @@ import { NavLink } from "react-router-dom";
 import FLogo from "../assets/images/batamexpo-logo.svg";
 import SLogo from "../assets/images/header-logo.png";
 import Menu from "../assets/images/menu.png";
+import { checkLoginStatus, handleGoogleLogin, Logout } from '../utils/authentication';
+import logout_icon from '../assets/images/LandingPage/logout.png'
+import blue_logout_icon from '../assets/images/LandingPage/logout_blue.png'
 
-const Header = () => {
+
+const Header = ({user}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -95,13 +99,25 @@ const Header = () => {
         />
 
         <button
-          className={`flex items-center rounded-[10px] px-[18px] py-2 ${
+        onClick={() => {
+          user ? Logout() : handleGoogleLogin();
+
+          
+        }}
+          className={`flex items-center rounded-[10px] px-[18px] py-2 font-bold font-montserrat ${
             isScrolled
               ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
               : "bg-white text-[#3892C7] hover:bg-gray-200"
           }`}
-        >
-          <NavLink to={"/SignUp"}>Sign up</NavLink>
+        >        
+        {user ? (
+        <>
+          {user.username} 
+          <img src={isScrolled ? logout_icon : blue_logout_icon} alt="logout" className="ml-3 h-5" />
+        </>
+      ) : 'Sign Up'}
+     
+          
         </button>
       </nav>
 
@@ -124,13 +140,18 @@ const Header = () => {
             Kegiatan
           </NavLink>
           <button
-            className={`mt-2 rounded-md px-4 py-2 ${
+            className={`mt-2 rounded-md px-4 py-2 font-bold flex items-center ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
                 : "bg-white text-[#2980B9] hover:bg-gray-200"
             }`}
           >
-            <NavLink to={"/SignUp"}>Sign up</NavLink>
+            {user ? (
+            <>
+              {user.username} 
+              <img src={isScrolled ? logout_icon : blue_logout_icon} alt="logout" className="ml-3 h-5" />
+            </>
+          ) : 'Sign Up'}
           </button>
         </div>
       )}
