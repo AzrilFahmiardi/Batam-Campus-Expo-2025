@@ -79,7 +79,7 @@ const SubmitForm = ({ onSubmitForm, isLoading, showAlert, setshowAlert }) => {
           </p>
           <button
             className="hover:bg grid place-items-center rounded-lg p-1 text-2xl font-bold text-white hover:bg-[rgba(158,2,2,0.7)]"
-            onClick={() => setshowAlert(true)}
+            onClick={() => setshowAlert(false)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

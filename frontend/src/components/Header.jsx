@@ -57,41 +57,49 @@ const Header = ({ user }) => {
       <nav className={`hidden items-center space-x-8 lg:flex`}>
         <NavLink
           to={"/"}
-          className={`font-black ${
-            isScrolled
-              ? "text-[#2980B9] hover:text-[#206A96]"
-              : "text-white hover:text-gray-200"
-          }`}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
         >
           Home
         </NavLink>
         <NavLink
           to={"/voting"}
-          className={`font-medium ${
-            isScrolled
-              ? "text-[#2980B9] hover:text-[#206A96]"
-              : "text-white hover:text-gray-200"
-          }`}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
         >
           Voting
         </NavLink>
         <NavLink
           to={"/kampus"}
-          className={`font-medium ${
-            isScrolled
-              ? "text-[#2980B9] hover:text-[#206A96]"
-              : "text-white hover:text-gray-200"
-          }`}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
         >
           Kampus
         </NavLink>
         <NavLink
           to={"/kegiatan"}
-          className={`font-medium ${
-            isScrolled
-              ? "text-[#2980B9] hover:text-[#206A96]"
-              : "text-white hover:text-gray-200"
-          }`}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
         >
           Kegiatan
         </NavLink>

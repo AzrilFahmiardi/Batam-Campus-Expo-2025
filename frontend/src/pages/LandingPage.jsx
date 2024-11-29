@@ -13,6 +13,7 @@ import Location from "../components/LandingPage/Location";
 import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
 import Footer from "../components/Footer";
 import { useAuth } from "../utils/AuthProvider";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   const { user, isLoggedIn, hasVoted } = useAuth();
@@ -31,7 +32,7 @@ const LandingPage = () => {
         <Carousel />
         {/* <CampusInformation /> */}
       </div>
-      <div className="relative -z-20 overflow-hidden bg-landing-page-background-gradient pb-20">
+      <div className="relative z-0 overflow-hidden bg-landing-page-background-gradient pb-20">
         <TopLeaderboard />
       </div>
       <div className="relative">

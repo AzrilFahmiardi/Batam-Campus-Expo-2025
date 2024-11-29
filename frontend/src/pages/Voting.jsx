@@ -12,7 +12,7 @@ import TopWinners from "../components/Vote/TopWinners";
 // import ftShadow from "../assets/images/Voting/ft-shadow.png";
 import { useAuth } from "../utils/AuthProvider";
 import { getAllUniversity } from "../utils/UniversityFetch";
-
+import { Link } from "react-router-dom";
 
 const Voting = () => {
   const { user, isLoggedIn, hasVoted } = useAuth();
@@ -21,8 +21,6 @@ const Voting = () => {
   const [universities, setUniversities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topUniversities, setTopUniversities] = useState([]);
-
-
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -35,15 +33,15 @@ const Voting = () => {
   // FETCHING UNIVERSITIES DATA
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const data = await getAllUniversity();  
-            setUniversities(data);
-            setIsLoading(false);
-            setTopUniversities(data.slice(0,3))
-        } catch (err) {
-            console.error('Error fetching university data: ', err);
-            setIsLoading(false); 
-        }
+      try {
+        const data = await getAllUniversity();
+        setUniversities(data);
+        setIsLoading(false);
+        setTopUniversities(data.slice(0, 3));
+      } catch (err) {
+        console.error("Error fetching university data: ", err);
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -64,7 +62,7 @@ const Voting = () => {
         isOpen={isMax}
         setIsOpen={setIsMax}
       />
-      <Header user={user}/>
+      <Header user={user} />
       <div className="relative z-10 h-auto bg-blue-gradient p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
         <BackgroundBars />
         <BackgroundClouds />
@@ -78,13 +76,13 @@ const Voting = () => {
             <div className="custom-scrollbar flex h-[480px] flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-1 backdrop-blur-md sm:h-[320px] md:h-[400px] lg:h-auto lg:flex-row lg:p-5">
               <div className="custom-scrollbar custom-scrollbar-blue h-[310px] grow overflow-y-auto">
                 <CampusTable>
-                {universities.map((uni,index) => ( 
+                  {universities.map((uni, index) => (
                     <CampusTableItem
                       key={uni.kode_univ}
-                      number={index+1}
-                      img={uni.logo}  
-                      name={uni.nama}  
-                      vote={uni.jumlah_voting}  
+                      number={index + 1}
+                      img={uni.logo}
+                      name={uni.nama}
+                      vote={uni.jumlah_voting}
                     />
                   ))}
                 </CampusTable>
@@ -95,47 +93,48 @@ const Voting = () => {
 
         <div className="container mx-auto px-2 py-6 sm:px-4 sm:py-8 md:py-10">
           <div className="mx-auto w-full max-w-[100%] shadow-2xl md:max-w-[90%] lg:max-w-[85%]">
-            {user? 
-            <div className="flex flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3">
-            <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
-              CHOOSE YOUR FAVORITE COLLEGE!!!
-            </h1>
-            <form className="grow space-y-2 sm:space-y-3" onSubmit={onSubmit}>
-              <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
-              <div className="grid w-full grid-cols-4 gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7 place-items-center">
-              {universities.map((uni, index) => (
-                  <VoteItem
-                    key={uni.kode_univ}
-                    name={uni.nama}  
-                    value={uni.kode_univ}  
-                    image={uni.logo}  
-                    selectedCount={selectedCount}
-                    setSelectedCount={setSelectedCount}
-                    setIsMax={setIsMax}
-                  />
-                ))}
-                </div>
-              </div>
-              <div className="">
-                <button
-                  type="submit"
-                  className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-red-800 py-1 font-montserrat text-[10px] font-bold text-white duration-100 sm:rounded-full sm:py-4 sm:text-xl"
+            {user ? (
+              <div className="flex flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3">
+                <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
+                  CHOOSE YOUR FAVORITE COLLEGE!!!
+                </h1>
+                <form
+                  className="grow space-y-2 sm:space-y-3"
+                  onSubmit={onSubmit}
                 >
-                  Vote Now!
-                </button>
+                  <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
+                    <div className="grid w-full grid-cols-4 place-items-center gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
+                      {universities.map((uni, index) => (
+                        <VoteItem
+                          key={uni.kode_univ}
+                          name={uni.nama}
+                          value={uni.kode_univ}
+                          image={uni.logo}
+                          selectedCount={selectedCount}
+                          setSelectedCount={setSelectedCount}
+                          setIsMax={setIsMax}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="">
+                    <button
+                      type="submit"
+                      className="w-full rounded-lg bg-gradient-to-r from-orange-600 to-red-800 py-1 font-montserrat text-[10px] font-bold text-white duration-100 sm:rounded-full sm:py-4 sm:text-xl"
+                    >
+                      Vote Now!
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
-            </div>
-            
-            :
-            // JIKA NO USER LOCKED
-            <div className="flex flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3 md:h-[600px]">
-              <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
-              LOGIN DULU LAH BANG
-            </h1>
-            </div>
-            }
-            
+            ) : (
+              // JIKA NO USER LOCKED
+              <div className="flex flex-col rounded-2xl border border-white bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:h-[600px] md:p-4 lg:p-3">
+                <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
+                  LOGIN DULU LAH BANG
+                </h1>
+              </div>
+            )}
           </div>
         </div>
       </div>
