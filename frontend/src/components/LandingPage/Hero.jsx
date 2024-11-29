@@ -39,7 +39,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative -z-20 flex h-[120vh] flex-col items-center justify-center overflow-hidden py-10 text-center sm:py-14 md:py-16 lg:py-20 xl:py-24"
+      className="relative -z-20 flex h-[100vh] flex-col items-center justify-center overflow-hidden py-10 text-center sm:h-[120vh] sm:py-14 md:py-16 lg:py-20 xl:py-24"
       style={{
         background:
           "linear-gradient(180deg, rgba(41, 128, 185, 1), rgba(109, 213, 250, 1), rgba(255, 255, 255, 1))",
