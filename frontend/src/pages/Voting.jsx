@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import itb from "../assets/images/itb.png";
 import Footer from "../components/Footer";
 import VoteItem from "../components/Vote/VoteItem";
-import Popup from "../components/Vote/PopUp";
+import Popup from "../components/Vote/Popup";
 import CampusTable from "../components/Vote/CampusTable";
 import CampusTableItem from "../components/Vote/CampusTableItem";
 import BackgroundBars from "../components/Vote/BackgroundBars";
