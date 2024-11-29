@@ -4,7 +4,7 @@ import CloudBottomLeft from "../../assets/images/LandingPage/CloudBottomLeft.png
 import CloudBesideCountdown from "../../assets/images/LandingPage/CloudBesideCountdown.png";
 import CloudHeroTopLeft from "../../assets/images/LandingPage/CloudHeroTopLeft.png";
 import CloudHeroTopRight from "../../assets/images/LandingPage/CloudHeroTopRight.png";
-import PinLocation from "../../assets/images/LandingPage/location.png";
+import PinLocation from "../../assets/images/LandingPage/Location.png";
 import "animate.css";
 
 const Hero = () => {
