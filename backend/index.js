@@ -9,8 +9,8 @@ const path = require('path');
 
 const fs = require('fs');
 
-// const APP_URL = 'http://localhost:5173';
-const APP_URL = 'https://batamcampusexpo.onrender.com';
+const APP_URL = 'http://localhost:5173';
+// const APP_URL = 'https://batamcampusexpo.onrender.com';
 
 const app = express();
 const port = process.env.PORT || 5000;
