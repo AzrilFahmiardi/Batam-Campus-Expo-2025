@@ -120,8 +120,8 @@ app.get('/universitas', async (req, res) => {
         const [rows] = await db.query("SELECT * FROM universitas ORDER BY jumlah_voting DESC");
 
         const universities = rows.map(uni => {
-            uni.logo = `/LogoCampus/${uni.kode_univ}.png`;
-            uni.cardImage = `/CardImage/${uni.kode_univ}_1.jpg`;
+            uni.logo = `/LogoCampus/${uni.kode_univ}.webp`;
+            uni.cardImage = `/CardImage/${uni.kode_univ}_1.webp`;
             
             return uni;
         });
