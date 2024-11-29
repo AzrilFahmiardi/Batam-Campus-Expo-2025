@@ -3,12 +3,16 @@ import { NavLink } from "react-router-dom";
 import FLogo from "../assets/images/batamexpo-logo.svg";
 import SLogo from "../assets/images/header-logo.png";
 import Menu from "../assets/images/menu.png";
-import { checkLoginStatus, handleGoogleLogin, Logout } from '../utils/authentication';
-import logout_icon from '../assets/images/LandingPage/logout.png'
-import blue_logout_icon from '../assets/images/LandingPage/logout_blue.png'
+import Seperator from "../assets/images/LandingPage/Seperator.png";
+import {
+  checkLoginStatus,
+  handleGoogleLogin,
+  Logout,
+} from "../utils/authentication";
+import logout_icon from "../assets/images/LandingPage/logout.png";
+import blue_logout_icon from "../assets/images/LandingPage/logout_blue.png";
 
-
-const Header = ({user}) => {
+const Header = ({ user }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -92,32 +96,30 @@ const Header = ({user}) => {
           Kegiatan
         </NavLink>
 
-        <img
-          src="./src/assets/images/pipe.svg"
-          alt="separator"
-          className="h-6"
-        />
+        <img src={Seperator} alt="separator" className="h-6" />
 
         <button
-        onClick={() => {
-          user ? Logout() : handleGoogleLogin();
-
-          
-        }}
-          className={`flex items-center rounded-[10px] px-[18px] py-2 font-bold font-montserrat ${
+          onClick={() => {
+            user ? Logout() : handleGoogleLogin();
+          }}
+          className={`flex items-center rounded-[10px] px-[18px] py-2 font-montserrat font-bold ${
             isScrolled
               ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
               : "bg-white text-[#3892C7] hover:bg-gray-200"
           }`}
-        >        
-        {user ? (
-        <>
-          {user.username} 
-          <img src={isScrolled ? logout_icon : blue_logout_icon} alt="logout" className="ml-3 h-5" />
-        </>
-      ) : 'Sign Up'}
-     
-          
+        >
+          {user ? (
+            <>
+              {user.username}
+              <img
+                src={isScrolled ? logout_icon : blue_logout_icon}
+                alt="logout"
+                className="ml-3 h-5"
+              />
+            </>
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </nav>
 
@@ -140,18 +142,24 @@ const Header = ({user}) => {
             Kegiatan
           </NavLink>
           <button
-            className={`mt-2 rounded-md px-4 py-2 font-bold flex items-center ${
+            className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
                 : "bg-white text-[#2980B9] hover:bg-gray-200"
             }`}
           >
             {user ? (
-            <>
-              {user.username} 
-              <img src={isScrolled ? logout_icon : blue_logout_icon} alt="logout" className="ml-3 h-5" />
-            </>
-          ) : 'Sign Up'}
+              <>
+                {user.username}
+                <img
+                  src={isScrolled ? logout_icon : blue_logout_icon}
+                  alt="logout"
+                  className="ml-3 h-5"
+                />
+              </>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </div>
       )}
