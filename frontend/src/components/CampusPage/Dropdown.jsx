@@ -64,22 +64,22 @@ const Dropdown = ({ onSelect }) => {
           : "white",
       color: state.isSelected || state.isFocused ? "white" : "#374151",
       cursor: "pointer",
-      fontFamily: "Poppins",
+      fontFamily: "Montserrat",
     }),
     singleValue: (provided) => ({
       ...provided,
       color: "#fff",
-      fontFamily: "Poppins",
+      fontFamily: "Montserrat",
     }),
     input: (provided) => ({
       ...provided,
       color: "#fff",
-      fontFamily: "Poppins",
+      fontFamily: "Montserrat",
     }),
     placeholder: (provided) => ({
       ...provided,
       color: "#fff",
-      fontFamily: "Poppins",
+      fontFamily: "Montserrat",
     }),
     menu: (provided) => ({
       ...provided,
@@ -87,7 +87,7 @@ const Dropdown = ({ onSelect }) => {
       marginTop: "4px",
       boxShadow:
         "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      fontFamily: "Poppins",
+      fontFamily: "Montserrat",
     }),
     menuPortal: (provided) => ({
       ...provided,
