@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import headline from "../../assets/images/CampusPage/find-your-future.svg";
+import headline from "../../assets/images/CampusPage/find-your-future.png";
 import CloudHeroTopRight from "../../assets/images/LandingPage/CloudHeroTopRight.png";
 import CloudHeroTopLeft from "../../assets/images/LandingPage/CloudHeroTopLeft.png";
 import Dropdown from "./Dropdown";
