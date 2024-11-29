@@ -1,6 +1,6 @@
 import axios from "axios";
-const SERVER_URL = 'http://localhost:5000';
-// const SERVER_URL = 'https://batamcampusexpo-server.onrender.com';
+// const SERVER_URL = 'http://localhost:5000';
+const SERVER_URL = 'https://batamcampusexpo-server.onrender.com';
 
 // CEK STATUS LOGIN
 export const checkLoginStatus = async () => {
