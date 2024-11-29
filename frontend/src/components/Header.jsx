@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import FLogo from "../assets/images/batamexpo-logo.svg";
+import FLogo from "../assets/images/batamexpo-logo.png";
 import SLogo from "../assets/images/header-logo.png";
 import Menu from "../assets/images/menu.png";
 import Seperator from "../assets/images/LandingPage/Seperator.png";
