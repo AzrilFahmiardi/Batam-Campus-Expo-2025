@@ -1,5 +1,5 @@
 import LocationIcon from "../../assets/images/LocationIcon.png";
-import LocationIconBackground from "../../assets/images/LocationIconBackground.png";
+import LocationIconBackground from "../../assets/images/locationIconBackground.png";
 
 const Location = () => {
   return (
