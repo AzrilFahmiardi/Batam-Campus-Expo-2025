@@ -38,7 +38,7 @@ const BCEDescription = () => {
         />
       </div>
 
-      <p className="w-[300px] rounded-lg bg-[#0000004d] p-3 text-justify font-montserrat text-sm text-white md:w-full md:text-lg lg:bg-transparent">
+      <p className="w-[300px] rounded-lg bg-[#0000004d] p-3 text-justify font-montserrat text-xs text-white sm:text-sm md:w-full md:text-lg lg:bg-transparent">
         Lorem ipsum dolor sit amet consectetur. Ut sed pellentesque urna proin
         suscipit quis non. Dolor et lacinia dis cras dolor nunc. Vivamus orci
         diam amet tincidunt. Eu libero elit in porttitor dignissim a.

@@ -21,7 +21,7 @@ const FAQ = () => {
 
       <div className="md mx-auto flex max-w-[380px] flex-col items-center justify-center p-5 pt-10 sm:max-w-[700px] sm:p-20 sm:pt-5 md:max-w-[800px] md:pt-20 lg:max-w-[1100px] lg:pt-40">
         <div className="relative mb-2 flex max-w-[200px] flex-col self-start pt-10 sm:mb-5 sm:max-w-[400px] sm:pt-20 md:max-w-[400px] lg:max-w-[600px]">
-          <h2 className="bg-orange-red-gradient bg-clip-text font-pixelify text-lg font-bold text-transparent sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="bg-orange-red-gradient bg-clip-text font-pixelify text-xl font-bold text-transparent sm:text-3xl md:text-4xl lg:text-5xl">
             Frequently Asked Questions
           </h2>
           <img
