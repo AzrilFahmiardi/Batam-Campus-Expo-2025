@@ -17,6 +17,7 @@ import locked1 from "../assets/images/Voting/locked1.png"
 import locked2 from "../assets/images/Voting/locked2.png"
 import locked1_mini from "../assets/images/Voting/locked1_mini.png"
 import locked2_mini from "../assets/images/Voting/locked2_mini.png"
+import axios from "axios";
 import {
   checkLoginStatus,
   handleGoogleLogin,
@@ -30,12 +31,37 @@ const Voting = () => {
   const [universities, setUniversities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topUniversities, setTopUniversities] = useState([]);
+  const [refreshLeaderboard, setRefreshLeaderboard] = useState(0);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    for (const [key, value] of data.entries()) {
-      console.log(key, value);
+    const selectedUniversities = Array.from(data.values()); // Mengambil hanya nilai dari FormData
+  
+    if (selectedUniversities.length === 0) {
+      alert("Minimal pilih satu universitas!");
+      return;
+  }
+
+    try {
+      const response = await axios.post("http://localhost:5000/vote", {
+        universities: selectedUniversities,
+      }, {
+        withCredentials: true, // Mengirim cookie untuk autentikasi
+      });
+  
+      console.log("Vote successful:", response.data);
+      alert("Voting successful!");  
+
+      setRefreshLeaderboard(prev => prev + 1);
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response:", error.response.data);
+        alert(`Error: ${error.response.data.message}`);
+      } else {
+        console.error("Error submitting vote:", error);
+        alert("An unexpected error occurred.");
+      }
     }
   };
 
@@ -54,7 +80,7 @@ const Voting = () => {
     };
 
     fetchData();
-  }, []);
+  }, [refreshLeaderboard]);
 
   useEffect(() => {
     if (selectedCount > 5) {
