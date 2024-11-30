@@ -1,6 +1,5 @@
 import axios from "axios";
-const SERVER_URL = 'http://localhost:5000';
-// const SERVER_URL = 'https://batamcampusexpo-server.onrender.com';
+const SERVER_URL = import.meta.env.VITE_API_URL;
 
 // CEK STATUS LOGIN
 export const checkLoginStatus = async () => {
@@ -44,5 +43,5 @@ export const handleGoogleLogin = () => {
 
 // LOGOUT
 export const Logout = () => {
-    window.location.href = 'http://localhost:5000/logout';
+    window.location.href = `${SERVER_URL}/logout`;
   };

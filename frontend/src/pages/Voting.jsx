@@ -33,10 +33,11 @@ const Voting = () => {
   const [topUniversities, setTopUniversities] = useState([]);
   const [refreshLeaderboard, setRefreshLeaderboard] = useState(0);
 
+  // SUBMTI VOTING UNIVERSITAS
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const selectedUniversities = Array.from(data.values()); // Mengambil hanya nilai dari FormData
+    const selectedUniversities = Array.from(data.values());
   
     if (selectedUniversities.length === 0) {
       alert("Minimal pilih satu universitas!");
@@ -44,10 +45,10 @@ const Voting = () => {
   }
 
     try {
-      const response = await axios.post("http://localhost:5000/vote", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/vote`, {
         universities: selectedUniversities,
       }, {
-        withCredentials: true, // Mengirim cookie untuk autentikasi
+        withCredentials: true, 
       });
   
       console.log("Vote successful:", response.data);
