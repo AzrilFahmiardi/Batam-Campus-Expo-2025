@@ -13,10 +13,10 @@ import TopWinners from "../components/Vote/TopWinners";
 import { useAuth } from "../utils/AuthProvider";
 import { getAllUniversity } from "../utils/UniversityFetch";
 import { Link } from "react-router-dom";
-import locked1 from "../assets/images/Voting/locked1.png"
-import locked2 from "../assets/images/Voting/locked2.png"
-import locked1_mini from "../assets/images/Voting/locked1_mini.png"
-import locked2_mini from "../assets/images/Voting/locked2_mini.png"
+import locked1 from "../assets/images/Voting/locked1.png";
+import locked2 from "../assets/images/Voting/locked2.png";
+import locked1_mini from "../assets/images/Voting/locked1_mini.png";
+import locked2_mini from "../assets/images/Voting/locked2_mini.png";
 import axios from "axios";
 import {
   checkLoginStatus,
@@ -38,23 +38,27 @@ const Voting = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     const selectedUniversities = Array.from(data.values());
-  
+
     if (selectedUniversities.length === 0) {
       alert("Minimal pilih satu universitas!");
       return;
-  }
+    }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/vote`, {
-        universities: selectedUniversities,
-      }, {
-        withCredentials: true, 
-      });
-  
-      console.log("Vote successful:", response.data);
-      alert("Voting successful!");  
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/vote`,
+        {
+          universities: selectedUniversities,
+        },
+        {
+          withCredentials: true,
+        },
+      );
 
-      setRefreshLeaderboard(prev => prev + 1);
+      console.log("Vote successful:", response.data);
+      alert("Voting successful!");
+
+      setRefreshLeaderboard((prev) => prev + 1);
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response.data);
@@ -165,22 +169,39 @@ const Voting = () => {
               </div>
             ) : (
               // JIKA NO USER LOCKED
-              
-              <div className="relative flex flex-col justify-center items-center rounded-2xl  bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3">
-                <div className=" absolute w-full h-full bg-[#080808cb] top-0 left-0 rounded-2xl z-10 overflow-hidden">
-                {/* LOCKED BESAR */}
-                <img src={locked1} alt="" className="absolute top-0 left-0 h-full w-full object-cover brightness-50 hidden sm:block"/>
-                <img src={locked2} alt="" className="abosolute top-0 left-0 h-full w-full object-cover brightness-50 hidden sm:block"/>
-                {/* LOCKED MOBILE */}
-                <img src={locked1_mini} alt="" className="absolute top-0 left-0 h-full w-full object-cover block sm:hidden"/>
-                <img src={locked2_mini} alt="" className="abosolute top-0 left-0 h-full w-full object-cover block sm:hidden"/>
+
+              <div className="relative flex flex-col items-center justify-center rounded-2xl bg-[rgba(255,255,255,0.6)] p-2 backdrop-blur-md sm:p-3 md:p-4 lg:p-3">
+                <div className="absolute left-0 top-0 z-10 h-full w-full overflow-hidden rounded-2xl bg-[#080808cb]">
+                  {/* LOCKED BESAR */}
+                  <img
+                    src={locked1}
+                    alt=""
+                    className="absolute left-0 top-0 hidden h-full w-full object-cover brightness-50 sm:block"
+                  />
+                  <img
+                    src={locked2}
+                    alt=""
+                    className="abosolute left-0 top-0 hidden h-full w-full object-cover brightness-50 sm:block"
+                  />
+                  {/* LOCKED MOBILE */}
+                  <img
+                    src={locked1_mini}
+                    alt=""
+                    className="absolute left-0 top-0 block h-full w-full object-cover sm:hidden"
+                  />
+                  <img
+                    src={locked2_mini}
+                    alt=""
+                    className="abosolute left-0 top-0 block h-full w-full object-cover sm:hidden"
+                  />
                 </div>
-                <button className="absolute z-20 shadow-md font-pixelify bg-footer-gradient text-white rounded-xl py-2 px-5 md:px-7 md:py-3 md:text-[1.5em] hover:scale-110 transition transform ease-linear duration-100"
-                onClick={handleGoogleLogin}
+                <button
+                  className="absolute z-20 transform rounded-xl bg-footer-gradient px-5 py-2 font-pixelify text-white shadow-md transition duration-100 ease-linear hover:scale-110 md:px-7 md:py-3 md:text-[1.5em]"
+                  onClick={handleGoogleLogin}
                 >
-                  Sign Up First</button>
-                
-                
+                  Sign Up First
+                </button>
+
                 <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
                   CHOOSE YOUR FAVORITE COLLEGE!!!
                 </h1>
