@@ -65,15 +65,15 @@ const Hero = () => {
       <div className="animate__animated animate__zoomIn animate__slower relative flex h-auto w-full max-w-screen-lg flex-col items-center justify-center px-10 sm:px-5">
         <img src={BCELogoHero} className="mb-3 md:mb-0" />
         <div className="mb-3 font-montserrat text-sm text-white">
-          <div className="mb-2 inline-flex items-center justify-start gap-[10px] rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
-            <img src={PinLocation} alt="" />
+          <div className="mb-2 inline-flex items-center justify-start gap-1 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
+            <img src={PinLocation} className="scale-50 p-2" />
             <p>
               Jl. Yang jauh jangan lupa pulang, Kec. Kenangan, Rumah yang tak
               dirindukan
             </p>
           </div>
-          <div className="inline-flex items-center justify-start gap-[10px] rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
-            <img src={PinLocation} alt="" />
+          <div className="inline-flex items-center justify-start gap-1 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2">
+            <img src={PinLocation} className="scale-50 p-2" />
             <p>Jl. Berdua tapi gak jadian, Kec. Harapan, Kota Batam</p>
           </div>
         </div>

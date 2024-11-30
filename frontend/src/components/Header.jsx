@@ -137,16 +137,52 @@ const Header = ({ user }) => {
             isScrolled ? "bg-white text-[#2980B9]" : "bg-[#3892C7] text-white"
           } p-5 shadow-lg lg:hidden`}
         >
-          <NavLink to={"/"} className="font-black hover:text-gray-200">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+              ` ${
+                isScrolled
+                  ? "text-[#2980B9] hover:text-[#206A96]"
+                  : "text-white hover:text-gray-200"
+              } ${isActive ? "font-extrabold" : "font-medium"}`
+            }
+          >
             Home
           </NavLink>
-          <NavLink to={"/voting"} className="font-medium hover:text-gray-200">
+          <NavLink
+            to={"/voting"}
+            className={({ isActive }) =>
+              ` ${
+                isScrolled
+                  ? "text-[#2980B9] hover:text-[#206A96]"
+                  : "text-white hover:text-gray-200"
+              } ${isActive ? "font-extrabold" : "font-medium"}`
+            }
+          >
             Voting
           </NavLink>
-          <NavLink to={"/kampus"} className="font-medium hover:text-gray-200">
+          <NavLink
+            to={"/kampus"}
+            className={({ isActive }) =>
+              ` ${
+                isScrolled
+                  ? "text-[#2980B9] hover:text-[#206A96]"
+                  : "text-white hover:text-gray-200"
+              } ${isActive ? "font-extrabold" : "font-medium"}`
+            }
+          >
             Kampus
           </NavLink>
-          <NavLink to={"/kegiatan"} className="font-medium hover:text-gray-200">
+          <NavLink
+            to={"/kegiatan"}
+            className={({ isActive }) =>
+              ` ${
+                isScrolled
+                  ? "text-[#2980B9] hover:text-[#206A96]"
+                  : "text-white hover:text-gray-200"
+              } ${isActive ? "font-extrabold" : "font-medium"}`
+            }
+          >
             Kegiatan
           </NavLink>
           <button
