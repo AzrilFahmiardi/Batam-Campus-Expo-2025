@@ -96,9 +96,14 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/check-auth', (req, res) => {
-    console.log('app.get /check-out', req.user, req.email);
+    console.log('Session ID:', req.sessionID);
+    console.log('Session:', req.session);
+    console.log('Is Authenticated:', req.isAuthenticated());
+    console.log('Req User:', req.user);
+    console.log('Req Email:', req.email);
     
     res.json({
+        sessionID: req.sessionID,
         isAuthenticated: req.isAuthenticated(),
         user: req.user ? {
             email: req.user.email,
