@@ -14,7 +14,8 @@ export const checkLoginStatus = async () => {
     if (isAuthenticated) {
       hasVoted = await checkVoteStatus();
     }
-
+    console.log(isAuthenticated, user, hasVoted);
+    
     return { isAuthenticated, user, hasVoted };
   } catch (error) {
     console.error('Error checking login status:', error);
