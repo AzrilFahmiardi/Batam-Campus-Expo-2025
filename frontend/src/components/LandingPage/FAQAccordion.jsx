@@ -7,7 +7,10 @@ const FAQAccordion = ({ question, answer }) => {
   return (
     <div className="relative mt-5 w-full drop-shadow-2xl">
       <div className="FAQ-border bg-white p-5 sm:p-5 md:p-7 lg:p-10">
-        <article className="flex flex-row items-center justify-between">
+        <article
+          className="flex flex-row items-center justify-between hover:cursor-pointer"
+          onClick={() => setExpanded(!expanded)}
+        >
           <h3 className="font-pixelify text-sm font-bold md:text-xl lg:text-3xl">
             {question}
           </h3>
