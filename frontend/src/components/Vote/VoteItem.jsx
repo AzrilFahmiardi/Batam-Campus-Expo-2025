@@ -26,6 +26,14 @@ const VoteItem = ({
     "relative flex items-center justify-center aspect-square w-full h-auto overflow-hidden rounded-md p-2 duration-200 odd:bg-white even:bg-white hover:cursor-pointer hover:brightness-75"
   }
 >
+  {/* input untuk FormData */}
+  {checked && (
+    <input
+      type="hidden"
+      name="selectedUniversities"
+      value={value}
+    />
+  )}
   <div className="flex flex-col items-center justify-center w-full h-full">
     <div className="flex items-center justify-center h-[75%] w-full p-1">
       <img
