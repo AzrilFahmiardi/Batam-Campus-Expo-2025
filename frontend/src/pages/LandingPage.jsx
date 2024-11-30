@@ -25,7 +25,7 @@ const LandingPage = () => {
       <div className="relative -z-20 bg-[#EB5E0B]">
         <img
           src={DiceDivider}
-          className="absolute -left-1/4 w-full -translate-y-1/2 scale-150 overflow-x-hidden object-cover object-center sm:left-0 sm:scale-125 md:scale-100"
+          className="absolute -left-1/4 w-full -translate-y-1/2 scale-150 sm:scale-150 md:left-0 md:scale-100"
         />
 
         <BCEDescription />
@@ -38,7 +38,7 @@ const LandingPage = () => {
       <div className="relative">
         <img
           src={CoinDriver}
-          className="absolute -left-1/4 -translate-y-1/2 scale-150 overflow-x-hidden sm:left-0 sm:scale-125 md:scale-100"
+          className="absolute -left-1/4 -translate-y-1/2 scale-150 sm:scale-150 md:left-0 md:scale-100"
         />
         <FAQ />
         <Location />

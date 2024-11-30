@@ -25,7 +25,7 @@ const FAQAccordion = ({ question, answer }) => {
         </article>
 
         <div
-          className={`mt-4 overflow-hidden font-montserrat text-xs transition-all duration-500 ease-in-out sm:text-sm ${
+          className={`mt-4 overflow-hidden font-montserrat text-xs transition-all duration-200 ease-in-out sm:text-sm ${
             expanded ? "max-h-screen" : "max-h-0"
           }`}
         >

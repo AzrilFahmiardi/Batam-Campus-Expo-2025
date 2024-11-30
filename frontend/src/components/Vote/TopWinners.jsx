@@ -41,7 +41,7 @@ const TopWinners = ({ votingData }) => {
           className={`${getPositionStyles(winner.position)} flex flex-col items-center`}
         >
           <div
-            className={`border-1 relative h-[75px] w-auto rounded-full bg-[#fff] p-1 shadow-xl transition-transform hover:scale-105 sm:h-[100px] md:h-[125px] lg:h-[150px]`}
+            className={`border-1 relative h-[75px] w-auto rounded-full bg-[#fff] p-2 shadow-xl transition-transform hover:scale-105 sm:h-[100px] md:h-[125px] lg:h-[150px]`}
           >
             <img src={winner.logo} className="z-10 h-full w-full" />
           </div>

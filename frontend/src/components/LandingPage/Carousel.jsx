@@ -1,15 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import ShadowCarousel from "../../assets/images/LandingPage/shadow-carousel.png";
-import { getAllUniversity } from '../../utils/UniversityFetch';
+import { getAllUniversity } from "../../utils/UniversityFetch";
 
 // Komponen Loading Skeleton
 const LogoSkeleton = () => (
-  <motion.div 
-    className="flex-shrink-0 sm:px-4 h-[100px] sm:h-[250px] w-[120px] sm:w-[220px] md:w-[240px] lg:w-[270px] sm:mx-5 bg-blue-gradient py-5 px-7 mx-3 md:py-7 md:px-10 rounded-2xl animate-pulse"
-  >
-
-  </motion.div>
+  <motion.div className="mx-3 h-[100px] w-[120px] flex-shrink-0 animate-pulse rounded-2xl bg-blue-gradient px-7 py-5 sm:mx-5 sm:h-[250px] sm:w-[220px] sm:px-4 md:w-[240px] md:px-10 md:py-7 lg:w-[270px]"></motion.div>
 );
 
 const Carousel = () => {
@@ -25,22 +21,22 @@ const Carousel = () => {
         const data = await getAllUniversity();
         setUniversities(data);
         console.log(data);
-        
+
         setIsLoading(false);
       } catch (err) {
         console.error("Error fetching university data: ", err);
         setIsLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
 
   // Handler untuk melacak logo yang sudah dimuat
   const handleLogoLoad = (id) => {
-    setLoadedLogos(prev => ({
+    setLoadedLogos((prev) => ({
       ...prev,
-      [id]: true
+      [id]: true,
     }));
   };
 
@@ -58,7 +54,7 @@ const Carousel = () => {
       /> */}
 
       <div className="overflow-hidden pb-7">
-        <motion.div 
+        <motion.div
           ref={carouselRef}
           className="flex"
           animate={{
@@ -67,50 +63,53 @@ const Carousel = () => {
               duration: 20,
               ease: "linear",
               repeat: Infinity,
-            }
+            },
           }}
         >
-          {isLoading 
-            ? Array(6).fill().map((_, index) => <LogoSkeleton key={index} />) 
+          {isLoading
+            ? Array(6)
+                .fill()
+                .map((_, index) => <LogoSkeleton key={index} />)
             : campusItems.map((item) => (
-              <motion.div 
-                key={item.id} 
-              className="flex-shrink-0 sm:px-4 w-[120px] sm:w-[220px] md:w-[240px] lg:w-[270px] mx-1 sm:mx-5 py-2 sm:py-5 px-2 rounded-2xl"
+                <motion.div
+                  key={item.id}
+                  className="mx-1 w-[120px] flex-shrink-0 rounded-2xl px-2 py-2 sm:mx-5 sm:w-[220px] sm:px-4 sm:py-5 md:w-[240px] lg:w-[270px]"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="max-w-fit rounded-full bg-white p-3 drop-shadow-[20px_20px_7px_rgba(0,0,0,0.25)] sm:p-4 sm:drop-shadow-[35px_35px_10px_rgba(0,0,0,0.25)] md:p-5">
+                    {!loadedLogos[item.id] && (
+                      <div className="h-[80px] w-[80px] animate-pulse bg-gray-300 sm:h-[220px] sm:w-[220px] md:h-[240px] md:w-[240px] lg:h-[270px] lg:w-[270px]" />
+                    )}
+                    <img
+                      src={item.image}
+                      alt={`Campus ${item.id}`}
+                      className={`h-auto w-[100px] sm:w-[130px] md:w-[150px] lg:w-[170px] ${!loadedLogos[item.id] ? "hidden" : ""}`}
+                      onLoad={() => handleLogoLoad(item.id)}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+
+          {!isLoading &&
+            campusItems.map((item) => (
+              <motion.div
+                key={`duplicate-${item.id}`}
+                className="w-[120px] flex-shrink-0 px-2 sm:w-[200px] sm:px-4"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="rounded-full  max-w-fit p-5 bg-white drop-shadow-[20px_20px_7px_rgba(0,0,0,0.25)] sm:drop-shadow-[35px_35px_10px_rgba(0,0,0,0.25)]">
+                <div className="max-w-fit rounded-full bg-white p-1 sm:p-2">
                   {!loadedLogos[item.id] && (
-                    <div className="animate-pulse bg-gray-300 w-[80px] sm:w-[220px] md:w-[240px] lg:w-[270px] h-[80px] sm:h-[220px] md:h-[240px] lg:h-[270px]" />
+                    <div className="h-[80px] w-[80px] animate-pulse bg-gray-300 sm:h-[130px] sm:w-[130px]" />
                   )}
-                  <img 
-                    src={item.image} 
-                    alt={`Campus ${item.id}`} 
-                    className={`w-[100px] sm:w-[130px] md:w-[150px] lg:w-[170px] h-auto ${!loadedLogos[item.id] ? 'hidden' : ''}`}
+                  <img
+                    src={item.image}
+                    alt={`Campus ${item.id}`}
+                    className={`h-auto w-[80px] sm:w-[130px] ${!loadedLogos[item.id] ? "hidden" : ""}`}
                     onLoad={() => handleLogoLoad(item.id)}
                   />
                 </div>
               </motion.div>
-          ))}
-          
-          {!isLoading && campusItems.map((item) => (
-            <motion.div 
-              key={`duplicate-${item.id}`} 
-              className="flex-shrink-0 px-2 sm:px-4 w-[120px] sm:w-[200px]"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="rounded-full bg-white max-w-fit p-1 sm:p-2">
-                {!loadedLogos[item.id] && (
-                  <div className="animate-pulse bg-gray-300 w-[80px] sm:w-[130px] h-[80px] sm:h-[130px]" />
-                )}
-                <img 
-                  src={item.image} 
-                  alt={`Campus ${item.id}`} 
-                  className={`w-[80px] sm:w-[130px] h-auto ${!loadedLogos[item.id] ? 'hidden' : ''}`}
-                  onLoad={() => handleLogoLoad(item.id)}
-                />
-              </div>
-            </motion.div>
-          ))}
+            ))}
         </motion.div>
       </div>
     </div>
