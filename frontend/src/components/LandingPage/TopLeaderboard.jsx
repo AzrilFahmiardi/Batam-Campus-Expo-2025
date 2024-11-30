@@ -58,12 +58,12 @@ const TopLeaderboard = () => {
         </p>
       </div>
       <div className="mx-auto max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-3xl">
-        <div className="h-[400px]">
-          <div id="chartdiv" className="h-full"></div>
+        <div className="h-[400px] pt-4">
+          <div id="chartdiv" className="h-full "></div>
         </div>
         <Link
           to={"/voting"}
-          className="pixel-border-selengkapnya block bg-blue-pixel-gradient py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90 md:text-2xl"
+          className="pixel-border-selengkapnya block bg-blue-pixel-gradient mt-5 py-5 text-center font-pixelify text-xl font-bold text-white duration-200 hover:brightness-90 md:text-2xl"
         >
           Vote Kampus Favoritmu Sekarang!
         </Link>

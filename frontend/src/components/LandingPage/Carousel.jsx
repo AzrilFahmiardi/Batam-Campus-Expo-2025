@@ -51,13 +51,13 @@ const Carousel = () => {
 
   return (
     <div className="relative p-4 sm:p-10 md:mt-20">
-      <img
+      {/* <img
         src={ShadowCarousel}
         alt="Shadow"
         className="absolute inset-x-0 -bottom-1 -z-10 mx-auto"
-      />
+      /> */}
 
-      <div className="overflow-hidden">
+      <div className="overflow-hidden pb-7">
         <motion.div 
           ref={carouselRef}
           className="flex"
@@ -75,10 +75,10 @@ const Carousel = () => {
             : campusItems.map((item) => (
               <motion.div 
                 key={item.id} 
-  className="flex-shrink-0 sm:px-4 w-[120px] sm:w-[220px] md:w-[240px] lg:w-[270px] mx-1 sm:mx-5 py-2 sm:py-5 px-2 rounded-2xl"
+              className="flex-shrink-0 sm:px-4 w-[120px] sm:w-[220px] md:w-[240px] lg:w-[270px] mx-1 sm:mx-5 py-2 sm:py-5 px-2 rounded-2xl"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="rounded-full  max-w-fit p-1 sm:p-2">
+                <div className="rounded-full  max-w-fit p-5 bg-white drop-shadow-[20px_20px_7px_rgba(0,0,0,0.25)] sm:drop-shadow-[35px_35px_10px_rgba(0,0,0,0.25)]">
                   {!loadedLogos[item.id] && (
                     <div className="animate-pulse bg-gray-300 w-[80px] sm:w-[220px] md:w-[240px] lg:w-[270px] h-[80px] sm:h-[220px] md:h-[240px] lg:h-[270px]" />
                   )}
