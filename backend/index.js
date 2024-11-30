@@ -91,11 +91,13 @@ app.get('/auth/google', passport.authenticate('google', {
 
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-    failureRedirect: APP_URL,
-    successRedirect: APP_URL 
+    failureRedirect: `${APP_URL}/`,
+    successRedirect: `${APP_URL}/` 
 }));
 
 app.get('/check-auth', (req, res) => {
+    console.log('app.get /check-out', req.user, req.email);
+    
     res.json({
         isAuthenticated: req.isAuthenticated(),
         user: req.user ? {
