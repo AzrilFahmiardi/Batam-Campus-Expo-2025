@@ -31,6 +31,7 @@ const Voting = () => {
   const [universities, setUniversities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topUniversities, setTopUniversities] = useState([]);
+  const [refreshLeaderboard, setRefreshLeaderboard] = useState(0);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +52,8 @@ const Voting = () => {
   
       console.log("Vote successful:", response.data);
       alert("Voting successful!");  
+
+      setRefreshLeaderboard(prev => prev + 1);
     } catch (error) {
       if (error.response) {
         console.error("Error response:", error.response.data);
@@ -77,7 +80,7 @@ const Voting = () => {
     };
 
     fetchData();
-  }, []);
+  }, [refreshLeaderboard]);
 
   useEffect(() => {
     if (selectedCount > 5) {
