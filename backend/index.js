@@ -6,11 +6,13 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require('path');
+require("dotenv").config();
 
 const fs = require('fs');
 
-const APP_URL = 'http://localhost:5173';
-// const APP_URL = 'https://batamcampusexpo.onrender.com';
+const API_URL = process.env.API_URL;
+const APP_URL = process.env.APP_URL;
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -89,8 +91,8 @@ app.get('/auth/google', passport.authenticate('google', {
 
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-    failureRedirect: 'http://localhost:5173/',
-    successRedirect: 'http://localhost:5173/' 
+    failureRedirect: APP_URL,
+    successRedirect: APP_URL 
 }));
 
 app.get('/check-auth', (req, res) => {
@@ -107,7 +109,7 @@ app.get('/check-auth', (req, res) => {
 app.get('/logout', (req, res) => {
     req.logout((err) => {
         if (err) return next(err);
-        res.redirect('http://localhost:5173/'); 
+        res.redirect(APP_URL); 
     });
 });
 
@@ -127,7 +129,7 @@ app.get('/universitas', async (req, res) => {
             
             return uni;
         });
-
+        
         res.json(universities);
     } catch (error) {
         console.error('Error fetching universities:', error);
