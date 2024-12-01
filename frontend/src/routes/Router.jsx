@@ -6,6 +6,7 @@ import NotFound from "../pages/NotFound";
 import Voting from "../pages/Voting";
 import RouterErrorBoundary from "./RouterErrorBoundary";
 import { AuthProvider } from "../utils/AuthProvider";
+import DetailKampus from "../pages/DetailKampus";
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/kampus",
     element: <Kampus />,
+  },
+  {
+    path: "/kampus/:id",
+    element: <DetailKampus />,
   },
   {
     path: "/voting",
