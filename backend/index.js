@@ -27,13 +27,12 @@ app.use(express.json());
 
 // BAGIAN GOOGLE AUTHENTICATION
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'batamcampusexpo2025',
+    secret: 'batamcampusexpo2025',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: process.env.NODE_ENV === 'production', // Important for HTTPS
+        secure: false, 
         httpOnly: true,
-        sameSite: 'lax', // Or 'none' if cross-site
         maxAge: 24 * 60 * 60 * 1000 
     }
 }));
