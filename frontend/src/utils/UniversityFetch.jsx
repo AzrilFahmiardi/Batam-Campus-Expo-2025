@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = import.meta.env.VITE_API_URL;
+const SERVER_URL = 'https://batamcampusexpo-server.onrender.com';
 
 
 

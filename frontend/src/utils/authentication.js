@@ -1,8 +1,8 @@
 import axios from "axios";
-const SERVER_URL = import.meta.env.VITE_API_URL;
+const SERVER_URL = 'https://batamcampusexpo-server.onrender.com';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: 'https://batamcampusexpo-server.onrender.com',
   withCredentials: true,
   headers: {
       'Content-Type': 'application/json'

@@ -6,12 +6,11 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const path = require('path');
-require("dotenv").config();
 
 const fs = require('fs');
 
-const API_URL = process.env.API_URL;
-const APP_URL = process.env.APP_URL;
+const API_URL = 'https://batamcampusexpo-server.onrender.com';
+const APP_URL = 'https://batamcampusexpo.onrender.com';
 
 
 const app = express();
@@ -49,7 +48,7 @@ app.use((req, res, next) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${process.env.API_URL}/auth/google/callback`
+    callbackURL: `https://batamcampusexpo-server.onrender.com/auth/google/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         const username = profile.displayName;

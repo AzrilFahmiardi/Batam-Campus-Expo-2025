@@ -46,7 +46,7 @@ const Voting = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/vote`,
+        `https://batamcampusexpo-server.onrender.com/vote`,
         {
           universities: selectedUniversities,
         },
