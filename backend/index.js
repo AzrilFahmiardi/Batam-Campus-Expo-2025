@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(session({
     secret: 'batamcampusexpo2025',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         secure: true, 
         httpOnly: true,
@@ -40,6 +40,11 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) => {
+    console.log('Request Headers:', req.headers);
+    console.log('Cookies:', req.cookies);
+    next();
+});
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -80,8 +85,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (email, done) => {
     try {
         const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
-        done(null, rows[0]);
+        if (rows.length > 0) {
+            done(null, rows[0]);
+        } else {
+            done(null, false); // Explicitly handle case where user is not found
+        }
     } catch (error) {
+        console.error('Deserialization error:', error);
         done(error, null);
     }
 });
@@ -97,21 +107,26 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/check-auth', (req, res) => {
-    console.log('Incoming Request Headers:', req.headers);
-    console.log('Cookies:', req.cookies);
-    console.log('Session ID:', req.sessionID);
-    console.log('Session:', req.session);
-    console.log('Is Authenticated:', req.isAuthenticated());
-    console.log('Req User:', req.user);
-    
-    res.json({
-        sessionID: req.sessionID,
-        isAuthenticated: req.isAuthenticated(),
-        user: req.user ? {
-            email: req.user.email,
-            username: req.user.username
-        } : null
-    });
+    try {
+        console.log('Full Session:', req.session);
+        console.log('User Object:', req.user);
+        console.log('Is Authenticated:', req.isAuthenticated());
+
+        res.json({
+            sessionID: req.sessionID,
+            isAuthenticated: req.isAuthenticated(),
+            user: req.user ? {
+                email: req.user.email,
+                username: req.user.username
+            } : null
+        });
+    } catch (error) {
+        console.error('Check-Auth Error:', error);
+        res.status(500).json({ 
+            message: 'Error checking authentication', 
+            error: error.message 
+        });
+    }
 });
 
 

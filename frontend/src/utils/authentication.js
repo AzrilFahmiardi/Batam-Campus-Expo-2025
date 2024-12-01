@@ -2,27 +2,28 @@ import axios from "axios";
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const axiosInstance = axios.create({
-  baseURL: SERVER_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
-  credentials: 'include'
+  headers: {
+      'Content-Type': 'application/json'
+  }
 });
 
 // CEK STATUS LOGIN
 export const checkLoginStatus = async () => {
   try {
-    const response = await axiosInstance.get('/check-auth');
+      const response = await axiosInstance.get('/check-auth');
+      const isAuthenticated = response.data.isAuthenticated;
+      const user = response.data.user;
 
-    const isAuthenticated = response.data.isAuthenticated;
-    const user = response.data.user;
-
-    let hasVoted = false;
-    if (isAuthenticated) {
-      hasVoted = await checkVoteStatus();
-    }    
-    return { isAuthenticated, user, hasVoted };
+      let hasVoted = false;
+      if (isAuthenticated) {
+          hasVoted = await checkVoteStatus();
+      }    
+      return { isAuthenticated, user, hasVoted };
   } catch (error) {
-    console.error('Error checking login status:', error);
-    return { isAuthenticated: false, user: null, hasVoted: false };
+      console.error('Error checking login status:', error.response ? error.response.data : error.message);
+      return { isAuthenticated: false, user: null, hasVoted: false };
   }
 };
 
