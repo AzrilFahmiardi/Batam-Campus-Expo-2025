@@ -1,12 +1,17 @@
 import axios from "axios";
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
+const axiosInstance = axios.create({
+  baseURL: SERVER_URL,
+  withCredentials: true,
+  credentials: 'include'
+});
+
 // CEK STATUS LOGIN
 export const checkLoginStatus = async () => {
   try {
-    const response = await axios.get(`${SERVER_URL}/check-auth`, {
-      withCredentials: true,
-    });
+    const response = await axiosInstance.get('/check-auth');
+
     const isAuthenticated = response.data.isAuthenticated;
     const user = response.data.user;
 

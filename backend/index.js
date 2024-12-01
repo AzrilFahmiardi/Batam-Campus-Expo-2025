@@ -31,8 +31,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, 
+        secure: true, 
         httpOnly: true,
+        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000 
     }
 }));
@@ -96,11 +97,12 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/check-auth', (req, res) => {
+    console.log('Incoming Request Headers:', req.headers);
+    console.log('Cookies:', req.cookies);
     console.log('Session ID:', req.sessionID);
     console.log('Session:', req.session);
     console.log('Is Authenticated:', req.isAuthenticated());
     console.log('Req User:', req.user);
-    console.log('Req Email:', req.email);
     
     res.json({
         sessionID: req.sessionID,
