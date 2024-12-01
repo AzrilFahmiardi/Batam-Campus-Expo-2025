@@ -1,20 +1,117 @@
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Hero from "../components/CampusDetail/Hero";
 import Header from "../components/Header";
 import leftCloud from "../assets/images/CampusDetail/cloud_left.png";
 import rightCloud from "../assets/images/CampusDetail/cloud_right.png";
 import ImageGallery from "../components/CampusDetail/ImageGallery";
+import FacultyCard from "../components/CampusDetail/FacultyCard";
+import Footer from "../components/Footer";
 
 const DetailKampus = () => {
   // nah fetch kan lah nanti bos, blum ada route nya
   const { id } = useParams();
 
+  const exampleData = [
+    {
+      facultyName: "Fakultas Teknik",
+      programCount: 5,
+      programs: [
+        "Teknik Sipil",
+        "Teknik Mesin",
+        "Teknik Elektro",
+        "Teknik Industri",
+        "Teknik Kimia",
+      ],
+    },
+    {
+      facultyName: "Fakultas Kedokteran",
+      programCount: 3,
+      programs: ["Pendidikan Dokter", "Kebidanan", "Keperawatan"],
+    },
+    {
+      facultyName: "Fakultas Ekonomi",
+      programCount: 6,
+      programs: [
+        "Manajemen",
+        "Akuntansi",
+        "Ekonomi Pembangunan",
+        "Perbankan",
+        "Ekonomi Syariah",
+        "Keuangan",
+      ],
+    },
+    {
+      facultyName: "Fakultas Ilmu Sosial dan Ilmu Politik",
+      programCount: 9,
+      programs: [
+        "Politik dan Pemerintahan",
+        "Pembangunan Sosial dan Kesejahteraan",
+        "Manajemen dan Kebijakan Publik",
+        "Ilmu Hubungan International",
+        "Ilmu Komunikasi",
+        "Sosiologi",
+        "IUP Ilmu Komunikasi",
+        "IUP Ilmu Hubungan Internasional",
+        "IUP Manajemen dan Kebijakan Publik",
+      ],
+    },
+    {
+      facultyName: "Fakultas Mesin",
+      programCount: 6,
+      programs: [
+        "Manajemen",
+        "Akuntansi",
+        "Ekonomi Pembangunan",
+        "Perbankan",
+        "Ekonomi Syariah",
+        "Keuangan",
+      ],
+    },
+    {
+      facultyName: "Fakultas Butuh Kasih",
+      programCount: 6,
+      programs: [
+        "Manajemen",
+        "Akuntansi",
+        "Ekonomi Pembangunan",
+        "Perbankan",
+        "Ekonomi Syariah",
+        "Keuangan",
+      ],
+    },
+    {
+      facultyName: "Fakultas Sayang",
+      programCount: 6,
+      programs: [
+        "Manajemen",
+        "Akuntansi",
+        "Ekonomi Pembangunan",
+        "Perbankan",
+        "Ekonomi Syariah",
+        "Keuangan",
+      ],
+    },
+    {
+      facultyName: "Fakultas YEYEYE",
+      programCount: 6,
+      programs: [
+        "Manajemen",
+        "Akuntansi",
+        "Ekonomi Pembangunan",
+        "Perbankan",
+        "Ekonomi Syariah",
+        "Keuangan",
+      ],
+    },
+  ];
+
   return (
     <Fragment>
       <Header />
       <Hero />
-      <div className="bg-[#EB5E0B]">
+      <div className="bg-landing-page-background-gradient">
         <div className="relative space-y-3 py-5 sm:py-16">
           <img
             src={leftCloud}
@@ -31,7 +128,7 @@ const DetailKampus = () => {
             Universitas Gadjah Mada
           </p>
         </div>
-        <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 py-5 sm:px-20">
+        <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 pb-10 sm:px-20">
           <table className="grow table-fixed">
             <tr className="gap-3 border-b border-t border-white">
               <td className="w-[25%] px-2 py-2 font-bold text-white">
@@ -82,6 +179,31 @@ const DetailKampus = () => {
           {/* <div className="aspect-square w-80 rounded-lg bg-white"></div> */}
           <ImageGallery />
         </div>
+        <div className="h-auto space-y-10 py-10 sm:space-y-16 sm:py-16 md:space-y-20 md:py-20">
+          <h2 className="text-center font-pixelify text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+            Fakultas dan Jurusan
+          </h2>
+          <div className="flex h-auto flex-wrap justify-center gap-3 px-5 sm:gap-5 md:px-10 lg:gap-8">
+            {exampleData.map((faculty, index) => (
+              <FacultyCard
+                key={index}
+                index={index}
+                facultyName={faculty.facultyName}
+                programCount={faculty.programCount}
+                programs={faculty.programs}
+              />
+            ))}
+          </div>
+          <Link
+            to="/"
+            className="block text-center font-montserrat text-base font-bold text-white sm:text-xl md:text-2xl"
+          >
+            Lebih Banyak
+          </Link>
+        </div>
+      </div>
+      <div className="bg-footer-gradient">
+        <Footer />
       </div>
     </Fragment>
   );
