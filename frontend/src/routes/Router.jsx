@@ -6,6 +6,7 @@ import NotFound from "../pages/NotFound";
 import Voting from "../pages/Voting";
 import RouterErrorBoundary from "./RouterErrorBoundary";
 import { AuthProvider } from "../utils/AuthProvider";
+import LoginPage from "../pages/Login";
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/kegiatan",
     element: <Kegiatan />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
   {
     path: "*",
