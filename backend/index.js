@@ -202,30 +202,55 @@ app.get('/check-vote-status', async (req, res) => {
 });
 
 // UNIVERSITAS BY ID
-app.get('/:kode_univ', async (req, res) => {
+app.get('/universitas/:kode_univ', async (req, res) => {
     const { kode_univ } = req.params;
+
     try {
         const [hasil_univ] = await db.query("SELECT * FROM universitas WHERE kode_univ = ?", [kode_univ]);
+        
         if (hasil_univ.length > 0) {
-            res.json({ hasilUniv: hasil_univ[0] });
+            const uni = hasil_univ[0];
+            uni.logo = `/LogoCampus/${uni.kode_univ}.webp`;
+            uni.cardImage = `/CardImage/${uni.kode_univ}_1.webp`;
+
+            res.json(uni);
         } else {
             res.status(404).json({ message: 'Universitas tidak ditemukan' });
         }
     } catch (error) {
-        console.error('Error fetching university data:', error);
+        console.error('Error fetching university data by id:', error);
         res.status(500).json({ message: 'Error fetching university data' });
     }
 });
 
-// JURUSAN BY ID
-app.get('/:kode_univ/jurusan', async (req, res) => {
+// GET FAKULTAS BY ID KAMPUS
+app.get('/universitas/:kode_univ/fakultas', async (req, res) => {
     const { kode_univ } = req.params;
+
     try {
-        const [jurusan] = await db.query("SELECT * FROM jurusan WHERE kode_univ = ?", [kode_univ]);
-        if (jurusan.length > 0) {
-            res.json({ hasilJurusan: jurusan })
+        const [hasil_univ] = await db.query("SELECT * FROM fakultas WHERE kode_universitas = ?", [kode_univ]);
+        
+        if (hasil_univ.length > 0) {
+            res.json(hasil_univ);
         } else {
-            res.status(404).json({ message: 'Jurusan tidak ditemukan untuk universitas ini' });
+            res.status(404).json({ message: 'Universitas tidak ditemukan' });
+        }
+    } catch (error) {
+        console.error('Error fetching university data by id:', error);
+        res.status(500).json({ message: 'Error fetching university data' });
+    }
+});
+
+
+// JURUSAN BY ID
+app.get('/universitas/:kode_univ/:id_fakultas/jurusan', async (req, res) => {
+    const { id_fakultas } = req.params;
+    try {
+        const [jurusan] = await db.query("SELECT * FROM daftar_prodi WHERE kode_fakultas = ?", [id_fakultas]);
+        if (jurusan.length > 0) {
+            res.json(jurusan)
+        } else {
+            res.status(404).json({ message: 'Jurusan tidak ditemukan untuk fakultas ini' });
         }
     } catch (error) {
         console.error('Error fetching majors:', error);

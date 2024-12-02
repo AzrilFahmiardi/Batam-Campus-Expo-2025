@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Hero from "../components/CampusDetail/Hero";
@@ -8,10 +8,33 @@ import rightCloud from "../assets/images/CampusDetail/cloud_right.png";
 import ImageGallery from "../components/CampusDetail/ImageGallery";
 import FacultyCard from "../components/CampusDetail/FacultyCard";
 import Footer from "../components/Footer";
+import { getUniversitybyId, getFakultas } from "../utils/UniversityFetch";
 
 const DetailKampus = () => {
-  // nah fetch kan lah nanti bos, blum ada route nya
   const { id } = useParams();
+  const [universities, setUniversities] = useState([]);
+  const [fakultas, setFakultas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const universitas = await getUniversitybyId(id);
+        const fakultas = await getFakultas(id)
+        setFakultas(fakultas)
+        setUniversities(universitas);
+        setIsLoading(false);
+        console.log(universitas);
+        
+      } catch (err) {
+        console.error("Error fetching university data by id: ", err);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const exampleData = [
     {
@@ -110,7 +133,7 @@ const DetailKampus = () => {
   return (
     <Fragment>
       <Header />
-      <Hero />
+      <Hero universities={universities} />
       <div className="bg-landing-page-background-gradient">
         <div className="relative space-y-3 py-5 sm:py-16">
           <img
@@ -125,7 +148,7 @@ const DetailKampus = () => {
             Informasi Umum
           </h2>
           <p className="text-center font-montserrat font-bold text-white">
-            Universitas Gadjah Mada
+            {universities.nama}
           </p>
         </div>
         <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 pb-10 sm:px-20">
@@ -136,7 +159,7 @@ const DetailKampus = () => {
               </td>
               <td className="w-[5px] px-2 py-2 text-white">:</td>
               <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">A</p>
+                <p className="max-w-[700px] text-justify">{universities.akreditasi}</p>
               </td>
             </tr>
             <tr className="gap-3 border-b border-t border-white">
@@ -145,7 +168,7 @@ const DetailKampus = () => {
               </td>
               <td className="w-[5px] px-2 py-2 text-white">:</td>
               <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">655</p>
+                <p className="max-w-[700px] text-justify">{universities.rank_international}</p>
               </td>
             </tr>
             <tr className="gap-3 border-b border-t border-white">
@@ -154,7 +177,7 @@ const DetailKampus = () => {
               </td>
               <td className="w-[5px] px-2 py-2 text-white">:</td>
               <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">93</p>
+                <p className="max-w-[700px] text-justify">{universities.jumlah_prodi}</p>
               </td>
             </tr>
             <tr className="gap-3 border-b border-t border-white">
@@ -162,7 +185,7 @@ const DetailKampus = () => {
               <td className="w-[5px] px-2 py-2 text-white">:</td>
               <td className="w-auto grow px-2 py-2 text-white">
                 <p className="max-w-[700px] text-justify">
-                  Kabupaten Sleman, Yogyakarta
+                  {universities.lokasi}
                 </p>
               </td>
             </tr>
@@ -172,7 +195,7 @@ const DetailKampus = () => {
               </td>
               <td className="w-[5px] px-2 py-2 text-white">:</td>
               <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">www.ugm.ac.id</p>
+                <p className="max-w-[700px] text-justify"><a target="blank" href={universities.web_kampus}>{universities.web_kampus}</a></p>
               </td>
             </tr>
           </table>
@@ -184,13 +207,12 @@ const DetailKampus = () => {
             Fakultas dan Jurusan
           </h2>
           <div className="flex h-auto flex-wrap justify-center gap-3 px-5 sm:gap-5 md:px-10 lg:gap-8">
-            {exampleData.map((faculty, index) => (
+            {fakultas.map((faculty, index) => (
               <FacultyCard
-                key={index}
                 index={index}
-                facultyName={faculty.facultyName}
-                programCount={faculty.programCount}
-                programs={faculty.programs}
+                key={faculty.kode_fakultas}
+                faculty={faculty}
+
               />
             ))}
           </div>

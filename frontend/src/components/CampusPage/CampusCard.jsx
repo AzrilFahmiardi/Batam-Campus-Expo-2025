@@ -1,8 +1,11 @@
 import logoCard from "../../assets/images/CampusPage/ugm-logo-card.png"
 import locationLogo from "../../assets/images/CampusPage/location-logo.svg"
+import { NavLink } from "react-router-dom";
+
 
 
 const CampusCard = ({university, delay}) => {
+
 
     if (!university) {
         return (
@@ -20,6 +23,9 @@ const CampusCard = ({university, delay}) => {
     }
 
     return(
+        <NavLink
+          to={`/kampus/${university.kode_univ}`}
+        >
         <div data-aos="fade-up"  data-aos-duration="1000" data-aos-delay={delay} data-aos-once="true" className="cursor-pointer md:pr-0 pr-[3.9rem] relative w-[90vw] md:w-[420px] h-[100px] md:h-[300px] bg-white rounded-xl grid grid-cols-2 overflow-hidden md:flex md:flex-col">
             <div className="  relative w-[150px] sm:w-[700px] md:w-full overflow-y-hidden">
                 <img src={university.cardImage} alt="Campus Image" className=" rounded-l-xl md:rounded-bl-none md:rounded-t-xl h-[100px] w-[200px]  sm:h-[190px] md:w-full object-center object-cover " />
@@ -56,6 +62,7 @@ const CampusCard = ({university, delay}) => {
                 </div>
             </div>
         </div>
+        </NavLink>
 
     );
 
