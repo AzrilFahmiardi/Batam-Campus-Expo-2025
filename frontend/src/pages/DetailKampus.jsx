@@ -16,17 +16,15 @@ const DetailKampus = () => {
   const [fakultas, setFakultas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const universitas = await getUniversitybyId(id);
-        const fakultas = await getFakultas(id)
-        setFakultas(fakultas)
+        const fakultas = await getFakultas(id);
+        setFakultas(fakultas);
         setUniversities(universitas);
         setIsLoading(false);
         console.log(universitas);
-        
       } catch (err) {
         console.error("Error fetching university data by id: ", err);
         setIsLoading(false);
@@ -151,53 +149,67 @@ const DetailKampus = () => {
             {universities.nama}
           </p>
         </div>
-        <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 pb-10 sm:px-20">
+        <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 pb-10 sm:px-20 md:flex-row">
           <table className="grow table-fixed">
-            <tr className="gap-3 border-b border-t border-white">
-              <td className="w-[25%] px-2 py-2 font-bold text-white">
-                Akreditasi
-              </td>
-              <td className="w-[5px] px-2 py-2 text-white">:</td>
-              <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">{universities.akreditasi}</p>
-              </td>
-            </tr>
-            <tr className="gap-3 border-b border-t border-white">
-              <td className="w-[25%] px-2 py-2 font-bold text-white">
-                Rank Internasional
-              </td>
-              <td className="w-[5px] px-2 py-2 text-white">:</td>
-              <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">{universities.rank_international}</p>
-              </td>
-            </tr>
-            <tr className="gap-3 border-b border-t border-white">
-              <td className="w-[25%] px-2 py-2 font-bold text-white">
-                Jumlah Prodi
-              </td>
-              <td className="w-[5px] px-2 py-2 text-white">:</td>
-              <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">{universities.jumlah_prodi}</p>
-              </td>
-            </tr>
-            <tr className="gap-3 border-b border-t border-white">
-              <td className="w-[25%] px-2 py-2 font-bold text-white">Lokasi</td>
-              <td className="w-[5px] px-2 py-2 text-white">:</td>
-              <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify">
-                  {universities.lokasi}
-                </p>
-              </td>
-            </tr>
-            <tr className="gap-3 border-b border-t border-white">
-              <td className="w-[25%] px-2 py-2 font-bold text-white">
-                Website
-              </td>
-              <td className="w-[5px] px-2 py-2 text-white">:</td>
-              <td className="w-auto grow px-2 py-2 text-white">
-                <p className="max-w-[700px] text-justify"><a target="blank" href={universities.web_kampus}>{universities.web_kampus}</a></p>
-              </td>
-            </tr>
+            <tbody>
+              <tr className="gap-3 border-b border-t border-white">
+                <td className="w-[25%] px-2 py-2 font-bold text-white">
+                  Akreditasi
+                </td>
+                <td className="w-[5px] px-2 py-2 text-white">:</td>
+                <td className="w-auto grow px-2 py-2 text-white">
+                  <p className="max-w-[700px] text-justify">
+                    {universities.akreditasi}
+                  </p>
+                </td>
+              </tr>
+              <tr className="gap-3 border-b border-t border-white">
+                <td className="w-[25%] px-2 py-2 font-bold text-white">
+                  Rank Internasional
+                </td>
+                <td className="w-[5px] px-2 py-2 text-white">:</td>
+                <td className="w-auto grow px-2 py-2 text-white">
+                  <p className="max-w-[700px] text-justify">
+                    {universities.rank_international}
+                  </p>
+                </td>
+              </tr>
+              <tr className="gap-3 border-b border-t border-white">
+                <td className="w-[25%] px-2 py-2 font-bold text-white">
+                  Jumlah Prodi
+                </td>
+                <td className="w-[5px] px-2 py-2 text-white">:</td>
+                <td className="w-auto grow px-2 py-2 text-white">
+                  <p className="max-w-[700px] text-justify">
+                    {universities.jumlah_prodi}
+                  </p>
+                </td>
+              </tr>
+              <tr className="gap-3 border-b border-t border-white">
+                <td className="w-[25%] px-2 py-2 font-bold text-white">
+                  Lokasi
+                </td>
+                <td className="w-[5px] px-2 py-2 text-white">:</td>
+                <td className="w-auto grow px-2 py-2 text-white">
+                  <p className="max-w-[700px] text-justify">
+                    {universities.lokasi}
+                  </p>
+                </td>
+              </tr>
+              <tr className="gap-3 border-b border-t border-white">
+                <td className="w-[25%] px-2 py-2 font-bold text-white">
+                  Website
+                </td>
+                <td className="w-[5px] px-2 py-2 text-white">:</td>
+                <td className="w-auto grow px-2 py-2 text-white">
+                  <p className="max-w-[700px] text-justify">
+                    <a target="blank" href={universities.web_kampus}>
+                      {universities.web_kampus}
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
           </table>
           {/* <div className="aspect-square w-80 rounded-lg bg-white"></div> */}
           <ImageGallery />
@@ -212,7 +224,6 @@ const DetailKampus = () => {
                 index={index}
                 key={faculty.kode_fakultas}
                 faculty={faculty}
-
               />
             ))}
           </div>
