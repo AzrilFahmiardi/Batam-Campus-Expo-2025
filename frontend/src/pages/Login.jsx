@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Logout, handleGoogleLogin } from '../utils/authentication';
 
 const LoginPage = () => {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -8,7 +9,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blue-gradient flex justify-center items-center">
+    <div className="min-h-screen bg-blue-gradient flex justify-center items-center font-pixelify">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-semibold text-center mb-6">{isRegistering ? 'Register' : 'Login'}</h2>
         <form>
@@ -89,6 +90,17 @@ const LoginPage = () => {
               {isRegistering ? 'Login here' : 'Register here'}
             </button>
           </p>
+          {isRegistering? 
+          <div></div>
+          :(<button
+          onClick={() => {
+            handleGoogleLogin();
+          }}
+          className={`flex items-center mx-auto my-3  rounded-[10px] px-[20px] py-2 font-pixelify font-bold bg-orange-500 text-white hover:bg-[#206A96]`}
+            >
+            Sign Up with Google
+            </button>)}
+          
         </div>
       </div>
     </div>

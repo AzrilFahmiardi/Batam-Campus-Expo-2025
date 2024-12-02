@@ -107,9 +107,7 @@ const Header = ({ user }) => {
         <img src={Seperator} alt="separator" className="h-6" />
 
         <button
-          // onClick={() => {
-          //   user ? Logout() : handleGoogleLogin();
-          // }}
+          onClick={() => user && Logout()}
           className={`flex items-center rounded-[10px] px-[18px] py-2 font-montserrat font-bold ${
             isScrolled
               ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
