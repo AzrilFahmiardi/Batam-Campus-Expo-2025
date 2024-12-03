@@ -57,7 +57,7 @@ const DetailKampus = () => {
           </p>
         </div>
         <div className="flex flex-col-reverse items-center justify-center gap-10 px-5 pb-10 sm:px-20 md:flex-row">
-          <table className="grow table-fixed">
+          <table className="grow table-fixed  max-w-[700px]">
             <tbody>
               <tr className="gap-3 border-b border-t border-white">
                 <td className="w-[25%] px-2 py-2 font-bold text-white">

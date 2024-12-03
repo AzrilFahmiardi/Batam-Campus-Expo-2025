@@ -19,6 +19,8 @@ export default {
         "campus-page-background-gradient":
           "linear-gradient(to bottom, #2980B9 0%, #6DD5FA 10%, #D2F3FF 100%)",
         "footer-gradient": "linear-gradient(to bottom, #F97316, #991B1B)",
+        "fakultas-card":
+          "linear-gradient(to bottom, #FFF 0%, #EB5E0B 100%)",
       },
       colors: {
         "orange-surface": "#EB5E0B",
