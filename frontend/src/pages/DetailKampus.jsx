@@ -34,100 +34,7 @@ const DetailKampus = () => {
     fetchData();
   }, []);
 
-  const exampleData = [
-    {
-      facultyName: "Fakultas Teknik",
-      programCount: 5,
-      programs: [
-        "Teknik Sipil",
-        "Teknik Mesin",
-        "Teknik Elektro",
-        "Teknik Industri",
-        "Teknik Kimia",
-      ],
-    },
-    {
-      facultyName: "Fakultas Kedokteran",
-      programCount: 3,
-      programs: ["Pendidikan Dokter", "Kebidanan", "Keperawatan"],
-    },
-    {
-      facultyName: "Fakultas Ekonomi",
-      programCount: 6,
-      programs: [
-        "Manajemen",
-        "Akuntansi",
-        "Ekonomi Pembangunan",
-        "Perbankan",
-        "Ekonomi Syariah",
-        "Keuangan",
-      ],
-    },
-    {
-      facultyName: "Fakultas Ilmu Sosial dan Ilmu Politik",
-      programCount: 9,
-      programs: [
-        "Politik dan Pemerintahan",
-        "Pembangunan Sosial dan Kesejahteraan",
-        "Manajemen dan Kebijakan Publik",
-        "Ilmu Hubungan International",
-        "Ilmu Komunikasi",
-        "Sosiologi",
-        "IUP Ilmu Komunikasi",
-        "IUP Ilmu Hubungan Internasional",
-        "IUP Manajemen dan Kebijakan Publik",
-      ],
-    },
-    {
-      facultyName: "Fakultas Mesin",
-      programCount: 6,
-      programs: [
-        "Manajemen",
-        "Akuntansi",
-        "Ekonomi Pembangunan",
-        "Perbankan",
-        "Ekonomi Syariah",
-        "Keuangan",
-      ],
-    },
-    {
-      facultyName: "Fakultas Butuh Kasih",
-      programCount: 6,
-      programs: [
-        "Manajemen",
-        "Akuntansi",
-        "Ekonomi Pembangunan",
-        "Perbankan",
-        "Ekonomi Syariah",
-        "Keuangan",
-      ],
-    },
-    {
-      facultyName: "Fakultas Sayang",
-      programCount: 6,
-      programs: [
-        "Manajemen",
-        "Akuntansi",
-        "Ekonomi Pembangunan",
-        "Perbankan",
-        "Ekonomi Syariah",
-        "Keuangan",
-      ],
-    },
-    {
-      facultyName: "Fakultas YEYEYE",
-      programCount: 6,
-      programs: [
-        "Manajemen",
-        "Akuntansi",
-        "Ekonomi Pembangunan",
-        "Perbankan",
-        "Ekonomi Syariah",
-        "Keuangan",
-      ],
-    },
-  ];
-
+  
   return (
     <Fragment>
       <Header />
@@ -212,7 +119,7 @@ const DetailKampus = () => {
             </tbody>
           </table>
           {/* <div className="aspect-square w-80 rounded-lg bg-white"></div> */}
-          <ImageGallery />
+          <ImageGallery universities={universities}/>
         </div>
         <div className="h-auto space-y-10 py-10 sm:space-y-16 sm:py-16 md:space-y-20 md:py-20">
           <h2 className="text-center font-pixelify text-2xl font-bold text-white md:text-3xl lg:text-4xl">

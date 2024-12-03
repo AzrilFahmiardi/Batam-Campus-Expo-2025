@@ -35,7 +35,7 @@ const CampusCard = ({ university, delay }) => {
       >
         <div className="relative w-[150px] overflow-y-hidden sm:w-[700px] md:w-full">
           <div className="absolute left-0 top-0 z-20 grid h-full w-full items-center bg-[rgba(0,0,0,0.5)] text-sm text-white opacity-0 transition duration-200 group-hover:opacity-100">
-            <p className="flex items-center justify-center gap-1">
+            <p className="flex items-center justify-center gap-1 font-pixelify">
               Lihat Kampus
               <svg
                 xmlns="http://www.w3.org/2000/svg"
