@@ -10,7 +10,7 @@ const CampusCard = ({ university, delay }) => {
         data-aos-duration="1000"
         data-aos-delay={delay}
         data-aos-once="true"
-        className="relative grid size-full cursor-pointer grid-cols-2 overflow-hidden rounded-xl bg-white pr-[3.9rem] md:flex md:h-[300px] md:w-[420px] md:flex-col md:pr-0"
+        className=" grid  cursor-pointer overflow-hidden rounded-xl bg-white pr-[3.9rem] md:flex md:h-[300px] md:w-[420px] md:flex-col md:mr-3 md:mb-3 md:pr-0"
       >
         <div className="flex gap-10 px-5 py-4">
           <div className="h-16 w-16 rounded bg-gray-200"></div>
@@ -35,7 +35,7 @@ const CampusCard = ({ university, delay }) => {
       >
         <div className="relative w-[150px] overflow-y-hidden sm:w-[700px] md:w-full">
           <div className="absolute left-0 top-0 z-20 grid h-full w-full items-center bg-[rgba(0,0,0,0.5)] text-sm text-white opacity-0 transition duration-200 group-hover:opacity-100">
-            <p className="flex items-center justify-center gap-1">
+            <p className="flex items-center justify-center gap-1 font-pixelify">
               Lihat Kampus
               <svg
                 xmlns="http://www.w3.org/2000/svg"
