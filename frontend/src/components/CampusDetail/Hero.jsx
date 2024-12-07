@@ -7,6 +7,9 @@ const Hero = ({ universities }) => {
         className="flex h-screen items-end bg-cover bg-center"
         style={{
           backgroundImage: `url('/CardImage/${universities.kode_univ}_1.webp')`,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Tambahkan warna latar belakang
+
+          backgroundBlendMode: 'darken',
         }}
       >
         <div
