@@ -107,9 +107,7 @@ const Header = ({ user }) => {
         <img src={Seperator} alt="separator" className="h-6" />
 
         <button
-          onClick={() => {
-            user ? Logout() : handleGoogleLogin();
-          }}
+          onClick={() => user && Logout()}
           className={`flex items-center rounded-[10px] px-[18px] py-2 font-montserrat font-bold ${
             isScrolled
               ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
@@ -126,7 +124,8 @@ const Header = ({ user }) => {
               />
             </>
           ) : (
-            "Sign Up"
+            <a href="/login">Sign in</a>
+            // "Sign Up"
           )}
         </button>
       </nav>
@@ -186,9 +185,10 @@ const Header = ({ user }) => {
             Kegiatan
           </NavLink>
           <button
-            onClick={() => {
-              user ? Logout() : handleGoogleLogin();
-            }}
+            // onClick={() => {
+            //   user ? Logout() : handleGoogleLogin();
+            // }}
+            
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
@@ -205,7 +205,8 @@ const Header = ({ user }) => {
                 />
               </>
             ) : (
-              "Sign Up"
+              <a href="/login">Sign In</a>
+              // "Sign Up"
             )}
           </button>
         </div>
