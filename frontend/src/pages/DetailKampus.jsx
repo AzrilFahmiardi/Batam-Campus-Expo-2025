@@ -140,6 +140,75 @@ const DetailKampus = () => {
             Lebih Banyak
           </Link>
         </div>
+        <div className="p-5 md:p-10">
+          <div className="overflow-x-auto">
+            <table className="w-full border-separate border-spacing-y-4">
+              <thead className="">
+                <tr className="flex items-center gap-x-3 rounded-full bg-white px-3 text-center font-montserrat text-sm font-semibold">
+                  <td className="w-24 rounded-l-full border-r border-gray-300 p-3 md:p-4">
+                    Kode Jurusan
+                  </td>
+                  <td className="grow p-3 md:p-4">Nama Jurusan</td>
+                  <td className="w-24 p-3 md:p-4">Jenjang</td>
+                  <td className="w-36 p-3 md:p-4">Daya Tampung 2024</td>
+                  <td className="w-24 p-3 md:p-4">Peminat 2023</td>
+                  <td className="w-24 rounded-r-full p-3 md:p-4">Akreditasi</td>
+                </tr>
+              </thead>
+              {/* <tbody className="flex rounded-3xl border-2 border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.7)] p-3">
+                <tr className="flex w-full items-center gap-3 rounded-full px-5 text-center font-montserrat text-sm">
+                  <td className="w-24 rounded-l-full border-r border-gray-300 p-3 md:p-4">
+                    Kode Jurusan
+                  </td>
+                  <td className="grow p-3 md:p-4">Nama Jurusan</td>
+                  <td className="w-24 p-3 md:p-4">Jenjang</td>
+                  <td className="w-36 p-3 md:p-4">Daya Tampung 2024</td>
+                  <td className="w-24 p-3 md:p-4">Peminat 2023</td>
+                  <td className="w-24 rounded-r-full p-3 md:p-4">Akreditasi</td>
+                </tr>
+              </tbody> */}
+              <tbody className="scrollbar-hide flex max-h-96 flex-col gap-3 overflow-y-auto rounded-3xl border-2 border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.7)] p-3">
+                {Array.from({ length: 10 }).map((_, index) => (
+                  <tr
+                    key={index}
+                    className="flex items-stretch gap-x-2 rounded-full text-center font-montserrat text-sm"
+                  >
+                    <td
+                      className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      131001
+                    </td>
+                    <td
+                      className={`grid grow items-center justify-start rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      Teknik Informatika
+                    </td>
+                    <td
+                      className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      Sarjana Terapan
+                    </td>
+                    <td
+                      className={`grid w-36 place-items-center rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      150
+                    </td>
+                    <td
+                      className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      200
+                    </td>
+                    <td
+                      className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"}`}
+                    >
+                      Baek Sekali
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div className="bg-footer-gradient">
         <Footer />

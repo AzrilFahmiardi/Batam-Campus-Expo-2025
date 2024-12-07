@@ -19,7 +19,7 @@ const FacultyCard = ({ faculty, index }) => {
         setIsLoading(false);
       }
     };
-  
+
     fetchData();
   }, [id, faculty.kode_fakultas]);
 
@@ -38,10 +38,11 @@ const FacultyCard = ({ faculty, index }) => {
         data-aos-duration="1000"
         data-aos-once="true"
         data-aos-delay={200 * (index + 1)}
-        className="flex max-w-[140px] cursor-pointer flex-col overflow-hidden rounded-lg bg-white p-3 pb-8 font-montserrat text-[#3A3A3A] shadow-md transition-colors hover:bg-fakultas-card sm:max-w-[250px] md:p-5 md:pb-8 lg:max-w-[300px]"
+        className="group relative flex w-full max-w-[140px] cursor-pointer flex-col overflow-hidden rounded-lg bg-white p-3 pb-8 font-montserrat text-[#3A3A3A] shadow-md sm:max-w-[250px] md:p-5 md:pb-8 lg:max-w-[300px]"
         onClick={openModal}
       >
-        <h2 className="mb-1  text-[14px] font-bold sm:text-[16px] md:text-lg lg:text-xl">
+        <div className="absolute inset-0 -z-10 bg-fakultas-card opacity-0 transition duration-200 group-hover:opacity-100"></div>
+        <h2 className="mb-1 text-[14px] font-bold sm:text-[16px] md:text-lg lg:text-xl">
           {faculty.nama_fakultas}
         </h2>
         {jurusan.length > 0 && (
@@ -50,7 +51,7 @@ const FacultyCard = ({ faculty, index }) => {
               {jurusan.length} Prodi
             </h3>
             <p className="line-clamp-3 max-h-12 flex-grow text-[11px] sm:max-h-14 sm:text-[12px] lg:max-h-16 lg:text-sm">
-              {jurusan.map(item => item.nama_prodi).join(" - ")}
+              {jurusan.map((item) => item.nama_prodi).join(" - ")}
             </p>
           </>
         )}
@@ -65,13 +66,14 @@ const FacultyCard = ({ faculty, index }) => {
             className="popup mx-auto w-[300px] rounded-lg bg-opacity-40 p-3 text-white shadow md:w-[400px]"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="mb-2 text-lg font-bold md:text-xl">{faculty.nama_fakultas}</h2>
+            <h2 className="mb-2 text-lg font-bold md:text-xl">
+              {faculty.nama_fakultas}
+            </h2>
             {jurusan.length > 0 && (
               <h3 className="mb-2 text-xs font-semibold md:text-sm">
-              {jurusan.length} Program Studi
-            </h3>
+                {jurusan.length} Program Studi
+              </h3>
             )}
-            
 
             <ol className="list-disc pl-8">
               {jurusan.map((item, index) => (
