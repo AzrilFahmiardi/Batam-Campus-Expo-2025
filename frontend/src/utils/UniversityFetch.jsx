@@ -46,6 +46,17 @@ export const getJurusan = async (id_univ, id_fakultas) => {
   }
 };
 
+// FECTH ALL PRODI by UNIVERSITAS ID
+export const getAllProdi = async (id_univ) => {
+  try {
+    const result = await axios.get(`${SERVER_URL}/universitas/${id_univ}/allprodi`);
+    return result.data;
+  } catch (err) {
+    console.error("Error fetching university: ", err);
+    throw err;
+  }
+};
+
 
 
 
