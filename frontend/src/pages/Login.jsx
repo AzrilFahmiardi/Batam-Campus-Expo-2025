@@ -1,27 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Logout, handleGoogleLogin } from '../utils/authentication';
+import axios from 'axios';
+
 
 const LoginPage = () => {
+
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleToggle = () => {
     setIsRegistering(!isRegistering);
+    setFormData({
+      username: '',
+      email: '',
+      password: ''
+    });
   };
+  
+
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: ''  
+  });
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };  
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (isRegistering) {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, formData);
+        alert(response.data.message);
+      } else {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
+          email: formData.email,
+          password: formData.password,
+        });
+        alert('Login successful!');
+        
+        // Simpan token di localStorage
+        const token = response.data.token;
+        localStorage.setItem('authToken', token);
+
+        // Redirect atau update status login
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Tambahkan default header
+        window.location.href = '/'; // Redirect ke home atau lakukan update state
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || 'An error occurred');
+    }
+  };
+  
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+        localStorage.setItem('authToken', token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Tambahkan header saat token ditemukan
+        window.history.replaceState({}, document.title, '/'); // Hapus token dari URL
+    } else {
+        const storedToken = localStorage.getItem('authToken');
+        if (storedToken) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+        }
+    }
+}, []);
+  
 
   return (
     <div className="min-h-screen bg-blue-gradient flex justify-center items-center font-pixelify">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-semibold text-center mb-6">{isRegistering ? 'Register' : 'Login'}</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           {!isRegistering && (
             <>
               <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">email</label>
                 <input
-                  type="text"
-                  id="username"
+                  type="email"
+                  id="email"
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your username"
+                  placeholder="Enter your email"
+                  required
                 />
               </div>
               <div className="mb-6">
@@ -29,8 +98,12 @@ const LoginPage = () => {
                 <input
                   type="password"
                   id="password"
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter your password"
+                  required
                 />
               </div>
               <button
@@ -49,8 +122,12 @@ const LoginPage = () => {
                 <input
                   type="text"
                   id="username"
+                  name='username'
+                  value={formData.username}
+                  onChange={handleChange}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter your username"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -58,8 +135,12 @@ const LoginPage = () => {
                 <input
                   type="email"
                   id="email"
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
               <div className="mb-6">
@@ -67,8 +148,12 @@ const LoginPage = () => {
                 <input
                   type="password"
                   id="password"
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Create a password"
+                  required
                 />
               </div>
               <button
