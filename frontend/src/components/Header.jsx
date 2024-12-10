@@ -124,7 +124,11 @@ const Header = ({ user }) => {
               />
             </>
           ) : (
-            <a href="/login">Sign in</a>
+            <NavLink to={"/login"}>
+              <a href="">Sign in</a>
+            </NavLink>
+
+            
             // "Sign Up"
           )}
         </button>
@@ -205,7 +209,9 @@ const Header = ({ user }) => {
                 />
               </>
             ) : (
-              <a href="/login">Sign In</a>
+              <NavLink to={"/login"}>
+                <a href="">Sign in</a>
+              </NavLink>
               // "Sign Up"
             )}
           </button>
