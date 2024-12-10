@@ -27,7 +27,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: APP_URL,
+    origin: ['http://localhost:5173', 'https://batamcampusexpo.onrender.com'],
     credentials: true
 }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
