@@ -36,18 +36,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // BAGIAN GOOGLE AUTHENTICATION
-app.use(
-    session({
-        secret: 'batamcampusexpo2025', 
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            secure: process.env.NODE_ENV === 'production',
-            httpOnly: true, 
-            maxAge: 24 * 60 * 60 * 1000 
-        }
-    })
-);
+app.use(session({
+    secret: 'batamcampusexpo2025',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',  // Pastikan hanya true di production
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,  // 1 hari
+      sameSite: 'None',  // Atur ke 'None' jika menggunakan cross-origin
+    }
+  }));
 
 app.use(passport.initialize());
 app.use(passport.session());
