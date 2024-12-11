@@ -466,14 +466,14 @@ app.post("/api/refresh-token", async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 15 * 60 * 1000
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -551,14 +551,14 @@ const login = async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 15 * 60 * 1000, // 15 menit
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 hari
         });
         await db.query("UPDATE user SET last_login = NOW() WHERE email = ?", [user.email]);
