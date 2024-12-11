@@ -189,10 +189,7 @@ const Header = ({ user }) => {
             Kegiatan
           </NavLink>
           <button
-            // onClick={() => {
-            //   user ? Logout() : handleGoogleLogin();
-            // }}
-            
+            onClick={() => user && Logout()}
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
