@@ -186,6 +186,7 @@ app.get('/check-auth', authMiddleware, (req, res) => {
 app.get('/logout', (req, res) => {
     req.logout((err) => {
         if (err) return next(err);
+        req.user = null;
         res.redirect(APP_URL); 
     });
 });
@@ -459,14 +460,14 @@ app.post("/api/refresh-token", async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: process.env.SAMESITE,
+            sameSite: process.env.SAMESITE || 'none',
             maxAge: 15 * 60 * 1000
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: process.env.SAMESITE,
+            sameSite: process.env.SAMESITE || 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -544,14 +545,14 @@ const login = async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.SAMESITE,
+            sameSite: process.env.SAMESITE || 'none',
             maxAge: 15 * 60 * 1000, // 15 menit
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.SAMESITE,
+            sameSite: process.env.SAMESITE || 'none',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 hari
         });
         await db.query("UPDATE user SET last_login = NOW() WHERE email = ?", [user.email]);
