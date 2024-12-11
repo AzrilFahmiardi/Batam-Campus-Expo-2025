@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { checkLoginStatus } from '../utils/authentication';
+import axios from 'axios';
 
 export const AuthContext = createContext({
   user: null,
@@ -15,16 +15,53 @@ export const AuthProvider = ({ children }) => {
 
   const fetchLoginStatus = async () => {
     try {
-      const { isAuthenticated, user, hasVoted } = await checkLoginStatus();
-      setIsLoggedIn(isAuthenticated);
-      setUser(user);
-      setHasVoted(hasVoted);
+      // Coba periksa status autentikasi menggunakan accessToken
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/check-auth`, {
+        withCredentials: true,
+      });
+
+      if (response.status === 200 && response.data.isAuthenticated) {
+        // Jika terautentikasi, setel data pengguna
+        setIsLoggedIn(true);
+        setUser(response.data.user);
+        setHasVoted(response.data.user.hasVoted || false);
+        return;
+      }
     } catch (error) {
-      console.error("Failed to fetch login status:", error);
-      setIsLoggedIn(false);
-      setUser(null);
-      setHasVoted(false);
+      console.warn("Access token expired or invalid, attempting to refresh:", error);
+
+      // Jika accessToken gagal, coba refresh token
+      try {
+        const refreshResponse = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/refresh-token`,
+          {},
+          { withCredentials: true }
+        );
+
+        if (refreshResponse.status === 200) {
+          console.log("Access token refreshed successfully");
+
+          // Setelah refresh token berhasil, panggil ulang check-auth
+          const retryResponse = await axios.get(`${import.meta.env.VITE_API_URL}/check-auth`, {
+            withCredentials: true,
+          });
+
+          if (retryResponse.status === 200 && retryResponse.data.isAuthenticated) {
+            setIsLoggedIn(true);
+            setUser(retryResponse.data.user);
+            setHasVoted(retryResponse.data.user.hasVoted || false);
+            return;
+          }
+        }
+      } catch (refreshError) {
+        console.error("Failed to refresh token:", refreshError);
+      }
     }
+
+    // Jika semua langkah gagal, setel status sebagai tidak login
+    setIsLoggedIn(false);
+    setUser(null);
+    setHasVoted(false);
   };
 
   useEffect(() => {

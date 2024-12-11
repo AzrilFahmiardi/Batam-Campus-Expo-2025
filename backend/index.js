@@ -12,10 +12,66 @@ const randomstring = require('randomstring');
 const nodemailer = require('nodemailer');
 const { SMTP_MAIL, SMTP_PASSWORD } = process.env;
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, JWT_REFRESH_SECRET, NODE_ENV } = process.env;
 const bodyParser = require('body-parser');
 const { check } = require('express-validator');
+const cookieParser = require('cookie-parser');
 
+const authMiddleware = async (req, res, next) => {
+    const accessToken = req.cookies.accessToken;
+    const refreshToken = req.cookies.refreshToken;
+
+    if (!accessToken) {
+        // Jika tidak ada access token, lanjutkan tanpa autentikasi
+        req.isAuthenticated = () => false;
+        req.user = null;
+        return next();
+    }
+
+    try {
+        // Verifikasi accessToken
+        const decoded = jwt.verify(accessToken, JWT_SECRET);
+        req.isAuthenticated = () => true;
+        req.user = decoded;
+        return next();
+    } catch (error) {
+        console.warn("Access token invalid or expired, attempting refresh", error);
+
+        if (!refreshToken) {
+            req.isAuthenticated = () => false;
+            req.user = null;
+            return next();
+        }
+
+        try {
+            // Refresh token
+            const refreshResponse = await axios.post(
+                `${process.env.API_URL}/api/refresh-token`,
+                {},
+                { withCredentials: true }
+            );
+
+            if (refreshResponse.status === 200) {
+                console.log("Token refreshed successfully");
+
+                // Set user berdasarkan token baru
+                req.user = jwt.verify(refreshResponse.data.accessToken, JWT_SECRET);
+                req.isAuthenticated = () => true;
+                return next();
+            } else {
+                req.isAuthenticated = () => false;
+                req.user = null;
+                return next();
+            }
+        } catch (refreshError) {
+            console.error("Error refreshing token:", refreshError);
+            req.isAuthenticated = () => false;
+            req.user = null;
+            return next();
+        }
+    }
+};
+  
 
 const fs = require('fs');
 
@@ -33,7 +89,17 @@ app.use(cors({
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cookieParser());
+app.use(session({
+    secret: "secret_key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: NODE_ENV === "production",
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
 
 // BAGIAN GOOGLE AUTHENTICATION
 app.use(session({
@@ -105,15 +171,16 @@ app.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: APP_URL 
 }));
 
-app.get('/check-auth', (req, res) => {
+app.get('/check-auth', authMiddleware, (req, res) => {
     res.json({
         isAuthenticated: req.isAuthenticated(),
-        user: req.user ? {
+        user: req.isAuthenticated() ? {
             email: req.user.email,
-            username: req.user.username
+            username: req.user.username,
         } : null
     });
 });
+
 
 
 app.get('/logout', (req, res) => {
@@ -122,6 +189,13 @@ app.get('/logout', (req, res) => {
         res.redirect(APP_URL); 
     });
 });
+
+app.post("/api/logout", (req, res) => {
+    res.clearCookie("accessToken");
+    res.clearCookie("refreshToken");
+    return res.status(200).json({ message: "Logged out successfully" });
+});
+
 
 
 app.get("/", (req, res) => {
@@ -152,7 +226,7 @@ app.get('/universitas', async (req, res) => {
 
 
 // VOTING KAMPUS
-app.post('/vote', async (req, res) => {
+app.post('/vote', authMiddleware, async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -346,8 +420,107 @@ const verifyMail = async (req, res) => {
     }
 };
 
+const generateTokens = (user) => {
+    const accessToken = jwt.sign({
+        username: user.username,
+        email: user.email
+    }, JWT_SECRET, { expiresIn: "15m" });
 
-// login
+    const refreshToken = jwt.sign({
+        username: user.username
+    }, JWT_REFRESH_SECRET, { expiresIn: "7d" });
+
+    return { accessToken, refreshToken };
+};
+
+// Tambahkan logika untuk menyimpan refresh token di database
+const saveTokens = async (username, accessToken, refreshToken) => {
+    await db.query(
+        "UPDATE user SET refresh_token = ?, access_token = ? WHERE username = ?",
+        [refreshToken, accessToken, username]
+    );
+};
+
+app.post("/api/refresh-token", async (req, res) => {
+    const { refreshToken } = req.cookies;
+
+    if (!refreshToken) {
+        return res.status(400).json({ message: "Refresh token is required" });
+    }
+
+    try {
+        const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+        const [users] = await db.query(
+            "SELECT * FROM user WHERE username = ? AND refresh_token = ?",
+            [decoded.username, refreshToken]
+        );
+
+        if (users.length === 0) {
+            return res.status(401).json({ message: "Invalid refresh token" });
+        }
+
+        const user = users[0];
+        const tokens = generateTokens(user);
+        await saveTokens(user.username, tokens.accessToken, tokens.refreshToken);
+
+        res.cookie("accessToken", tokens.accessToken, {
+            httpOnly: true,
+            secure: NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 15 * 60 * 1000
+        });
+
+        res.cookie("refreshToken", tokens.refreshToken, {
+            httpOnly: true,
+            secure: NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+
+        res.status(200).json({ message: "Tokens refreshed successfully" });
+    } catch (err) {
+        console.error("Refresh token error:", err);
+        res.status(403).json({ message: "Invalid or expired refresh token" });
+    }
+});
+
+const authenticateAccessToken = (req, res, next) => {
+    const token = req.cookies.accessToken;
+
+    if (!token) {
+        return res.status(401).json({ message: "Access token is required" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
+        next();
+    } catch (err) {
+        console.error("Error verifying access token:", err);
+        return res.status(403).json({ message: "Invalid or expired access token" });
+    }
+};
+
+app.post("/api/logout", authenticateAccessToken, async (req, res) => {
+    try {
+        await logoutUser(req.user.username);
+        res.clearCookie("accessToken");
+        res.clearCookie("refreshToken");
+        res.status(200).json({ message: "Logout successful" });
+    } catch (err) {
+        console.error("Logout error:", err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+const logoutUser = async (username) => {
+    await db.query(
+        "UPDATE user SET refresh_token = NULL, access_token = NULL WHERE username = ?",
+        [username]
+    );
+};
+
+
 const login = async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -355,38 +528,48 @@ const login = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        // Cek apakah email ada di database
         const [users] = await db.query("SELECT * FROM user WHERE email = ?", [req.body.email]);
         if (users.length === 0) {
             return res.status(401).send({ message: "Email or password is incorrect" });
         }
 
         const user = users[0];
-
-        // Bandingkan password yang diberikan dengan hash di database
         const passwordMatch = await bcrypt.compare(req.body.password, user.password);
         if (!passwordMatch) {
             return res.status(401).send({ message: "Email or password is incorrect" });
         }
 
-        // Generate token JWT
-        const token = jwt.sign({ username: user.username, is_admin: user.is_admin }, JWT_SECRET, { expiresIn: "7d" });
+        if (!user.is_verified) {
+            return res.status(401).send({ message: "Please verify your email before logging in" });
+        }
 
-        // Update waktu login terakhir
-        await db.query("UPDATE user SET last_login = now() WHERE username = ?", [user.username]);
+        const tokens = generateTokens(user);
 
-        console.log('berhasil login!');
+        await saveTokens(user.username, tokens.accessToken, tokens.refreshToken);
 
-        // Kirim respons berhasil login
+        // Kirim token dalam cookies
+        res.cookie("accessToken", tokens.accessToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 15 * 60 * 1000, // 15 menit
+        });
+
+        res.cookie("refreshToken", tokens.refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 hari
+        });
+        await db.query("UPDATE user SET last_login = NOW() WHERE email = ?", [user.email]);
+
         return res.status(200).send({
             message: "Successfully logged in",
-            token,
             user: {
                 username: user.username,
                 email: user.email,
             },
         });
-        
     } catch (err) {
         console.error("Error during login:", err);
         return res.status(500).send({ message: "Internal server error", error: err.message });
@@ -428,52 +611,6 @@ webRouter.use(express.static(path.join(__dirname, 'public')));
 webRouter.get('/mail-verification', verifyMail);
 
 app.use('/', webRouter);
-
-const isAuthorize = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Unauthorized: Token is missing or invalid' });
-    }
-
-    const token = authHeader.split(' ')[1];
-    try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        req.user = decoded; // Simpan data pengguna di `req.user`
-        next();
-    } catch (error) {
-        console.error('Token verification failed:', error);
-        res.status(403).json({ message: 'Forbidden: Token is invalid' });
-    }
-};
-
-
-const getUser = (req, res) => {
-    try {
-        const authToken = req.headers.authorization.split(' ')[1];
-        const decoded = jwt.verify(authToken, JWT_SECRET);
-
-        // Gunakan array untuk parameter query
-        db.query('SELECT * FROM user WHERE username = ?', [decoded.username], (err, result, fields) => {
-            if (err) {
-                console.error('Database query error:', err);
-                return res.status(500).send({ success: false, message: 'Database error' });
-            }
-
-            if (result.length === 0) {
-                return res.status(404).send({ success: false, message: 'User not found' });
-            }
-
-            return res.status(200).send({ success: true, data: result[0], message: 'Fetch Successfully' });
-        });
-    } catch (error) {
-        console.error('Error in getUser function:', error);
-        return res.status(401).send({ success: false, message: 'Unauthorized' });
-    }
-};
-
-
-userRouter.get('/get-user', isAuthorize, getUser);
 
 // UNIVERSITAS BY ID
 app.get('/:kode_univ', async (req, res) => {

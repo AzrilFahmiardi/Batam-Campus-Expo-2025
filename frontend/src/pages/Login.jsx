@@ -39,46 +39,48 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (isRegistering) {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, formData);
-        alert(response.data.message);
-      } else {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, {
-          email: formData.email,
-          password: formData.password,
-        });
-        alert('Login successful!');
-        
-        // Simpan token di localStorage
-        const token = response.data.token;
-        localStorage.setItem('authToken', token);
+      const endpoint = isRegistering ? '/api/register' : '/api/login';
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}${endpoint}`,
+        formData,
+        { withCredentials: true }
+      );
 
-        // Redirect atau update status login
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Tambahkan default header
-        window.location.href = '/'; // Redirect ke home atau lakukan update state
+      if (!isRegistering) {
+        alert('Login successful!');
+        window.location.href = '/';
+      } else {
+        alert(response.data.message);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error in form submission:", error);
       alert(error.response?.data?.message || 'An error occurred');
     }
   };
-  
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
 
-    if (token) {
-        localStorage.setItem('authToken', token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Tambahkan header saat token ditemukan
-        window.history.replaceState({}, document.title, '/'); // Hapus token dari URL
-    } else {
-        const storedToken = localStorage.getItem('authToken');
-        if (storedToken) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
-        }
+
+  const refreshAccessToken = async () => {
+    try {
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/refresh-token`,
+        {},
+        { withCredentials: true }
+      );
+      console.log("Access token refreshed");
+    } catch (error) {
+      console.error("Error refreshing access token:", error);
+      alert("Session expired. Please log in again.");
+      window.location.href = '/login';
     }
-}, []);
-  
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refreshAccessToken();
+    }, 10 * 60 * 1000); // Refresh every 10 minutes
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-login flex justify-center items-center font-pixelify overflow-hidden z-10">
