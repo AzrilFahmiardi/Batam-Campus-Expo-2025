@@ -18,6 +18,7 @@ const { check } = require('express-validator');
 
 
 const fs = require('fs');
+const { log } = require("console");
 
 const API_URL = process.env.API_URL;
 const APP_URL = process.env.APP_URL;
@@ -27,8 +28,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://batamcampusexpo.onrender.com'],
-    credentials: true,
+    origin: APP_URL,
+    credentials: true
 }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -36,17 +37,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // BAGIAN GOOGLE AUTHENTICATION
-app.use(session({
-    secret: 'batamcampusexpo2025',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === 'production',  // Pastikan hanya true di production
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,  // 1 hari
-      sameSite: 'None',  // Atur ke 'None' jika menggunakan cross-origin
-    }
-  }));
+app.use(
+    session({
+        secret: 'batamcampusexpo2025', 
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            secure: process.env.NODE_ENV === 'production',
+            httpOnly: true, 
+            maxAge: 24 * 60 * 60 * 1000 ,
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',  // Di local gunakan 'Lax'
+
+        }
+    })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -154,16 +158,22 @@ app.get('/universitas', async (req, res) => {
 
 // VOTING KAMPUS
 app.post('/vote', async (req, res) => {
-    if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+    // if (!req.isAuthenticated()) {
+    //     return res.status(401).json({ message: 'Unauthorized' });
+    // }
+    const {user } = req.body;
+    const email = req.user?.email || user.email;
+    
+    if (!user || !user.email) {
+        return res.status(400).json({ message: 'Invalid user data' });
+      }
 
     const connection = await db.getConnection();
 
     try {
         await connection.beginTransaction();
         
-        const [user] = await db.query('SELECT has_voted FROM user WHERE email = ?', [req.user.email]);
+        const [user] = await db.query('SELECT has_voted FROM user WHERE email = ?', [email]);
         
         if (user[0].has_voted === 1) {
             return res.status(400).json({ message: 'You have already voted' });
@@ -180,7 +190,7 @@ app.post('/vote', async (req, res) => {
 
         await connection.query(
             "UPDATE user SET has_voted = 1 WHERE email = ?",
-            [req.user.email]
+            [email]
         );
 
         await connection.commit();
@@ -385,6 +395,8 @@ const login = async (req, res) => {
             user: {
                 username: user.username,
                 email: user.email,
+                has_voted : user.has_voted,
+                last_login : user.last_login,
             },
         });
         
@@ -408,11 +420,31 @@ loginValidation = [
     check('password', 'password is required').isLength({ min: 6 }),
 ];
 
+const authMiddleware = (req, res, next) => {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+  
+    if (!token) {
+        return res.status(401).json({ message: 'No token, authorization denied' });
+    }
+  
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        res.status(401).json({ message: 'Token is not valid' });
+    }
+  };
+
 // userRoute dulu
 const userRouter = express.Router();
 
 userRouter.post('/register', signupValidation, register);
 userRouter.post('/login', loginValidation, login);
+app.get('/profile', authMiddleware, (req, res) => {
+    // Hanya user yang terautentikasi bisa mengakses
+    res.json({ user: req.user });
+});
 
 app.use('/api', userRouter);
 

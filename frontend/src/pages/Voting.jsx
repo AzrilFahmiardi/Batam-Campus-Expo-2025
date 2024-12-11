@@ -38,6 +38,8 @@ const Voting = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     const selectedUniversities = Array.from(data.values());
+    const localUser = JSON.parse(localStorage.getItem('user'));
+
 
     if (selectedUniversities.length === 0) {
       alert("Minimal pilih satu universitas!");
@@ -49,6 +51,7 @@ const Voting = () => {
         `${import.meta.env.VITE_API_URL}/vote`,
         {
           universities: selectedUniversities,
+          user: user,
         },
         {
           withCredentials: true,

@@ -22,6 +22,23 @@ export const checkLoginStatus = async () => {
   }
 };
 
+// CEK STATUS LOGIN MANUAL
+export const authMiddleware = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+
+  if (!token) {
+      return res.status(401).json({ message: 'No token, authorization denied' });
+  }
+
+  try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      req.user = decoded;
+      next();
+  } catch (error) {
+      res.status(401).json({ message: 'Token is not valid' });
+  }
+};
+
 // CEK STATUS VOTING
 export const checkVoteStatus = async () => {
   try {
@@ -43,5 +60,7 @@ export const handleGoogleLogin = () => {
 
 // LOGOUT
 export const Logout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
     window.location.href = `${SERVER_URL}/logout`;
   };

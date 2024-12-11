@@ -52,6 +52,8 @@ const LoginPage = () => {
         // Simpan token di localStorage
         const token = response.data.token;
         localStorage.setItem('authToken', token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+
 
         // Redirect atau update status login
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Tambahkan default header
