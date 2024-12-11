@@ -124,7 +124,9 @@ const Header = ({ user }) => {
               />
             </>
           ) : (
-            <a href="/login">Sign in</a>
+            <NavLink to={"/login"}>
+                <a href="">Sign in</a>
+            </NavLink>
             // "Sign Up"
           )}
         </button>
@@ -185,9 +187,7 @@ const Header = ({ user }) => {
             Kegiatan
           </NavLink>
           <button
-            // onClick={() => {
-            //   user ? Logout() : handleGoogleLogin();
-            // }}
+            onClick={() => user && Logout()}
             
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
@@ -205,7 +205,9 @@ const Header = ({ user }) => {
                 />
               </>
             ) : (
-              <a href="/login">Sign In</a>
+              <NavLink to={"/login"}>
+                <a href="">Sign in</a>
+              </NavLink>
               // "Sign Up"
             )}
           </button>
