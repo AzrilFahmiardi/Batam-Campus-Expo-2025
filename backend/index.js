@@ -194,6 +194,9 @@ app.get('/logout', (req, res) => {
                 return res.status(500).json({ message: "Failed to logout" });
             }
 
+            res.clearCookie("accessToken");
+            res.clearCookie("refreshToken");
+
             // Kirim respons ke frontend untuk memastikan user jadi null
             res.clearCookie('connect.sid'); // Hapus cookie sesi jika menggunakan express-session
             res.redirect(APP_URL); 
