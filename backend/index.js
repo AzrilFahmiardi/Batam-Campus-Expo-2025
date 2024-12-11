@@ -186,10 +186,21 @@ app.get('/check-auth', authMiddleware, (req, res) => {
 app.get('/logout', (req, res) => {
     req.logout((err) => {
         if (err) return next(err);
-        req.user = null;
-        res.redirect(APP_URL); 
+
+        // Pastikan sesi pengguna dihapus
+        req.session.destroy((destroyErr) => {
+            if (destroyErr) {
+                console.error('Error destroying session:', destroyErr);
+                return res.status(500).json({ message: "Failed to logout" });
+            }
+
+            // Kirim respons ke frontend untuk memastikan user jadi null
+            res.clearCookie('connect.sid'); // Hapus cookie sesi jika menggunakan express-session
+            res.redirect(APP_URL); 
+        });
     });
 });
+
 
 
 app.get("/", (req, res) => {
