@@ -133,47 +133,47 @@ const LoginPage = () => {
           {isRegistering && (
             <>
               <div className="mb-5">
-                <label htmlFor="username" className="block text-base font-medium text-gray-700 mb-1">Username</label>
+                <label htmlFor="username" className="block text-xs md:text-base md:font-medium text-gray-700 mb-1">Username</label>
                 <input
                   type="text"
                   id="username"
                   name='username'
                   value={formData.username}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border-2 border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300"
+                  className="w-full mt-1 px-2 py-1 sm:p-2 border-2 border-gray-300 rounded-xl focus:outline-none text-sm focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300 placeholder:text-xs placeholder:md:text-base"
                   placeholder="Enter your username"
                   required
                 />
               </div>
               <div className="mb-5">
-                <label htmlFor="email" className="block text-base font-medium text-gray-700 mb-1">Email</label>
+                <label htmlFor="email" className="block text-xs md:text-base md:font-medium text-gray-700 mb-1">Email</label>
                 <input
                   type="email"
                   id="email"
                   name='email'
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border-2 border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300"
+                  className="w-full mt-1 px-2 py-1 sm:p-2 border-2 border-gray-300 rounded-xl focus:outline-none text-sm focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300 placeholder:text-xs placeholder:md:text-base"
                   placeholder="Enter your email"
                   required
                 />
               </div>
               <div className="mb-12">
-                <label htmlFor="password" className="block text-base font-medium text-gray-700 mb-1">Password</label>
+                <label htmlFor="password" className="block text-xs md:text-base md:font-medium text-gray-700 mb-1">Password</label>
                 <input
                   type="password"
                   id="password"
                   name='password'
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full mt-1 p-2 border-2 border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300"
+                  className="w-full mt-1 px-2 py-1 sm:p-2 border-2 border-gray-300 rounded-xl focus:outline-none text-sm focus:ring-2 focus:ring-blue-500 placeholder:text-gray-300 placeholder:text-xs placeholder:md:text-base"
                   placeholder="Create a password"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full py-2 bg-[#2980B9] text-white rounded-xl border-2 border-transparent hover:bg-[#fff] hover:text-[#2980B9] hover:border-[#2980B9] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full py-1 sm:py-2 bg-[#2980B9] text-xs sm:text-base text-white rounded-[0.6rem] sm:rounded-xl border-2 border-transparent hover:bg-[#fff] hover:text-[#2980B9] hover:border-[#2980B9] focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 Register
               </button>
