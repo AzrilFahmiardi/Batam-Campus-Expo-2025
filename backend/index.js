@@ -12,7 +12,7 @@ const randomstring = require('randomstring');
 const nodemailer = require('nodemailer');
 const { SMTP_MAIL, SMTP_PASSWORD } = process.env;
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET, JWT_REFRESH_SECRET, NODE_ENV } = process.env;
+const { JWT_SECRET, JWT_REFRESH_SECRET, NODE_ENV, SAMESITE } = process.env;
 const bodyParser = require('body-parser');
 const { check } = require('express-validator');
 const cookieParser = require('cookie-parser');
@@ -189,13 +189,6 @@ app.get('/logout', (req, res) => {
         res.redirect(APP_URL); 
     });
 });
-
-app.post("/api/logout", (req, res) => {
-    res.clearCookie("accessToken");
-    res.clearCookie("refreshToken");
-    return res.status(200).json({ message: "Logged out successfully" });
-});
-
 
 
 app.get("/", (req, res) => {
@@ -466,14 +459,14 @@ app.post("/api/refresh-token", async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: "none",
+            sameSite: process.env.SAMESITE,
             maxAge: 15 * 60 * 1000
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: NODE_ENV === "production",
-            sameSite: "none",
+            sameSite: process.env.SAMESITE,
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -551,14 +544,14 @@ const login = async (req, res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "none",
+            sameSite: process.env.SAMESITE,
             maxAge: 15 * 60 * 1000, // 15 menit
         });
 
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "none",
+            sameSite: process.env.SAMESITE,
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 hari
         });
         await db.query("UPDATE user SET last_login = NOW() WHERE email = ?", [user.email]);
