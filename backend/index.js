@@ -387,7 +387,7 @@ const register = async (req, res) => {
         const content = `
             <p>Hi ${req.body.username},</p>
             <p>Click the link below to verify your email:</p>
-            <a href="http://127.0.0.1:5000/mail-verification?token=${randomToken}">Verify Here</a>
+            <a href="${API_URL}/mail-verification?token=${randomToken}">Verify Here</a>
         `;
 
         await sendMail(req.body.email, mailSubject, content);
