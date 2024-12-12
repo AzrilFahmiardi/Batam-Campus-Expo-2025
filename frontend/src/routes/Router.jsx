@@ -7,6 +7,7 @@ import Voting from "../pages/Voting";
 import RouterErrorBoundary from "./RouterErrorBoundary";
 import { AuthProvider } from "../utils/AuthProvider";
 import LoginPage from "../pages/Login";
+import Toko from "../pages/Toko";
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
   {
     path: "/kegiatan",
     element: <Kegiatan />,
+  },
+  {
+    path: "/toko",
+    element: <Toko />,
   },
   {
     path: "/login",

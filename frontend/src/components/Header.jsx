@@ -103,6 +103,18 @@ const Header = ({ user }) => {
         >
           Kegiatan
         </NavLink>
+        <NavLink
+          to={"/toko"}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
+        >
+          Toko
+        </NavLink>
 
         <img src={Seperator} alt="separator" className="h-6" />
 
@@ -128,7 +140,6 @@ const Header = ({ user }) => {
               <a href="">Sign in</a>
             </NavLink>
 
-            
             // "Sign Up"
           )}
         </button>
@@ -192,7 +203,7 @@ const Header = ({ user }) => {
             // onClick={() => {
             //   user ? Logout() : handleGoogleLogin();
             // }}
-            
+
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
