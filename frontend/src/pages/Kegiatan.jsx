@@ -1,4 +1,24 @@
+import { Fragment } from "react";
+import { useAuth } from "../utils/AuthProvider";
+import Header from "../components/Header";
+import Calendar from "../components/Kegiatan/Calendar";
+import Footer from "../components/Footer";
+
 const Kegiatan = () => {
-  return <div>Kegiatan</div>;
+  const { user, isLoggedIn, hasVoted } = useAuth();
+  return (
+    <Fragment>
+      <Header user={user} />
+      <div className="relative bg-blue-gradient p-10">
+        <h1 className="mt-28 text-center font-pixelify text-7xl font-bold text-white">
+          Kalender Kegiatan
+        </h1>
+        <Calendar />
+      </div>
+      <div className="relative bg-footer-gradient">
+        <Footer />
+      </div>
+    </Fragment>
+  );
 };
 export default Kegiatan;
