@@ -14,20 +14,40 @@ const SwagCard = () => {
         <img src={shirt} alt="item" />
       </div>
       <div className="grid grid-rows-[1fr_auto] p-2">
-        <div className="mb-3 space-y-3">
-          <p className="font-montserrat text-base font-semibold text-gray-800 sm:text-2xl">
+        <div className="mb-3 space-y-1 sm:space-y-3">
+          <p className="font-montserrat text-sm font-semibold text-gray-800 sm:text-2xl">
             T-shirt long sleeve (White)
           </p>
-          <p className="text-justify font-montserrat text-[0.6rem] text-gray-800">
+          <p className="line-clamp-3 text-justify font-montserrat text-[0.6rem] text-gray-800 sm:line-clamp-5 sm:text-xs">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum
             nemo praesentium voluptates hic, similique ipsam illum voluptas
             porro distinctio officiis delectus fugiat pariatur.
           </p>
         </div>
         <div className="">
-          <button className="rounded-full bg-[#EB5E0B] px-3 py-1.5 font-pixelify text-xs text-white duration-200 hover:brightness-90 sm:text-sm">
-            add to card
-          </button>
+          <a
+            href="#"
+            target="_blank"
+            className="flex w-fit items-center gap-1 rounded-full bg-[#EB5E0B] px-3 py-1 font-pixelify text-xs text-white duration-200 hover:brightness-90 sm:px-3 sm:py-1.5 sm:text-sm"
+          >
+            Link
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+            >
+              <rect width="24" height="24" fill="none" />
+              <path
+                fill="none"
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13.5 10.5L21 3m-5 0h5v5m0 6v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
