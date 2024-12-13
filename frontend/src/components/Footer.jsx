@@ -6,8 +6,8 @@ import mail from "../assets/images/mail.png"
 
 const Footer = () => {
   return (
-    <footer className="py-20 text-white ">
-      <div className="container mx-auto px-4 font-montserrat">
+    <footer className="bg-footer-gradient py-12 text-white">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Company Info */}
           <div className="space-y-4">
