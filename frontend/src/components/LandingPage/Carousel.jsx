@@ -19,8 +19,7 @@ const Carousel = () => {
     const fetchData = async () => {
       try {
         const data = await getAllUniversity();
-        setUniversities(data);
-        console.log(data);
+        setUniversities([...data, ...data, ...data]);
 
         setIsLoading(false);
       } catch (err) {
@@ -60,7 +59,7 @@ const Carousel = () => {
           animate={{
             x: ["-50%", "0%"],
             transition: {
-              duration: 20,
+              duration: 10,
               ease: "linear",
               repeat: Infinity,
             },

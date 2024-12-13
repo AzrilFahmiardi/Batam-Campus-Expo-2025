@@ -149,8 +149,6 @@
   animation: s3 1s infinite linear;
 }
 
-
-
 @keyframes s3 {
   to {
     transform: rotate(1turn);
@@ -199,4 +197,13 @@ g[stroke="#3cabff"] {
 
 .custom-scrollbar-blue::-webkit-scrollbar-thumb:hover {
   background: #6dd5fa;
+}
+
+.popup {
+  background: rgba(30, 30, 30, 0.85);
+  /* background: radial-gradient(
+    circle,
+    rgba(58, 58, 58) 10%,
+    rgba(30, 30, 30) 80%
+  ); */
 }

@@ -70,11 +70,16 @@ const Dropdown = ({ onSelect }) => {
       ...provided,
       color: "#fff",
       fontFamily: "Montserrat",
+      textAlign: "left",
+      padding: "0px 10px"
+       
     }),
     input: (provided) => ({
       ...provided,
       color: "#fff",
       fontFamily: "Montserrat",
+      padding: "0px 10px"
+
     }),
     placeholder: (provided) => ({
       ...provided,

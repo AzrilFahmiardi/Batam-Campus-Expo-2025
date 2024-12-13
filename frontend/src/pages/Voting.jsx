@@ -9,7 +9,7 @@ import CampusTableItem from "../components/Vote/CampusTableItem";
 import BackgroundBars from "../components/Vote/BackgroundBars";
 import BackgroundClouds from "../components/Vote/BackgroundClouds";
 import TopWinners from "../components/Vote/TopWinners";
-// import ftShadow from "../assets/images/Voting/ft-shadow.png";
+import ftShadow from "../assets/images/Voting/ft-shadow.png";
 import { useAuth } from "../utils/AuthProvider";
 import { getAllUniversity } from "../utils/UniversityFetch";
 import { Link } from "react-router-dom";
@@ -241,7 +241,7 @@ const Voting = () => {
       <div className="relative z-0 overflow-hidden bg-footer-gradient pt-16 md:pt-40">
         {/* <img
           src={ftShadow}
-          className="translate-x- absolute -top-2 left-20 -z-20 translate-y-2 scale-125 md:-top-10 md:left-32 lg:-top-[10%] lg:left-1/4 lg:w-[70%] lg:translate-x-12 lg:translate-y-3"
+          className="bg-red-400 absolute -top-2 left-20 -z-20 translate-y-2 scale-125 md:-top-10 md:left-32 lg:-top-[10%] lg:left-1/4 lg:w-[1000px]  lg:translate-y-3"
         /> */}
         <Footer />
       </div>
