@@ -3,7 +3,7 @@ import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
 
 const Footer = () => {
   return (
-    <footer className="py-12 text-white">
+    <footer className="bg-footer-gradient py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Company Info */}
