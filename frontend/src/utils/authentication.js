@@ -42,6 +42,17 @@ export const handleGoogleLogin = () => {
   };
 
 // LOGOUT
-export const Logout = () => {
+export const Logout = async () => {
+  try {
+    // Panggil endpoint logout backend
+    await axios.post(`${SERVER_URL}/api/logout`, {}, {
+      withCredentials: true,
+    });
+
+    // Alihkan pengguna ke halaman login
     window.location.href = `${SERVER_URL}/logout`;
-  };
+  } catch (error) {
+    console.error('Error during logout:', error);
+    alert('Failed to log out. Please try again.');
+  }
+};
