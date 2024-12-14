@@ -621,17 +621,41 @@ webRouter.get('/mail-verification', verifyMail);
 app.use('/', webRouter);
 
 // UNIVERSITAS BY ID
-app.get('/:kode_univ', async (req, res) => {
+app.get('/universitas/:kode_univ', async (req, res) => {
     const { kode_univ } = req.params;
+
     try {
         const [hasil_univ] = await db.query("SELECT * FROM universitas WHERE kode_univ = ?", [kode_univ]);
+        
         if (hasil_univ.length > 0) {
-            res.json({ hasilUniv: hasil_univ[0] });
+            const uni = hasil_univ[0];
+            uni.logo = `/LogoCampus/${uni.kode_univ}.webp`;
+            uni.cardImage = `/CardImage/${uni.kode_univ}_1.webp`;
+
+            res.json(uni);
         } else {
             res.status(404).json({ message: 'Universitas tidak ditemukan' });
         }
     } catch (error) {
-        console.error('Error fetching university data:', error);
+        console.error('Error fetching university data by id:', error);
+        res.status(500).json({ message: 'Error fetching university data' });
+    }
+});
+
+// GET FAKULTAS BY ID KAMPUS
+app.get('/universitas/:kode_univ/fakultas', async (req, res) => {
+    const { kode_univ } = req.params;
+
+    try {
+        const [hasil_univ] = await db.query("SELECT * FROM fakultas WHERE kode_universitas = ?", [kode_univ]);
+        
+        if (hasil_univ.length > 0) {
+            res.json(hasil_univ);
+        } else {
+            res.status(404).json({ message: 'Universitas tidak ditemukan' });
+        }
+    } catch (error) {
+        console.error('Error fetching university data by id:', error);
         res.status(500).json({ message: 'Error fetching university data' });
     }
 });

@@ -112,6 +112,18 @@ const handleLogout = async () => {
         >
           Kegiatan
         </NavLink>
+        <NavLink
+          to={"/toko"}
+          className={({ isActive }) =>
+            ` ${
+              isScrolled
+                ? "text-[#2980B9] hover:text-[#206A96]"
+                : "text-white hover:text-gray-200"
+            } ${isActive ? "font-extrabold" : "font-medium"}`
+          }
+        >
+          Toko
+        </NavLink>
 
         <img src={Seperator} alt="separator" className="h-6" />
 
@@ -134,8 +146,9 @@ const handleLogout = async () => {
             </>
           ) : (
             <NavLink to={"/login"}>
-                <a href="">Sign in</a>
+              <a href="">Sign in</a>
             </NavLink>
+
             // "Sign Up"
           )}
         </button>
@@ -197,7 +210,7 @@ const handleLogout = async () => {
           </NavLink>
           <button
             onClick={user ? handleLogout : null}
-            
+
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"
