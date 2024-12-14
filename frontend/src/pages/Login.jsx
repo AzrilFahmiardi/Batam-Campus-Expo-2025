@@ -190,7 +190,7 @@ const LoginPage = () => {
               {isRegistering ? 'Login here' : 'Register here'}
             </button>
           </p>
-          {isRegistering? 
+          {/* {isRegistering? 
           <div></div>
           :(<button
           onClick={() => {
@@ -200,7 +200,7 @@ const LoginPage = () => {
             >
               <img src={googleLogo} alt="google logo" className='mr-2' />
             Sign Up with Google
-            </button>)}
+            </button>)} */}
           
         </div>
       </div>
