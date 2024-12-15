@@ -208,6 +208,18 @@ const handleLogout = async () => {
           >
             Kegiatan
           </NavLink>
+          <NavLink
+            to={"/toko"}
+            className={({ isActive }) =>
+              ` ${
+                isScrolled
+                  ? "text-[#2980B9] hover:text-[#206A96]"
+                  : "text-white hover:text-gray-200"
+              } ${isActive ? "font-extrabold" : "font-medium"}`
+            }
+          >
+            Toko
+          </NavLink>
           <button
             onClick={user ? handleLogout : null}
 
