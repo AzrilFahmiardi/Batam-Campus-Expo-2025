@@ -7,7 +7,12 @@ import ImageGallery from "../components/CampusDetail/ImageGallery";
 import FacultyCard from "../components/CampusDetail/FacultyCard";
 import leftCloud from "../assets/images/CampusDetail/cloud_left.png";
 import rightCloud from "../assets/images/CampusDetail/cloud_right.png";
-import { getUniversitybyId, getFakultas, getAllProdi } from "../utils/UniversityFetch";
+import {
+  getUniversitybyId,
+  getFakultas,
+  getAllProdi,
+} from "../utils/UniversityFetch";
+import LoadingScreen from "../components/LoadingScreen";
 
 const DetailKampus = () => {
   const { id } = useParams();
@@ -25,7 +30,6 @@ const DetailKampus = () => {
         const majorsData = await getAllProdi(id);
 
         console.log(majorsData);
-        
 
         setUniversities(universityData);
         setFakultas(fakultasData);
@@ -42,16 +46,12 @@ const DetailKampus = () => {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen text-red-500">
+      <div className="flex h-screen items-center justify-center text-red-500">
         {error}
       </div>
     );
@@ -88,24 +88,29 @@ const DetailKampus = () => {
             <tbody>
               {[
                 { label: "Akreditasi", value: universities.akreditasi },
-                { label: "Rank Internasional", value: universities.rank_international },
+                {
+                  label: "Rank Internasional",
+                  value: universities.rank_international,
+                },
                 { label: "Jumlah Prodi", value: universities.jumlah_prodi },
                 { label: "Lokasi", value: universities.lokasi },
-                { 
-                  label: "Website", 
+                {
+                  label: "Website",
                   value: universities.web_kampus,
-                  isLink: true 
-                }
+                  isLink: true,
+                },
               ].map((row, index) => (
                 <tr key={index} className="border-b border-t border-white">
-                  <td className="w-[25%] px-2 py-2 font-bold text-white">{row.label}</td>
+                  <td className="w-[25%] px-2 py-2 font-bold text-white">
+                    {row.label}
+                  </td>
                   <td className="w-[5px] px-2 py-2 text-white">:</td>
                   <td className="w-auto grow px-2 py-2 text-white">
                     {row.isLink ? (
-                      <a 
-                        href={row.value} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={row.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="hover:underline"
                       >
                         {row.value}
@@ -146,20 +151,28 @@ const DetailKampus = () => {
         {/* Daftar Jurusan Section */}
         <div className="p-5 md:p-10">
           <div className="overflow-x-auto">
-            <table className="w-full border-separate border-spacing-y-4">
+            <table className="mx-auto w-full border-separate border-spacing-y-4 md:w-[768px] lg:w-[1024px]">
               <thead>
-                <tr className="flex items-center gap-x-3 rounded-full bg-white px-3 text-center font-montserrat text-sm font-semibold">
-                  <td className="w-24 rounded-l-full border-r border-gray-300 p-3 md:p-4">
+                <tr className="flex items-center gap-x-1 rounded-full bg-white px-3 text-center font-montserrat text-sm font-semibold sm:gap-x-3">
+                  <td className="w-[90px] rounded-l-full p-2 text-sm md:p-4 lg:w-32">
                     Kode Jurusan
                   </td>
-                  <td className="grow p-3 md:p-4">Nama Jurusan</td>
-                  <td className="w-24 p-3 md:p-4">Jenjang</td>
-                  <td className="w-36 p-3 md:p-4">Daya Tampung 2024</td>
-                  <td className="w-24 p-3 md:p-4">Peminat 2023</td>
-                  <td className="w-24 rounded-r-full p-3 md:p-4">Akreditasi</td>
+                  <td className="w-44 p-2 text-sm md:p-4 lg:w-80">
+                    Nama Jurusan
+                  </td>
+                  <td className="w-24 p-2 text-center text-sm md:p-4">
+                    Jenjang
+                  </td>
+                  <td className="w-32 p-2 text-sm md:p-4 lg:w-40">
+                    Daya Tampung 2024
+                  </td>
+                  <td className="w-24 p-2 text-sm md:p-4">Peminat 2023</td>
+                  <td className="w-24 rounded-r-full p-2 text-sm md:p-4 lg:w-32">
+                    Akreditasi
+                  </td>
                 </tr>
               </thead>
-              <tbody className="scrollbar-hide flex max-h-96 flex-col gap-3 overflow-y-auto rounded-3xl border-2 border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.7)] p-3">
+              <tbody className="flex max-h-96 flex-col gap-3 overflow-y-auto rounded-3xl border-2 border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.7)] p-3 scrollbar-hide">
                 {majors.length > 0 ? (
                   majors.map((major, index) => (
                     <tr
@@ -167,42 +180,42 @@ const DetailKampus = () => {
                       className="flex items-stretch gap-x-2 rounded-full text-center font-montserrat text-sm"
                     >
                       <td
-                        className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${
+                        className={`grid w-20 place-items-center rounded-xl p-2 text-xs sm:text-sm md:p-4 lg:w-[120px] ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
                         {major.kode_jurusan}
                       </td>
                       <td
-                        className={`grid grow items-center justify-start rounded-xl p-3 md:p-4 ${
+                        className={`md: grid w-44 items-center justify-start rounded-xl p-2 text-left text-xs sm:text-sm md:p-4 lg:w-80 ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
                         {major.nama}
                       </td>
                       <td
-                        className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${
+                        className={`grid w-20 place-items-center rounded-xl p-2 text-xs sm:text-sm md:w-[120px] md:p-4 ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
                         {major.jenjang}
                       </td>
                       <td
-                        className={`grid w-36 place-items-center rounded-xl p-3 md:p-4 ${
+                        className={`grid w-28 place-items-center rounded-xl p-2 text-xs sm:text-sm md:p-4 lg:w-36 ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
                         {major.daya_tampung_2024}
                       </td>
                       <td
-                        className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${
+                        className={`grid w-28 place-items-center rounded-xl p-2 text-xs sm:text-sm md:p-4 ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
                         {major.peminat_2023}
                       </td>
                       <td
-                        className={`grid w-24 place-items-center rounded-xl p-3 md:p-4 ${
+                        className={`grid w-24 place-items-center rounded-xl p-2 text-xs sm:text-sm md:p-4 lg:w-32 ${
                           index % 2 === 0 ? "bg-white" : "bg-[#F2F5F9]"
                         }`}
                       >
@@ -212,7 +225,7 @@ const DetailKampus = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6" className="text-center text-white p-4">
+                    <td colSpan="6" className="p-4 text-center text-white">
                       Tidak ada data jurusan
                     </td>
                   </tr>

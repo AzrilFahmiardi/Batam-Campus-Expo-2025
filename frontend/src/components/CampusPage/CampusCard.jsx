@@ -10,7 +10,7 @@ const CampusCard = ({ university, delay }) => {
         data-aos-duration="1000"
         data-aos-delay={delay}
         data-aos-once="true"
-        className=" grid  cursor-pointer overflow-hidden rounded-xl bg-white pr-[3.9rem] md:flex md:h-[300px] md:w-[420px] md:flex-col md:mr-3 md:mb-3 md:pr-0"
+        className="grid cursor-pointer overflow-hidden rounded-xl bg-white pr-[3.9rem] md:mb-3 md:mr-3 md:flex md:h-[300px] md:flex-col md:pr-0"
       >
         <div className="flex gap-10 px-5 py-4">
           <div className="h-16 w-16 rounded bg-gray-200"></div>
