@@ -11,6 +11,17 @@ const pool = mysql.createPool({
   queueLimit: 0, 
 });
 
+(async () => {
+  try {
+    const connection = await pool.getConnection();
+    console.log("Database connected successfully!");
+    connection.release();
+  } catch (err) {
+    console.error("Failed to connect to the database:", err.message);
+  }
+})();
+
+
 pool.on("error", (err) => {
   console.error("Database error: ", err);
 });

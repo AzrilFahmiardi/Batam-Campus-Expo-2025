@@ -22,7 +22,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-select": "^5.8.3",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

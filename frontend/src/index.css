@@ -200,11 +200,10 @@ g[stroke="#3cabff"] {
 }
 
 .popup {
-  background: rgba(30, 30, 30);
+  background: rgba(30, 30, 30, 0.85);
   /* background: radial-gradient(
     circle,
     rgba(58, 58, 58) 10%,
     rgba(30, 30, 30) 80%
   ); */
-  opacity: 0.85;
 }
