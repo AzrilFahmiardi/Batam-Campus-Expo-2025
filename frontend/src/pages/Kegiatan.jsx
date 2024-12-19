@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-const Kegiatan = () => {
-  return <div>Kegiatan</div>;
-};
-export default Kegiatan;
-=======
 import { Fragment } from "react";
 import { useAuth } from "../utils/AuthProvider";
 import Header from "../components/Header";
@@ -30,4 +24,3 @@ const Kegiatan = () => {
   );
 };
 export default Kegiatan;
->>>>>>> kegiatan
