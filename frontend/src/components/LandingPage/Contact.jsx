@@ -62,7 +62,7 @@ const SubmitForm = ({ onSubmitForm, isLoading, showAlert, setshowAlert }) => {
   if (isLoading) {
     return (
       <div className="grid size-full place-items-center">
-        <div class="custom-loader"></div>
+        <div className="custom-loader"></div>
         <p className="font-montserrat font-bold text-red-800">
           Tunggu Sebentar yaaa ^_^
         </p>
