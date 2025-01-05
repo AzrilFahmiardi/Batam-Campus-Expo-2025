@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import FLogo from "../assets/images/batamexpo-logo.png";
 import SLogo from "../assets/images/header-logo.png";
 import Menu from "../assets/images/menu.png";
@@ -32,13 +32,12 @@ const Header = ({ user }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogout = async () => {
+    await Logout();
 
-const handleLogout = async () => {
-  await Logout();
-  
-  setUser(null);
-  setIsLoggedIn(false);
-};
+    setUser(null);
+    setIsLoggedIn(false);
+  };
 
   return (
     <header
@@ -50,11 +49,13 @@ const handleLogout = async () => {
       style={{ zIndex: 20 }}
     >
       <div className="flex items-center space-x-8">
-        <img
-          src={isScrolled ? SLogo : FLogo}
-          alt="logo"
-          className="w-auto max-w-[130px] md:max-w-[240px]"
-        />
+        <a href={"/"}>
+          <img
+            src={isScrolled ? SLogo : FLogo}
+            alt="logo"
+            className="w-auto max-w-[130px] md:max-w-[240px]"
+          />
+        </a>
       </div>
 
       <div className="flex lg:hidden">
@@ -222,7 +223,6 @@ const handleLogout = async () => {
           </NavLink>
           <button
             onClick={user ? handleLogout : null}
-
             className={`mt-2 flex items-center rounded-md px-4 py-2 font-bold ${
               isScrolled
                 ? "bg-[#2980B9] text-white hover:bg-[#206A96]"

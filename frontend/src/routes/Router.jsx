@@ -9,6 +9,7 @@ import { AuthProvider } from "../utils/AuthProvider";
 import DetailKampus from "../pages/DetailKampus";
 import LoginPage from "../pages/Login";
 import Toko from "../pages/Toko";
+import TicketPage from "../pages/Ticket";
 
 const routes = [
   {
@@ -38,6 +39,10 @@ const routes = [
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/ticket",
+    element: <TicketPage />,
   },
   {
     path: "*",

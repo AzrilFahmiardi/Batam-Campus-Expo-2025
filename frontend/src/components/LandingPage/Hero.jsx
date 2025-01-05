@@ -8,6 +8,7 @@ import BCELogoHero from "../../assets/images/LandingPage/BCEHeroLogo.png";
 import Count from "../../assets/images/LandingPage/Count.png";
 import PinLocation from "../../assets/images/LandingPage/Location.png";
 import "animate.css";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [countdown, setCountdown] = useState(0);
@@ -39,7 +40,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative -z-20 flex h-[100vh] flex-col items-center justify-center overflow-hidden py-10 text-center sm:h-[120vh] sm:py-14 md:py-16 lg:py-20 xl:py-24"
+      className="relative flex h-[100vh] flex-col items-center justify-center overflow-hidden py-10 text-center sm:h-[120vh] sm:py-14 md:py-16 lg:py-20 xl:py-24"
       style={{
         background:
           "linear-gradient(180deg, rgba(41, 128, 185, 1), rgba(109, 213, 250, 1), rgba(255, 255, 255, 1))",
@@ -47,19 +48,19 @@ const Hero = () => {
     >
       <img
         src={CloudHeroTopRight}
-        className="animate__animated animate__fadeInRight animate__slower absolute -right-10 top-24 -z-10 max-w-48 md:right-0 md:max-w-full"
+        className="animate__animated animate__fadeInRight animate__slower absolute -right-10 top-24 max-w-48 md:right-0 md:max-w-full"
       />
       <img
         src={CloudHeroTopLeft}
-        className="animate__animated animate__fadeInLeft animate__slower absolute left-0 top-24 -z-10 max-w-36 translate-y-full md:max-w-full md:translate-y-1/3"
+        className="animate__animated animate__fadeInLeft animate__slower absolute left-0 top-24 max-w-36 translate-y-full md:max-w-full md:translate-y-1/3"
       />
       <img
         src={CloudBottomLeft}
-        className="animate__animated animate__fadeInLeft animate__slower absolute bottom-10 left-0 -z-10 md:w-1/3"
+        className="animate__animated animate__fadeInLeft animate__slower absolute bottom-5 left-0 md:w-1/3"
       />
       <img
         src={CloudBottomRight}
-        className="animate__animated animate__fadeInRight animate__slower absolute bottom-10 right-0 -z-10 md:w-1/3"
+        className="animate__animated animate__fadeInRight animate__slower absolute bottom-5 right-0 md:w-1/3"
       />
 
       <div className="animate__animated animate__zoomIn animate__slower relative flex h-auto w-full max-w-screen-lg flex-col items-center justify-center px-10 sm:px-5">
@@ -89,13 +90,21 @@ const Hero = () => {
             className="animate__animated animate__zoomIn animate__slower mt-2 h-[70px] sm:h-[110px] md:h-[130px] lg:h-[160px]"
           />
           <div className="animate__animated animate__zoomIn animate__slower absolute inset-0 flex flex-col items-center justify-center">
-            <p className="font-pixelify text-2xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            <p className="font-pixelify text-2xl font-bold tracking-widest text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
               {formatTime(countdown)}
             </p>
-            <p className="font-pixelify text-xs font-bold text-white sm:text-sm md:text-base lg:text-lg xl:text-xl">
+            <p className="font-pixelify text-xs font-bold tracking-widest text-white sm:text-sm md:text-base lg:text-lg xl:text-xl">
               days | hours | minutes | seconds
             </p>
           </div>
+        </div>
+        <div className="mt-5">
+          <Link
+            to={"/ticket"}
+            className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+          >
+            Get Your Ticket Now!
+          </Link>
         </div>
       </div>
     </section>

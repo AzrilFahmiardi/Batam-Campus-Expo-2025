@@ -103,12 +103,14 @@ const SubmitForm = ({ onSubmitForm, isLoading, showAlert, setshowAlert }) => {
         name="name"
         placeholder="Your Name"
         className="rounded-full border-4 border-red-700 px-5 py-3 font-pixelify"
+        required
       />
       <input
         type="email"
         name="email"
         placeholder="Your Email"
         className="rounded-full border-4 border-red-700 px-5 py-3 font-pixelify"
+        required
       />
       <textarea
         placeholder="Detail"
@@ -117,6 +119,7 @@ const SubmitForm = ({ onSubmitForm, isLoading, showAlert, setshowAlert }) => {
         cols="30"
         rows="10"
         className="rounded-3xl border-4 border-red-700 px-5 py-3 font-pixelify"
+        required
       ></textarea>
       <button
         type="submit"
