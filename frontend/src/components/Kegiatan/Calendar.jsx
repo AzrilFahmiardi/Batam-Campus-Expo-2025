@@ -10,8 +10,7 @@ const Calendar = () => {
   const scheduleData = [
     {
       date: "25 Januari 2025",
-      location:
-        "Jl.Engku Putri, Tlk.Tering, Kec.Batam Kota, Kota Batam, Kepulauan Riau",
+      location: "Engku Putri Center Park Batam",
       schedule: [
         { time: "07:00 - 07:25", event: "Open Gate" },
         { time: "07:25 - 07:30", event: "Count Down" },
@@ -77,17 +76,16 @@ const Calendar = () => {
 
   return (
     <section className="relative my-10 flex flex-col items-center md:my-20">
-      {/* Calendar Header Image */}
       <div className="flex w-full justify-center">
         <img
           src={Kliping}
           alt="Calendar Header"
-          className="w-full max-w-[1200px] sm:w-3/4"
+          className="w-full max-w-[1100px] sm:w-3/4"
         />
       </div>
 
       {/* Schedule Container */}
-      <div className="w-full max-w-[1200px] rounded-b-lg bg-[#FBFFFF] shadow-md sm:w-3/4">
+      <div className="w-full max-w-[1100px] rounded-b-lg bg-[#FBFFFF] shadow-md sm:w-3/4">
         <div className="relative grid grid-cols-1">
           {scheduleData.map((daySchedule, dayIndex) => (
             <div
@@ -105,9 +103,7 @@ const Calendar = () => {
                     alt="Location Pin"
                     className="h-[10px] sm:h-[25px]"
                   />
-                  <p className="text-[7px] sm:text-[10px] md:text-[12px] lg:text-base">
-                    {daySchedule.location}
-                  </p>
+                  <p className="text-base md:text-lg">{daySchedule.location}</p>
                 </div>
               </div>
 

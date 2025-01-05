@@ -68,16 +68,16 @@ const Hero = () => {
           <div className="mb-2 inline-flex items-center justify-start gap-2 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2 sm:gap-3">
             <img src={PinLocation} className="h-[10px] sm:h-[25px] sm:p-1" />
             <p className="text-[7px] sm:text-xs md:text-base">
-              Jl. Yang jauh jangan lupa pulang, Kec. Kenangan, Rumah yang tak
-              dirindukan
+              Jl. Engku Putri, Tlk. Tering, Kec. Batam Kota, Kota Batam,
+              Kepulauan Riau
             </p>
           </div>
-          <div className="inline-flex items-center justify-start gap-2 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2 sm:gap-3">
+          {/* <div className="inline-flex items-center justify-start gap-2 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2 sm:gap-3">
             <img src={PinLocation} className="h-[10px] sm:h-[25px] sm:p-1" />
             <p className="text-[7px] sm:text-xs md:text-base">
               Jl. Berdua tapi gak jadian, Kec. Harapan, Kota Batam
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="relative flex justify-center">
           <img
