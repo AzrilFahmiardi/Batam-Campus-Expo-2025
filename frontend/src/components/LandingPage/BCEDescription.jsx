@@ -39,11 +39,11 @@ const BCEDescription = () => {
       </div>
 
       <p className="w-[300px] rounded-lg bg-[#0000004d] p-3 text-justify font-montserrat text-xs text-white sm:text-sm md:w-full md:text-lg lg:bg-transparent">
-        Lorem ipsum dolor sit amet consectetur. Ut sed pellentesque urna proin
-        suscipit quis non. Dolor et lacinia dis cras dolor nunc. Vivamus orci
-        diam amet tincidunt. Eu libero elit in porttitor dignissim a.
-        Suspendisse a eget pretium malesuada. Odio parturient ullamcorper nam
-        tempus lacinia neque turpis. Accumsan eget consequat arcu sem.
+        Batam Campus Expo adalah kegiatan memperkenalkan berbagai Perguruan
+        Tinggi di Indonesia kepada siswa/i Batam oleh Mahasiswa asal Batam yang
+        berkuliah di berbagai Perguruan Tinggi di seluruh Indonesia. Tujuan
+        utama kegiatan ini adalah untuk menginspirasi dan memotivasi siswa-siswi
+        Batam dalam merencanakan jenjang pendidikan yang lebih tinggi.
       </p>
     </div>
   );
