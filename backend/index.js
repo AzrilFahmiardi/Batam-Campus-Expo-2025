@@ -84,7 +84,9 @@ const port = process.env.PORT || 5000;
 
 app.use(cors({
     origin: APP_URL,
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+
 }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());

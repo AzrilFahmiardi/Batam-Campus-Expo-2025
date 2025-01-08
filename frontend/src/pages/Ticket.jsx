@@ -38,30 +38,45 @@ const TicketPage = () => {
         throw new Error("Something went wrong");
       }
 
-      if (user?.email) {
-        const updateTicketResponse = await axios.patch(
-          `${SERVER_URL}/api/users/ticket`,
-          {
-            email: user.email,
-            has_ticket: true
-          },
-          {
-            headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-
-        if (updateTicketResponse.status !== 200) {
-          throw new Error("Failed to update ticket status");
-        }
+      if (!user?.email) {
+        throw new Error("Email pengguna tidak ditemukan");
       }
-      setshowAlert(true);
+
+      const updateTicketResponse = await axios.patch(
+        `${SERVER_URL}/api/users/ticket`,
+        {
+          email: user.email,
+          has_ticket: true
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true  // Tambahkan ini untuk mengirim cookies
+        }
+      );
+
+      if (updateTicketResponse.status === 200) {
+        setshowAlert(true);
+      } else {
+        throw new Error("Gagal mengupdate status tiket");
+      }
 
     } catch (error) {
-      console.error(error);
-      alert("Terjadi kesalahan saat memproses tiket. Silakan coba lagi.");
+      console.error("Error detail:", error);
+      
+      // Menampilkan pesan error yang lebih spesifik
+      if (error.response) {
+        // Error response dari server
+        alert(`Error: ${error.response.data.message || 'Terjadi kesalahan pada server'}`);
+      } else if (error.request) {
+        // Error karena tidak ada response
+        alert("Tidak dapat terhubung ke server. Mohon periksa koneksi internet Anda.");
+      } else {
+        // Error lainnya
+        alert(error.message || "Terjadi kesalahan saat memproses tiket. Silakan coba lagi.");
+      }
 
     } finally {
       setIsLoading(false);
