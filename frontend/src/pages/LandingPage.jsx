@@ -14,10 +14,28 @@ import TopLeaderboard from "../components/LandingPage/TopLeaderboard";
 import Footer from "../components/Footer";
 import { useAuth } from "../utils/AuthProvider";
 import { Link } from "react-router-dom";
+const SERVER_URL = import.meta.env.VITE_API_URL;
+
 
 const LandingPage = () => {
   const { user, isLoggedIn, hasVoted } = useAuth();
+  const [pendaftar, setPendaftar] = useState(0);
 
+  useEffect(() => {
+    const fetchTicketCount = async () => {
+      try {
+        const response = await axios.get(`${SERVER_URL}/ticket-count`);
+        console.log('woi',response);
+        
+        setPendaftar(response.data.totalTickets);
+      } catch (error) {
+        console.error('Error fetching ticket count:', error);
+      }
+    };
+
+    fetchTicketCount();
+  }, []);
+  
   return (
     <Fragment>
       <Header user={user} />
@@ -33,7 +51,7 @@ const LandingPage = () => {
         <div className="px-5">
           <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-5 sm:flex-row sm:gap-10">
             <p className="font-montserrat text-7xl font-bold text-white sm:text-9xl">
-              480
+            {pendaftar}
             </p>
             <div className="mb-5 space-y-3 sm:mb-0">
               <p className="text-center font-montserrat text-xl font-bold text-white sm:text-left sm:text-4xl">

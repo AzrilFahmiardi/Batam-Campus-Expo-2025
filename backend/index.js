@@ -607,6 +607,22 @@ app.get('/check-vote-status', async (req, res) => {
     }
 });
 
+// GET USER HAS TICKET
+app.get('/ticket-count', async (req, res) => {
+    try {
+        const [result] = await db.query(
+            'SELECT COUNT(*) as total FROM user WHERE has_ticket = 1'
+        );
+        
+        res.json({ totalTickets: result[0].total });
+    } catch (error) {
+        console.error('Error counting tickets:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+
 // UNIVERSITAS BY ID
 app.get('/universitas/:kode_univ', async (req, res) => {
     const { kode_univ } = req.params;
@@ -629,6 +645,7 @@ app.get('/universitas/:kode_univ', async (req, res) => {
     }
 });
 
+// UPDATE HAS TIKCET USER
 app.patch('/api/users/ticket', authMiddleware, async (req, res) => {
     if (!req.isAuthenticated()) {
         return res.status(401).json({ message: 'Unauthorized' });
@@ -717,6 +734,8 @@ app.get('/:kode_univ/jurusan', async (req, res) => {
         res.status(500).json({ message: 'Error fetching majors' });
     }
 });
+
+
 
 
 
