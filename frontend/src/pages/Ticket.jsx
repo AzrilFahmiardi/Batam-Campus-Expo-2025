@@ -4,12 +4,14 @@ import CloudBottomLeft from "../assets/images/LandingPage/CloudBottomLeft.png";
 import CloudBottomRight from "../assets/images/LandingPage/CloudBottomRight.png";
 import CloudBottom from "../assets/images/LoginPage/CloudBottom.png";
 import CloudTop from "../assets/images/LoginPage/CloudTop.png";
+import { useAuth } from "../utils/AuthProvider";
 
 import axios from "axios";
 
 const TicketPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setshowAlert] = useState(false);
+    const { user, isLoggedIn, hasVoted } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -142,6 +144,7 @@ const TicketPage = () => {
                   name="email"
                   className="mt-1 w-full rounded-xl border-2 border-gray-300 px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   placeholder="Your email"
+                  value={user?.email || ''}
                   required
                 />
               </div>

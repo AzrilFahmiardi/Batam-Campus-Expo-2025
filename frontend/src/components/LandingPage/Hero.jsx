@@ -10,7 +10,7 @@ import PinLocation from "../../assets/images/LandingPage/Location.png";
 import "animate.css";
 import { Link } from "react-router-dom";
 
-const Hero = () => {
+const Hero = ({user}) => {
   const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
@@ -99,12 +99,25 @@ const Hero = () => {
           </div>
         </div>
         <div className="mt-5">
+        {user ? (
           <Link
             to={"/ticket"}
             className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
           >
             Get Your Ticket Now!
           </Link>
+        ) : (
+          <Link
+            to={"/login"}
+            className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+            onClick={(e) => {
+              e.preventDefault();
+              alert("Silahkan login terlebih dahulu");
+            }}
+          >
+            Get Your Ticket Now!
+          </Link>
+        )}
         </div>
       </div>
     </section>
