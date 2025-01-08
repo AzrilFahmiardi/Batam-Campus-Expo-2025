@@ -5,8 +5,8 @@ import CloudBottomRight from "../assets/images/LandingPage/CloudBottomRight.png"
 import CloudBottom from "../assets/images/LoginPage/CloudBottom.png";
 import CloudTop from "../assets/images/LoginPage/CloudTop.png";
 import { useAuth } from "../utils/AuthProvider";
-
 import axios from "axios";
+const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const TicketPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,14 +33,38 @@ const TicketPage = () => {
         },
       );
 
+
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
+
+      if (user?.email) {
+        const updateTicketResponse = await axios.patch(
+          `${SERVER_URL}/api/users/ticket`,
+          {
+            email: user.email,
+            has_ticket: true
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+
+        if (updateTicketResponse.status !== 200) {
+          throw new Error("Failed to update ticket status");
+        }
+      }
+      setshowAlert(true);
+
     } catch (error) {
       console.error(error);
+      alert("Terjadi kesalahan saat memproses tiket. Silakan coba lagi.");
+
     } finally {
       setIsLoading(false);
-      setshowAlert(true);
     }
   };
 
