@@ -12,13 +12,14 @@ import TopWinners from "../components/Vote/TopWinners";
 import ftShadow from "../assets/images/Voting/ft-shadow.png";
 import { useAuth } from "../utils/AuthProvider";
 import { getAllUniversity } from "../utils/UniversityFetch";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import locked1 from "../assets/images/Voting/locked1.png";
 import locked2 from "../assets/images/Voting/locked2.png";
 import locked1_mini from "../assets/images/Voting/locked1_mini.png";
 import locked2_mini from "../assets/images/Voting/locked2_mini.png";
 import LoadingScreen from "../components/LoadingScreen";
 import axios from "axios";
+
 import {
   checkLoginStatus,
   handleGoogleLogin,
@@ -200,12 +201,14 @@ const Voting = () => {
                     className="abosolute left-0 top-0 block h-full w-full object-cover sm:hidden"
                   />
                 </div>
+                <NavLink to={"/login"}
+                className="absolute z-20 transform rounded-xl bg-footer-gradient px-5 py-2 font-pixelify text-white shadow-md transition duration-100 ease-linear hover:scale-110 md:px-7 md:py-3 md:text-[1.5em]">
                 <button
-                  className="absolute z-20 transform rounded-xl bg-footer-gradient px-5 py-2 font-pixelify text-white shadow-md transition duration-100 ease-linear hover:scale-110 md:px-7 md:py-3 md:text-[1.5em]"
-                  onClick={handleGoogleLogin}
                 >
                   Sign Up First
                 </button>
+                </NavLink>
+                
 
                 <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
                   CHOOSE YOUR FAVORITE COLLEGE!!!
