@@ -17,6 +17,7 @@ import locked1 from "../assets/images/Voting/locked1.png";
 import locked2 from "../assets/images/Voting/locked2.png";
 import locked1_mini from "../assets/images/Voting/locked1_mini.png";
 import locked2_mini from "../assets/images/Voting/locked2_mini.png";
+import LoadingScreen from "../components/LoadingScreen";
 import axios from "axios";
 import {
   checkLoginStatus,
@@ -76,8 +77,8 @@ const Voting = () => {
       try {
         const data = await getAllUniversity();
         setUniversities(data);
-        setIsLoading(false);
         setTopUniversities(data.slice(0, 3));
+        setIsLoading(false);
       } catch (err) {
         console.error("Error fetching university data: ", err);
         setIsLoading(false);
@@ -93,6 +94,10 @@ const Voting = () => {
       setSelectedCount(5);
     }
   }, [selectedCount]);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Fragment>
@@ -238,13 +243,13 @@ const Voting = () => {
           </div>
         </div>
       </div>
-      <div className="relative z-0 overflow-hidden bg-footer-gradient pt-16 md:pt-40">
+      <div className="relative z-0 overflow-hidden bg-[#F97316] pt-16 md:pt-40">
         {/* <img
           src={ftShadow}
           className="bg-red-400 absolute -top-2 left-20 -z-20 translate-y-2 scale-125 md:-top-10 md:left-32 lg:-top-[10%] lg:left-1/4 lg:w-[1000px]  lg:translate-y-3"
         /> */}
-        <Footer />
       </div>
+      <Footer />
     </Fragment>
   );
 };

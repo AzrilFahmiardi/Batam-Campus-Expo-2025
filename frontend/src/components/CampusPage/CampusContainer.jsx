@@ -59,7 +59,7 @@ const CampusContainer = () => {
         <img src={headline} alt="headline" />
       </div>
 
-      <div className="mt-[200px] flex flex-col justify-start gap-10">
+      <div className="mt-[200px] flex w-full flex-col justify-start gap-10">
         <div className="flex flex-wrap justify-center gap-10">
           <Dropdown onSelect={handleLocationSelect} />
           <input
@@ -73,7 +73,7 @@ const CampusContainer = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 items-center gap-0 md:grid-cols-3 md:px-16 lg:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3 md:px-16 lg:grid-cols-3 2xl:grid-cols-4">
           {isLoading ? (
             Array(10)
               .fill(null)
