@@ -10,20 +10,26 @@ import PinLocation from "../../assets/images/LandingPage/Location.png";
 import "animate.css";
 import { Link } from "react-router-dom";
 
-const Hero = ({user}) => {
+const Hero = ({ user }) => {
   const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
-    const totalSeconds = 1 * 86400 + 15 * 3600 + 22 * 60 + 20; // Convert to seconds (1 day + 15 hours + 22 minutes + 20 seconds)
-    setCountdown(totalSeconds);
+    const calculateCountdown = () => {
+      const now = new Date(); // Waktu sekarang
+      const targetDate = new Date("2025-01-24T23:59:59"); // 25 Januari 2025 pukul 23:59:59
+      const difference = Math.floor((targetDate - now) / 1000); // Selisih dalam detik
+      return difference > 0 ? difference : 0; // Pastikan tidak negatif
+    };
+
+    setCountdown(calculateCountdown());
 
     const interval = setInterval(() => {
       setCountdown((prev) => {
-        if (prev <= 0) {
+        if (prev <= 1) {
           clearInterval(interval);
           return 0;
         }
-        return prev - 1; // Decrease countdown by 1 second
+        return prev - 1;
       });
     }, 1000);
 
@@ -31,7 +37,7 @@ const Hero = ({user}) => {
   }, []);
 
   const formatTime = (seconds) => {
-    const days = Math.floor(seconds / 86400); // 86400 seconds in a day
+    const days = Math.floor(seconds / 86400); // 86400 detik = 1 hari
     const hrs = String(Math.floor((seconds % 86400) / 3600)).padStart(2, "0");
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
     const secs = String(seconds % 60).padStart(2, "0");
@@ -69,16 +75,9 @@ const Hero = ({user}) => {
           <div className="mb-2 inline-flex items-center justify-start gap-2 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2 sm:gap-3">
             <img src={PinLocation} className="h-[10px] sm:h-[25px] sm:p-1" />
             <p className="text-[7px] sm:text-xs md:text-base">
-              Jl. Engku Putri, Tlk. Tering, Kec. Batam Kota, Kota Batam,
-              Kepulauan Riau
+              Pollux Mall Batam Center
             </p>
           </div>
-          {/* <div className="inline-flex items-center justify-start gap-2 rounded-[20px] bg-[rgba(41,128,185,0.48)] px-5 py-2 sm:gap-3">
-            <img src={PinLocation} className="h-[10px] sm:h-[25px] sm:p-1" />
-            <p className="text-[7px] sm:text-xs md:text-base">
-              Jl. Berdua tapi gak jadian, Kec. Harapan, Kota Batam
-            </p>
-          </div> */}
         </div>
         <div className="relative flex justify-center">
           <img
@@ -99,25 +98,25 @@ const Hero = ({user}) => {
           </div>
         </div>
         <div className="mt-5">
-        {user ? (
-          <Link
-            to={"/ticket"}
-            className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
-          >
-            Get Your Ticket Now!
-          </Link>
-        ) : (
-          <Link
-            to={"/login"}
-            className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
-            onClick={(e) => {
-              e.preventDefault();
-              alert("Silahkan login terlebih dahulu");
-            }}
-          >
-            Get Your Ticket Now!
-          </Link>
-        )}
+          {user ? (
+            <Link
+              to={"/ticket"}
+              className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+            >
+              Get Your Ticket Now!
+            </Link>
+          ) : (
+            <Link
+              to={"/login"}
+              className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+              onClick={(e) => {
+                e.preventDefault();
+                alert("Silahkan login terlebih dahulu");
+              }}
+            >
+              Get Your Ticket Now!
+            </Link>
+          )}
         </div>
       </div>
     </section>
