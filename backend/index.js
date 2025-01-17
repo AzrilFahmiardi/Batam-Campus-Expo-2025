@@ -84,7 +84,9 @@ const port = process.env.PORT || 5000;
 
 app.use(cors({
     origin: APP_URL,
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+
 }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -605,6 +607,22 @@ app.get('/check-vote-status', async (req, res) => {
     }
 });
 
+// GET USER HAS TICKET
+app.get('/ticket-count', async (req, res) => {
+    try {
+        const [result] = await db.query(
+            'SELECT COUNT(*) as total FROM user WHERE has_ticket = 1'
+        );
+        
+        res.json({ totalTickets: result[0].total });
+    } catch (error) {
+        console.error('Error counting tickets:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+
 // UNIVERSITAS BY ID
 app.get('/universitas/:kode_univ', async (req, res) => {
     const { kode_univ } = req.params;
@@ -624,6 +642,45 @@ app.get('/universitas/:kode_univ', async (req, res) => {
     } catch (error) {
         console.error('Error fetching university data by id:', error);
         res.status(500).json({ message: 'Error fetching university data' });
+    }
+});
+
+// UPDATE HAS TIKCET USER
+app.patch('/api/users/ticket', authMiddleware, async (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    try {
+        const { email, has_ticket } = req.body;
+
+        // Verify that the authenticated user is updating their own ticket status
+        if (email !== req.user.email) {
+            return res.status(403).json({ message: 'Forbidden: Cannot update ticket status for other users' });
+        }
+
+        const [result] = await db.query(
+            'UPDATE user SET has_ticket = ? WHERE email = ?',
+            [has_ticket, email]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Fetch updated user data
+        const [updatedUser] = await db.query(
+            'SELECT username, email, has_ticket FROM user WHERE email = ?',
+            [email]
+        );
+
+        res.json({ 
+            message: 'Ticket status updated successfully', 
+            user: updatedUser[0]
+        });
+    } catch (error) {
+        console.error('Error updating ticket status:', error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
@@ -677,6 +734,8 @@ app.get('/:kode_univ/jurusan', async (req, res) => {
         res.status(500).json({ message: 'Error fetching majors' });
     }
 });
+
+
 
 
 

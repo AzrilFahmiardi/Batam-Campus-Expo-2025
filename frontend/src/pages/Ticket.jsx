@@ -4,12 +4,14 @@ import CloudBottomLeft from "../assets/images/LandingPage/CloudBottomLeft.png";
 import CloudBottomRight from "../assets/images/LandingPage/CloudBottomRight.png";
 import CloudBottom from "../assets/images/LoginPage/CloudBottom.png";
 import CloudTop from "../assets/images/LoginPage/CloudTop.png";
-
+import { useAuth } from "../utils/AuthProvider";
 import axios from "axios";
+const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const TicketPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setshowAlert] = useState(false);
+    const { user, isLoggedIn, hasVoted } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,14 +33,53 @@ const TicketPage = () => {
         },
       );
 
+
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
+
+      if (!user?.email) {
+        throw new Error("Email pengguna tidak ditemukan");
+      }
+
+      const updateTicketResponse = await axios.patch(
+        `${SERVER_URL}/api/users/ticket`,
+        {
+          email: user.email,
+          has_ticket: true
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true  // Tambahkan ini untuk mengirim cookies
+        }
+      );
+
+      if (updateTicketResponse.status === 200) {
+        setshowAlert(true);
+      } else {
+        throw new Error("Gagal mengupdate status tiket");
+      }
+
     } catch (error) {
-      console.error(error);
+      console.error("Error detail:", error);
+      
+      // Menampilkan pesan error yang lebih spesifik
+      if (error.response) {
+        // Error response dari server
+        alert(`Error: ${error.response.data.message || 'Terjadi kesalahan pada server'}`);
+      } else if (error.request) {
+        // Error karena tidak ada response
+        alert("Tidak dapat terhubung ke server. Mohon periksa koneksi internet Anda.");
+      } else {
+        // Error lainnya
+        alert(error.message || "Terjadi kesalahan saat memproses tiket. Silakan coba lagi.");
+      }
+
     } finally {
       setIsLoading(false);
-      setshowAlert(true);
     }
   };
 
@@ -142,6 +183,7 @@ const TicketPage = () => {
                   name="email"
                   className="mt-1 w-full rounded-xl border-2 border-gray-300 px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   placeholder="Your email"
+                  value={user?.email || ''}
                   required
                 />
               </div>
