@@ -60,14 +60,14 @@ const Footer = () => {
               </p>
               <p className="flex items-center text-white">
                 <span className="mr-2"><img src={phone} alt="location" className="w-3" /></span>
-                0858 nanti malam kita balapan
+                085973050222
               </p>
               <NavLink
                 href="mailto:info@icmssc.com"
                 className="flex items-center text-white underline hover:text-blue-300"
               >
                <span className="mr-2"><img src={mail} alt="location" className="w-3" /></span>
-                belumada@email.com
+                batamcampusexpo@gmail.com
               </NavLink>
             </div>
 

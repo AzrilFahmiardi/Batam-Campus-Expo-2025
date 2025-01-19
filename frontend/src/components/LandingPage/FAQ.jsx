@@ -64,7 +64,7 @@ const faqData = [
   {
     question: "Apakah Kegiatan ini berbayar",
     answer:
-      "Kegiatan ini gratis tanpa biaya pendaftaran"
+      "Kegiatan ini berbayar sebesar 5.000/orang. Tentu saja akan ada banyak benefit seperti mendapatkan 3 talkshow inspiratif dan voucher TryOut."
   },
 ];
 
