@@ -66,7 +66,7 @@ const Footer = () => {
                 <span className="mr-2">
                   <img src={phone} alt="location" className="w-3" />
                 </span>
-                085973050222
+                083848851874
               </a>
               <a
                 href="mailto:batamcampusexpo@gmail.com"
