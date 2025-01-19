@@ -52,19 +52,19 @@ const FAQ = () => {
 
 const faqData = [
   {
-    question: "What is Lorem Ipsum?",
+    question: "Apa itu Batam Campus Expo",
     answer:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "Batam Campus Expo adalah kegiatan memperkenalkan berbagai Perguruan Tinggi di Indonesia kepada siswa/i Batam oleh Mahasiswa asal Batam yang berkuliah di berbagai Perguruan Tinggi di seluruh Indonesia. Tujuan utama kegiatan ini adalah untuk menginspirasi dan memotivasi siswa-siswi Batam dalam merencanakan jenjang pendidikan yang lebih tinggi.",
   },
   {
-    question: "Why do we use it?",
+    question: "Kapan dan dimana Batam Campus Expo dilaksanakan",
     answer:
-      "It is a long established fact that a reader will be distracted by the readable content of a page.",
+      "Batam Campus Expo dilaksanakan pada 25 Januari 2025 di Pollux Mall Batam",
   },
   {
-    question: "Where does it come from?",
+    question: "Apakah Kegiatan ini berbayar",
     answer:
-      "Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. Contrary to popular belief, Lorem Ipsum is not simply random text. ",
+      "Kegiatan ini gratis tanpa biaya pendaftaran"
   },
 ];
 

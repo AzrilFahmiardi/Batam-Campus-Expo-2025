@@ -10,7 +10,7 @@ const Calendar = () => {
   const scheduleData = [
     {
       date: "25 Januari 2025",
-      location: "Engku Putri Center Park Batam",
+      location: "Pollux Mall Batam Center",
       schedule: [
         { time: "10:00 - 10:15", event: "Open Gate" },
         { time: "10:15 - 10:20", event: "Soft Opening with Ad Lips" },
