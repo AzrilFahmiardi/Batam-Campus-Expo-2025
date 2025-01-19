@@ -71,7 +71,11 @@ const SubmitForm = ({ onSubmitForm, isLoading, showAlert, setshowAlert }) => {
   }
 
   return (
-    <form className="flex flex-col space-y-5" onSubmit={onSubmitForm}>
+    <form
+      className="flex flex-col space-y-5"
+      onSubmit={onSubmitForm}
+      id="faqform"
+    >
       {showAlert && (
         <div className="flex items-center justify-between rounded-xl bg-[#eb5e0b] px-5 py-3">
           <p className="font-montserrat text-sm font-semibold text-white">

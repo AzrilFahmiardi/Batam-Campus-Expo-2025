@@ -11,7 +11,7 @@ const FAQAccordion = ({ question, answer }) => {
           className="flex flex-row items-center justify-between hover:cursor-pointer"
           onClick={() => setExpanded(!expanded)}
         >
-          <h3 className="font-pixelify text-sm font-bold md:text-xl lg:text-3xl">
+          <h3 className="font-pixelify text-sm font-bold md:text-lg lg:text-2xl">
             {question}
           </h3>
           <button onClick={() => setExpanded(!expanded)} className="ml- mt-0">
@@ -30,7 +30,7 @@ const FAQAccordion = ({ question, answer }) => {
           }`}
         >
           <article className="h-auto p-1">
-            <p>{answer}</p>
+            <p className="text-justify">{answer}</p>
           </article>
         </div>
       </div>
