@@ -646,6 +646,16 @@ const upload = multer({
     if (!email || !username_ig || !bukti_pembayaran) {
       return res.status(400).json({ message: 'Email, username IG, dan bukti pembayaran wajib diisi!' });
     }
+
+    const checkQuery = 'SELECT COUNT(*) AS count FROM ticket WHERE email = ?';
+    let result = await db.query(checkQuery, [email]);
+    result = result[0][0];
+
+    if (result.count > 0) {
+      return res.status(400).json({
+        message: 'Email sudah terdaftar, tidak dapat menyimpan data baru.',
+      });
+    }
   
     const query = 'INSERT INTO ticket (email, username_ig, bukti_pembayaran) VALUES (?, ?, ?)';
   
