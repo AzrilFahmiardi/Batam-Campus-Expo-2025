@@ -621,6 +621,41 @@ app.get('/ticket-count', async (req, res) => {
     }
 });
 
+// GET ALL TICKET
+app.get('/tickets', async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT * FROM ticket");
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching universities:', error);
+        res.status(500).send('Error fetching universities');
+    }
+});
+
+app.post('/send-confirmation', async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        // Update status tiket menjadi true/1 berdasarkan email
+        const updateQuery = "UPDATE ticket SET status_ticket = ? WHERE email = ?";
+        await db.query(updateQuery, [1, email]);
+
+        // Kirim email konfirmasi
+        const mailSubject = "BATAM CAMPUS EXPO TICKET";
+        const content = `
+            <p>Terima kasih telah mendaftar di Batam Campus Expo, pembayaran an da sudah dikonfirmasi</p>
+            <p>Silahkan tunjukan email ini saat ingin memasuki event</p>
+            `;
+
+        await sendMail(email, mailSubject, content);
+
+        res.json({ message: 'Konfirmasi berhasil dikirim dan status diupdate' });
+    } catch (error) {
+        console.error('Error in confirmation process:', error);
+        res.status(500).json({ error: 'Gagal memproses konfirmasi' });
+    }
+});
 
 
 // UNIVERSITAS BY ID

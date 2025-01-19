@@ -10,6 +10,7 @@ import DetailKampus from "../pages/DetailKampus";
 import LoginPage from "../pages/Login";
 import Toko from "../pages/Toko";
 import TicketPage from "../pages/Ticket";
+import TicketManagement from "../pages/TicketManagement";
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const routes = [
   {
     path: "/ticket",
     element: <TicketPage />,
+  },
+  {
+    path: "/admin",
+    element: <TicketManagement />,
   },
   {
     path: "*",
