@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
+
 const TicketTable = () => {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sendingEmails, setSendingEmails] = useState({}); // Track loading state per ticket
+  const [sendingEmails, setSendingEmails] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     fetchTickets();
@@ -15,7 +17,6 @@ const TicketTable = () => {
       const response = await fetch(`${SERVER_URL}/tickets`);
       const data = await response.json();
       
-      // Urutkan tiket: false (belum dikonfirmasi) di atas
       const sortedTickets = data.sort((a, b) => {
         if (a.status_ticket === b.status_ticket) return 0;
         return a.status_ticket ? 1 : -1;
@@ -30,7 +31,6 @@ const TicketTable = () => {
   };
 
   const handleConfirm = async (email) => {
-    // Set loading state for this specific ticket
     setSendingEmails(prev => ({ ...prev, [email]: true }));
     
     try {
@@ -44,7 +44,6 @@ const TicketTable = () => {
 
       if (response.ok) {
         alert('Konfirmasi tiket berhasil dikirim!');
-        // Refresh data tiket
         await fetchTickets();
       } else {
         throw new Error('Failed to send confirmation');
@@ -53,8 +52,14 @@ const TicketTable = () => {
       console.error('Error in confirmation process:', error);
       alert('Gagal mengirim konfirmasi tiket');
     } finally {
-      // Clear loading state for this ticket
       setSendingEmails(prev => ({ ...prev, [email]: false }));
+    }
+  };
+
+  // Close modal when clicking outside
+  const handleModalClick = (e) => {
+    if (e.target.classList.contains('modal-backdrop')) {
+      setSelectedImage(null);
     }
   };
 
@@ -87,14 +92,12 @@ const TicketTable = () => {
                   <td className="px-6 py-4 text-sm text-gray-700">{ticket.email}</td>
                   <td className="px-6 py-4 text-sm text-gray-700">{ticket.username_ig}</td>
                   <td className="px-6 py-4 text-sm">
-                    <a
-                      href={`${SERVER_URL}/public/upload/pembayaran/${ticket.bukti_pembayaran}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => setSelectedImage(ticket.email)}
                       className="text-blue-600 hover:underline"
                     >
                       Lihat Bukti
-                    </a>
+                    </button>
                   </td>
                   <td className="px-6 py-4 text-sm">
                     <span 
@@ -137,6 +140,33 @@ const TicketTable = () => {
             </tbody>
           </table>
         </div>
+
+        {/* Simple Modal */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 modal-backdrop"
+            onClick={handleModalClick}
+          >
+            <div className="bg-white rounded-lg p-4 max-w-3xl w-full">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Bukti Pembayaran</h2>
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="relative w-full" style={{ paddingTop: '75%' }}>
+                <img
+                  src={`${SERVER_URL}/ticket-image/${selectedImage}`}
+                  alt="Bukti Pembayaran"
+                  className="absolute inset-0 w-full h-full object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -673,16 +673,19 @@ const storage = multer.diskStorage({
         });
       }
   
-      const filePath = path.join(req.file.destination, req.file.filename);
+      // Baca file sebagai buffer
+      const fileBuffer = fs.readFileSync(req.file.path);
   
-      // Simpan data baru ke database
+      // Simpan data baru ke database dengan file sebagai blob
       const insertQuery =
         'INSERT INTO ticket (email, username_ig, bukti_pembayaran) VALUES (?, ?, ?)';
-      await db.query(insertQuery, [email, username_ig, req.file.filename]);
+      await db.query(insertQuery, [email, username_ig, fileBuffer]);
+  
+      // Hapus file sementara dari disk
+      fs.unlinkSync(req.file.path);
   
       res.status(200).json({
         message: 'Tiket berhasil disimpan!',
-        bukti_pembayaran: req.file.filename,
       });
     } catch (error) {
       console.error('Error saat nyimpen data:', error);
@@ -713,6 +716,45 @@ app.post('/send-confirmation', async (req, res) => {
     } catch (error) {
         console.error('Error in confirmation process:', error);
         res.status(500).json({ error: 'Gagal memproses konfirmasi' });
+    }
+});
+
+// GET Image by email
+app.get('/ticket-image/:email', async (req, res) => {
+    try {
+        const [rows] = await db.query(
+            "SELECT bukti_pembayaran FROM ticket WHERE email = ?",
+            [req.params.email]
+        );
+        
+        if (rows.length > 0 && rows[0].bukti_pembayaran) {
+            // Detect image type from the first few bytes of the BLOB
+            const buffer = rows[0].bukti_pembayaran;
+            let contentType = 'image/jpeg'; // default
+
+            // Check magic numbers for common image formats
+            if (buffer[0] === 0xFF && buffer[1] === 0xD8) {
+                contentType = 'image/jpeg';
+            } else if (buffer[0] === 0x89 && buffer[1] === 0x50) {
+                contentType = 'image/png';
+            } else if (buffer[0] === 0x47 && buffer[1] === 0x49) {
+                contentType = 'image/gif';
+            } else if (buffer[0] === 0x42 && buffer[1] === 0x4D) {
+                contentType = 'image/bmp';
+            } else if (buffer[8] === 0x57 && buffer[9] === 0x45) {
+                contentType = 'image/webp';
+            }
+
+            // Set the detected content type
+            res.setHeader('Content-Type', contentType);
+            // Send the BLOB data
+            res.send(buffer);
+        } else {
+            res.status(404).send('Image not found');
+        }
+    } catch (error) {
+        console.error('Error fetching image:', error);
+        res.status(500).send('Error fetching image');
     }
 });
 
