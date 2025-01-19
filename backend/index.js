@@ -635,26 +635,9 @@ app.get('/tickets', async (req, res) => {
 });
 
 // ISI DATA TIKET
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      const uploadPath = path.join(__dirname, 'public/upload/pembayaran');
-      cb(null, uploadPath);
-    },
-    filename: (req, file, cb) => {
-      const { username_ig } = req.body;
+
   
-      if (!username_ig) {
-        return cb(new Error('Username Instagram tidak tersedia di request body'));
-      }
-  
-      const fileExtension = path.extname(file.originalname);
-      cb(null, `${username_ig}${fileExtension}`);
-    },
-  });
-  
-  const upload = multer({ storage });
-  
-  app.post('/ticket', upload.single('bukti_pembayaran'), async (req, res) => {
+  app.post('/ticket', async (req, res) => {
     const { email, username_ig } = req.body;
   
     if (!email || !username_ig || !req.file) {
