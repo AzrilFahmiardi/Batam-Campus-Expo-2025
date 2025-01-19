@@ -644,7 +644,7 @@ app.post('/send-confirmation', async (req, res) => {
         // Kirim email konfirmasi
         const mailSubject = "BATAM CAMPUS EXPO TICKET";
         const content = `
-            <p>Terima kasih telah mendaftar di Batam Campus Expo, pembayaran an da sudah dikonfirmasi</p>
+            <p>Terima kasih telah mendaftar di Batam Campus Expo, pembayaran an   da sudah dikonfirmasi</p>
             <p>Silahkan tunjukan email ini saat ingin memasuki event</p>
             `;
 
