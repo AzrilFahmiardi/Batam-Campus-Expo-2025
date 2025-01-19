@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 .pixel-border {
   clip-path: polygon(
     10% 0%,

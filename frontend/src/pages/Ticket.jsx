@@ -11,13 +11,23 @@ const SERVER_URL = import.meta.env.VITE_API_URL;
 const TicketPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setshowAlert] = useState(false);
-    const { user, isLoggedIn, hasVoted } = useAuth();
+  const { user, isLoggedIn, hasVoted } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("submit");
+
     const formData = new FormData(e.target);
+
     for (let [key, value] of formData.entries()) {
-      if (!value.trim()) {
+      // Jika value adalah string, lakukan trim dan cek apakah kosong
+      if (typeof value === "string" && !value.trim()) {
+        alert(`${key} tidak boleh kosong!`);
+        return;
+      }
+
+      // Jika value adalah File, cek apakah file telah dipilih
+      if (value instanceof File && !value.name) {
         alert(`${key} tidak boleh kosong!`);
         return;
       }
@@ -25,14 +35,14 @@ const TicketPage = () => {
 
     try {
       setIsLoading(true);
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbz14tp9UHcsexsf3RyLy08s-XLb5-eP0SicFKNNbGtyLUk66AnCKBGgw0HoSjR0lW9VCg/exec",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const response = await fetch(`${SERVER_URL}/ticket`, {
+        method: "POST",
+        body: formData,
+      });
 
+      if (response.status === 400) {
+        throw new Error("Kamu udah daftar tiket!");
+      }
 
       if (!response.ok) {
         throw new Error("Something went wrong");
@@ -46,15 +56,15 @@ const TicketPage = () => {
         `${SERVER_URL}/api/users/ticket`,
         {
           email: user.email,
-          has_ticket: true
+          has_ticket: true,
         },
         {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json'
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
           },
-          withCredentials: true  // Tambahkan ini untuk mengirim cookies
-        }
+          withCredentials: true, // Tambahkan ini untuk mengirim cookies
+        },
       );
 
       if (updateTicketResponse.status === 200) {
@@ -62,22 +72,27 @@ const TicketPage = () => {
       } else {
         throw new Error("Gagal mengupdate status tiket");
       }
-
     } catch (error) {
       console.error("Error detail:", error);
-      
+
       // Menampilkan pesan error yang lebih spesifik
       if (error.response) {
         // Error response dari server
-        alert(`Error: ${error.response.data.message || 'Terjadi kesalahan pada server'}`);
+        alert(
+          `Error: ${error.response.data.message || "Terjadi kesalahan pada server"}`,
+        );
       } else if (error.request) {
         // Error karena tidak ada response
-        alert("Tidak dapat terhubung ke server. Mohon periksa koneksi internet Anda.");
+        alert(
+          "Tidak dapat terhubung ke server. Mohon periksa koneksi internet Anda.",
+        );
       } else {
         // Error lainnya
-        alert(error.message || "Terjadi kesalahan saat memproses tiket. Silakan coba lagi.");
+        alert(
+          error.message ||
+            "Terjadi kesalahan saat memproses tiket. Silakan coba lagi.",
+        );
       }
-
     } finally {
       setIsLoading(false);
     }
@@ -97,7 +112,7 @@ const TicketPage = () => {
         className="animate__animated animate__fadeInRight animate__slower absolute bottom-0 right-0"
         draggable="false"
       />
-      <div className="relative w-[80vw] min-w-[300px] rounded-[1.5rem] border-2 border-white bg-[#ffffffcc] p-8 shadow-lg backdrop-blur-3xl sm:w-[450px] sm:rounded-[2rem]">
+      <div className="relative w-[80vw] min-w-[300px] rounded-[1.5rem] border-2 border-white bg-[#ffffffcc] px-8 pt-3 shadow-lg backdrop-blur-3xl sm:w-[450px] sm:rounded-[2rem]">
         <img
           src={CloudTop}
           alt="Cloud Top"
@@ -154,7 +169,7 @@ const TicketPage = () => {
         {!isLoading && (
           <form onSubmit={handleSubmit}>
             <>
-              <div className="mb-3">
+              <div className="mb-2">
                 <label
                   htmlFor="email"
                   className="mb-1 block text-xs text-gray-700 md:text-base md:font-medium"
@@ -170,7 +185,7 @@ const TicketPage = () => {
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-2">
                 <label
                   htmlFor="email"
                   className="mb-1 block text-xs text-gray-700 md:text-base md:font-medium"
@@ -183,11 +198,11 @@ const TicketPage = () => {
                   name="email"
                   className="mt-1 w-full rounded-xl border-2 border-gray-300 px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   placeholder="Your email"
-                  value={user?.email || ''}
+                  value={user?.email || ""}
                   required
                 />
               </div>
-              <div className="mb-5">
+              <div className="mb-2">
                 <label
                   htmlFor="password"
                   className="mb-1 block text-xs font-medium text-gray-700 md:text-base"
@@ -197,9 +212,23 @@ const TicketPage = () => {
                 <input
                   type="text"
                   id="instagram"
-                  name="instagram"
+                  name="username_ig"
                   className="mt-1 w-full rounded-xl border-2 border-gray-300 px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   placeholder="Enter your instagram"
+                  required
+                />
+              </div>
+              <div className="mb-5">
+                <label
+                  htmlFor="password"
+                  className="mb-1 block text-xs font-medium text-gray-700 md:text-base"
+                >
+                  Upload Bukti Pembayaran
+                </label>
+                <input
+                  type="file"
+                  name="bukti_pembayaran"
+                  className="mt-1 w-full rounded-xl border-2 border-gray-300 bg-white px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   required
                 />
               </div>

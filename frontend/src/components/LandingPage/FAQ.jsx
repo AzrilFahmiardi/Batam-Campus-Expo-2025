@@ -40,9 +40,12 @@ const FAQ = () => {
 
         <div className="mt-5 w-full text-center drop-shadow-2xl">
           <div className="FAQ-border bg-white p-4 sm:p-6 lg:p-9">
-            <button className="font-pixelify text-sm font-bold md:text-xl lg:text-3xl">
+            <a
+              href="#faqform"
+              className="font-pixelify text-sm font-bold md:text-lg lg:text-xl"
+            >
               More questions?
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -64,7 +67,7 @@ const faqData = [
   {
     question: "Apakah Kegiatan ini berbayar",
     answer:
-      "Kegiatan ini berbayar sebesar 5.000/orang. Tentu saja akan ada banyak benefit seperti mendapatkan 3 talkshow inspiratif dan voucher TryOut."
+      "Kegiatan ini berbayar sebesar 5.000/orang. Tentu saja akan ada banyak benefit seperti mendapatkan 3 talkshow inspiratif dan voucher TryOut.",
   },
 ];
 

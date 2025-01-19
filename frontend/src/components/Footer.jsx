@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import BCEBlue from "../assets/images/LandingPage/BCEBlue.png";
-import locationLogo from "../assets/images/LandingPage/Location.png"
-import phone from "../assets/images/phone.png"
-import mail from "../assets/images/mail.png"
+import locationLogo from "../assets/images/LandingPage/Location.png";
+import phone from "../assets/images/phone.png";
+import mail from "../assets/images/mail.png";
+import Instagram from "./icon/Instagram";
+import Tiktok from "./icon/Tiktok";
 
 const Footer = () => {
   return (
@@ -17,10 +19,8 @@ const Footer = () => {
           </div>
 
           {/* Useful NavLinks */}
-          <div className=" pl-4">
-            <h2 className="mb-4 text-2xl font-bold">
-              Useful NavLinks
-            </h2>
+          <div className="pl-4">
+            <h2 className="mb-4 text-2xl font-bold">Useful Links</h2>
             <nav className="space-y-2">
               <NavLink
                 to="/"
@@ -50,56 +50,58 @@ const Footer = () => {
           </div>
 
           <div className="pl-4">
-            <h2 className="mb-4 text-2xl font-bold">
-              Lokasi & Kontak
-            </h2>
+            <h2 className="mb-4 text-2xl font-bold">Lokasi & Kontak</h2>
             <div className="space-y-3">
               <p className="flex items-center text-white">
-                <span className="mr-2"><img src={locationLogo} alt="location" className="w-3" /></span>
+                <span className="mr-2">
+                  <img src={locationLogo} alt="location" className="w-3" />
+                </span>
                 Batam, Kepulauan Riau, Indonesia
               </p>
-              <p className="flex items-center text-white">
-                <span className="mr-2"><img src={phone} alt="location" className="w-3" /></span>
-                085973050222
-              </p>
-              <NavLink
-                href="mailto:info@icmssc.com"
+              <a
+                href="https://wa.me/085973050222"
+                target="_blank"
                 className="flex items-center text-white underline hover:text-blue-300"
               >
-               <span className="mr-2"><img src={mail} alt="location" className="w-3" /></span>
+                <span className="mr-2">
+                  <img src={phone} alt="location" className="w-3" />
+                </span>
+                085973050222
+              </a>
+              <a
+                href="mailto:batamcampusexpo@gmail.com"
+                className="flex items-center text-white underline hover:text-blue-300"
+              >
+                <span className="mr-2">
+                  <img src={mail} alt="location" className="w-3" />
+                </span>
                 batamcampusexpo@gmail.com
-              </NavLink>
+              </a>
             </div>
 
-              <div className="mt-6 flex gap-4">
-                <NavLink
-                  href="#"
-                  className="rounded-full bg-white p-2 text-zinc-950 transition-colors hover:bg-gray-200"
-                >
-                  <img src={phone} alt="location" className="w-3" />
-
-                  {/* <Facebook className="h-5 w-5" /> */}
-                </NavLink>
-                <NavLink
-                  href="#"
-                  className="rounded-full bg-white p-2 text-zinc-950 transition-colors hover:bg-gray-200"
-                >
-                  <span className="sr-only">WhatsApp</span>
-                  <span className="block h-5 w-5">📱</span>
-                </NavLink>
-                <NavLink
-                  href="#"
-                  className="rounded-full bg-white p-2 text-zinc-950 transition-colors hover:bg-gray-200"
-                >
-                  <span className="sr-only">YouTube</span>
-                  {/* <Youtube className="h-5 w-5" /> */}
-                </NavLink>
-              </div>
+            <div className="mt-6 flex gap-4">
+              <a
+                href="https://www.instagram.com/batamcampusexpo/"
+                target="_blank"
+                title="Instagram Bacampex"
+                className="min-h-5 min-w-5 rounded-full bg-white p-1.5 text-zinc-950 transition-colors hover:bg-gray-200"
+              >
+                <Instagram className={"size-5"} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@batamcampusexpo"
+                target="_blank"
+                title="Tiktok Bacampex"
+                className="min-h-5 min-w-5 rounded-full bg-white p-1.5 text-zinc-950 transition-colors hover:bg-gray-200"
+              >
+                <Tiktok className={"size-5"} />
+              </a>
             </div>
           </div>
+        </div>
 
         {/* Copyright */}
-        <div className="mt-12 border-t border-white pt-8 text-center text-sm text-white font-montserrat">
+        <div className="mt-12 border-t border-white pt-8 text-center font-montserrat text-sm text-white">
           &copy; 2024 Tim IT Batam Campus Expo. Semua hak cipta dilindungi.
         </div>
       </div>

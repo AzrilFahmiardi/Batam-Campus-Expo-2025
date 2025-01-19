@@ -6,6 +6,8 @@ import merchandise from "../assets/images/Toko/merchandise.svg";
 import coin from "../assets/images/Toko/coin.png";
 import dice from "../assets/images/Toko/dice.png";
 import SwagCard from "../components/Toko/SwagCard";
+import kaosa from "../assets/images/Toko/kaosa.jpg";
+import kaosb from "../assets/images/Toko/kaosb.jpg";
 
 const Toko = () => {
   return (
@@ -37,9 +39,56 @@ const Toko = () => {
         </p>
 
         <div className="grid w-full grid-cols-1 gap-3 py-5 sm:grid-cols-2 sm:py-10 md:py-20 xl:grid-cols-3">
-          <SwagCard />
-          <SwagCard />
-          <SwagCard />
+          <SwagCard
+            img={kaosa}
+            name="Jersey Batam Campus Expo"
+            description="Jersey eksklusif Batam Campus Expo dengan bahan yang lembut, nyaman, serta menyerap keringat. "
+            price={150000}
+            isPreOrder={true}
+          />
+          <SwagCard
+            img={kaosb}
+            name="Jersey Batam Campus Expo"
+            description={
+              "Jersey eksklusif Batam Campus Expo dengan bahan yang lembut, nyaman, serta menyerap keringat."
+            }
+            price={150000}
+            isPreOrder={true}
+          />
+          <SwagCard
+            name={"Sticker Pack"}
+            description="Tersedia 2 Variasi:
+            1. Sticker pack
+            2. Kampus Impian: UNS. UNPAD, UNNES, UNDIP, UI, UGM, UB, PPNS, POLTEK BATAM, ITS, ITB, UNAND (dapat dibeli satuan)
+"
+            price={10000}
+          />
+          <SwagCard
+            name={"Keychain Akrilik"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+          />
+          <SwagCard
+            name={"Kipas"}
+            description={
+              "kipas berbahan art cartoon ukuran 15 × 15 cm yang ringan dan mudah dibawa kemanapun. "
+            }
+            price={10000}
+          />
+          <SwagCard
+            name={"Lanyard"}
+            description={
+              "Lanyard dengan panjang ±90 cm dan lebar ±2cm bahan tali terbuat dari nylon yang tahan lama. "
+            }
+            price={20000}
+          />
+          <SwagCard
+            name={"Totebag"}
+            description="Totebag dengan bahan kanvas drill berukuran 40 × 33 ×7 cm, disertai dengan resleting."
+            price={20000}
+          />
         </div>
       </div>
       <Footer />
