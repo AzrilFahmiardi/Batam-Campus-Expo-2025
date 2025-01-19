@@ -19,7 +19,8 @@ const Carousel = () => {
     const fetchData = async () => {
       try {
         const data = await getAllUniversity();
-        setUniversities([...data, ...data, ...data]);
+        const reversedData = [...data].reverse();
+        setUniversities([...reversedData]);
 
         setIsLoading(false);
       } catch (err) {

@@ -16,6 +16,7 @@ const { JWT_SECRET, JWT_REFRESH_SECRET, NODE_ENV, SAMESITE } = process.env;
 const bodyParser = require('body-parser');
 const { check } = require('express-validator');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
 
 const authMiddleware = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
@@ -633,6 +634,64 @@ app.get('/tickets', async (req, res) => {
     }
 });
 
+// ISI DATA TIKET
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      const uploadPath = path.join(__dirname, 'public/upload/pembayaran');
+      cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+      const { username_ig } = req.body;
+  
+      if (!username_ig) {
+        return cb(new Error('Username Instagram tidak tersedia di request body'));
+      }
+  
+      const fileExtension = path.extname(file.originalname);
+      cb(null, `${username_ig}${fileExtension}`);
+    },
+  });
+  
+  const upload = multer({ storage });
+  
+  app.post('/ticket', upload.single('bukti_pembayaran'), async (req, res) => {
+    const { email, username_ig } = req.body;
+  
+    if (!email || !username_ig || !req.file) {
+      return res.status(400).json({ message: 'Data tidak lengkap!' });
+    }
+  
+    try {
+      // Cek apakah email sudah ada di database
+      const checkQuery = 'SELECT COUNT(*) AS count FROM ticket WHERE email = ?';
+      let result = await db.query(checkQuery, [email]);
+      result = result[0][0];
+  
+      if (result.count > 0) {
+        return res.status(400).json({
+          message: 'Email sudah terdaftar, tidak dapat menyimpan data baru.',
+        });
+      }
+  
+      const filePath = path.join(req.file.destination, req.file.filename);
+  
+      // Simpan data baru ke database
+      const insertQuery =
+        'INSERT INTO ticket (email, username_ig, bukti_pembayaran) VALUES (?, ?, ?)';
+      await db.query(insertQuery, [email, username_ig, req.file.filename]);
+  
+      res.status(200).json({
+        message: 'Tiket berhasil disimpan!',
+        bukti_pembayaran: req.file.filename,
+      });
+    } catch (error) {
+      console.error('Error saat nyimpen data:', error);
+      res.status(500).json({ message: 'Ada error waktu nyimpen tiket.' });
+    }
+  });
+
+
+// KIRIM TIKET EMAIL
 app.post('/send-confirmation', async (req, res) => {
     const { email } = req.body;
 
