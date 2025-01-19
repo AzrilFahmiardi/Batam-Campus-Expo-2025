@@ -635,47 +635,28 @@ app.get('/tickets', async (req, res) => {
 });
 
 // ISI DATA TIKET
+const upload = multer({
+    storage: multer.memoryStorage(), // Simpan file di memory
+  }).single('bukti_pembayaran'); // 'bukti_pembayaran' sesuai dengan name pada form
 
-  
-  app.post('/ticket', async (req, res) => {
+  app.post('/ticket', upload, async (req, res) => {
     const { email, username_ig } = req.body;
+    const bukti_pembayaran = req.file ? req.file.buffer : null;
   
-    if (!email || !username_ig || !req.file) {
-      return res.status(400).json({ message: 'Data tidak lengkap!' });
+    if (!email || !username_ig || !bukti_pembayaran) {
+      return res.status(400).json({ message: 'Email, username IG, dan bukti pembayaran wajib diisi!' });
     }
+  
+    const query = 'INSERT INTO ticket (email, username_ig, bukti_pembayaran) VALUES (?, ?, ?)';
   
     try {
-      // Cek apakah email sudah ada di database
-      const checkQuery = 'SELECT COUNT(*) AS count FROM ticket WHERE email = ?';
-      let result = await db.query(checkQuery, [email]);
-      result = result[0][0];
-  
-      if (result.count > 0) {
-        return res.status(400).json({
-          message: 'Email sudah terdaftar, tidak dapat menyimpan data baru.',
-        });
-      }
-  
-      // Baca file sebagai buffer
-      const fileBuffer = fs.readFileSync(req.file.path);
-  
-      // Simpan data baru ke database dengan file sebagai blob
-      const insertQuery =
-        'INSERT INTO ticket (email, username_ig, bukti_pembayaran) VALUES (?, ?, ?)';
-      await db.query(insertQuery, [email, username_ig, fileBuffer]);
-  
-      // Hapus file sementara dari disk
-      fs.unlinkSync(req.file.path);
-  
-      res.status(200).json({
-        message: 'Tiket berhasil disimpan!',
-      });
+      const [results] = await db.query(query, [email, username_ig, bukti_pembayaran]);
+      res.status(201).json({ message: 'Tiket berhasil dibuat!', ticketId: results.insertId });
     } catch (error) {
-      console.error('Error saat nyimpen data:', error);
-      res.status(500).json({ message: 'Ada error waktu nyimpen tiket.' });
+      console.error('Error inserting ticket:', error);
+      res.status(500).json({ message: 'Terjadi kesalahan saat menyimpan data tiket' });
     }
   });
-
 
 // KIRIM TIKET EMAIL
 app.post('/send-confirmation', async (req, res) => {
