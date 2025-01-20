@@ -11,6 +11,7 @@ import LoginPage from "../pages/Login";
 import Toko from "../pages/Toko";
 import TicketPage from "../pages/Ticket";
 import TicketManagement from "../pages/TicketManagement";
+import TokoComingSoon from "../pages/ComingSoon";
 
 const routes = [
   {
@@ -35,7 +36,8 @@ const routes = [
   },
   {
     path: "/toko",
-    element: <Toko />,
+    // element: <Toko />,
+    element: <TokoComingSoon />,
   },
   {
     path: "/login",
