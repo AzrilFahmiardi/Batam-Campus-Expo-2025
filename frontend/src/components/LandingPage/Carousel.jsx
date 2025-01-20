@@ -5,7 +5,7 @@ import { getAllUniversity } from "../../utils/UniversityFetch";
 
 // Komponen Loading Skeleton
 const LogoSkeleton = () => (
-  <motion.div className="mx-3 h-[100px] w-[120px] flex-shrink-0 animate-pulse rounded-2xl bg-blue-gradient px-7 py-5 sm:mx-5 sm:h-[250px] sm:w-[220px] sm:px-4 md:w-[240px] md:px-10 md:py-7 lg:w-[270px]"></motion.div>
+  <motion.div className="mx-3 h-[100px] w-[120px] flex-shrink-0 animate-pulse rounded-full bg-blue-gradient px-7 py-5 sm:mx-5 sm:h-[250px] sm:w-[220px] sm:px-4 md:w-[240px] md:px-10 md:py-7 lg:w-[270px]"></motion.div>
 );
 
 const Carousel = () => {
@@ -44,6 +44,7 @@ const Carousel = () => {
     id: index,
     image: uni.logo,
   }));
+  console.log(campusItems);
 
   return (
     <div className="relative p-4 sm:p-10 md:mt-20">
@@ -76,12 +77,22 @@ const Carousel = () => {
                   className="mx-1 w-[120px] flex-shrink-0 rounded-2xl px-2 py-2 sm:mx-5 sm:w-[220px] sm:px-4 sm:py-5 md:w-[240px] lg:w-[270px]"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="max-w-fit rounded-full bg-white p-3 drop-shadow-[20px_20px_7px_rgba(0,0,0,0.25)] sm:p-4 sm:drop-shadow-[35px_35px_10px_rgba(0,0,0,0.25)] md:p-5">
+                  <div className="max-w-fit overflow-hidden rounded-full bg-white p-3 drop-shadow-[20px_20px_7px_rgba(0,0,0,0.25)] sm:p-4 sm:drop-shadow-[35px_35px_10px_rgba(0,0,0,0.25)] md:p-5">
                     {!loadedLogos[item.id] && (
                       <div className="h-[80px] w-[80px] animate-pulse bg-gray-300 sm:h-[220px] sm:w-[220px] md:h-[240px] md:w-[240px] lg:h-[270px] lg:w-[270px]" />
                     )}
                     <img
-                      src={item.image}
+                      src={
+                        item.image == "/LogoCampus/001041.webp"
+                          ? "/LogoCampus/002001.webp"
+                          : item.image == "/LogoCampus/005014.webp"
+                            ? "/LogoCampus/001001.webp"
+                            : item.image == "/LogoCampus/105001.webp"
+                              ? "/LogoCampus/001002.webp"
+                              : item.image == "/LogoCampus/001027.webp"
+                                ? "/LogoCampus/001008.webp"
+                                : item.image
+                      }
                       alt={`Campus ${item.id}`}
                       className={`h-auto w-[100px] sm:w-[130px] md:w-[150px] lg:w-[170px] ${!loadedLogos[item.id] ? "hidden" : ""}`}
                       onLoad={() => handleLogoLoad(item.id)}
