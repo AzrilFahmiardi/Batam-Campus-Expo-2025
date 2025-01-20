@@ -171,6 +171,9 @@ const TicketPage = () => {
               instagram <b>@batamcampusexpo</b>
             </li>
             <li>
+              Tiket akan dikirimkan ke email kamu setelah pembayaran mu dikonfirmasi maksimal <b>1x24 jam</b>
+            </li>
+            <li>
               Pembayaran sebesar <b>Rp5.000</b> dan silakan upload bukti pembayaran
             </li>
           </ul>
