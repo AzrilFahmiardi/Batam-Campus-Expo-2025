@@ -242,6 +242,42 @@ const sendMail = async (email, mailSubject, content) => {
     }
 };
 
+const sendMailWithAttachment = async (email, mailSubject, content, filePath) => {
+    try {
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            requireTLS: true,
+            auth: {
+                user: SMTP_MAIL,
+                pass: SMTP_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: SMTP_MAIL,
+            to: email,
+            subject: mailSubject,
+            html: content,
+            attachments: [
+                {
+                    filename: 'Voucher Privat Al Faiz.pdf',
+                    path: filePath,
+                },
+            ],
+        };
+
+        // Wrap sendMail in a Promise
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Mail with attachment sent successfully: ' + info.response);
+        return info;
+    } catch (error) {
+        console.error('Error sending mail with attachment:', error);
+        throw error;
+    }
+};
+
 // register
 const register = async (req, res) => {
     try {
@@ -678,13 +714,34 @@ app.post('/send-confirmation', async (req, res) => {
         await db.query(updateQuery, [1, email]);
 
         // Kirim email konfirmasi
-        const mailSubject = "BATAM CAMPUS EXPO TICKET";
+        const mailSubject = "Your Ticket for Batam Campus Expo 2025 is Ready! 🎉";
         const content = `
-            <p>Terima kasih telah mendaftar di Batam Campus Expo, pembayaran an   da sudah dikonfirmasi</p>
-            <p>Silahkan tunjukan email ini saat ingin memasuki event</p>
-            `;
+            <p>Hello ${email},</p>
+            <p>Thank you for purchasing your ticket for Batam Campus Expo 2025! We’re excited to welcome you to the first Campus Expo in Batam, happening on:</p>
+            <p>📅 : 25th January 2025<br>
+            📍 : Pollux Mall Batam Center<br>
+            🕙 : 10.00 - 19.00</p>
 
-        await sendMail(email, mailSubject, content);
+            <p>Beberapa hal yang bisa kamu nikmati di Batam Campus Expo 2025:</p>
+            <ul>
+                <li>Beragam Universitas dari seluruh Indonesia yang siap memberikan informasi seputar jurusan dan program unggulan mereka.🎓</li>
+                <li>Voucher tryout yang bisa kamu gunakan untuk mengukur kemampuan dan persiapan UTBK.📚</li>
+                <li>Sesi Talkshow menarik untuk membantu kamu merencanakan masa depan.🚀</li>
+            </ul>
+
+            <p>Don’t forget to keep and show us this email for entry.😉</p>
+
+            <p>We can’t wait to see you at Batam Campus Expo 2025! Let’s find your dream campus together! 💼✨</p>
+
+            <p>Best regards,<br>
+            Batam Campus Expo 2025 Team.</p>
+        `;
+
+        // Path ke file PDF
+        const filePath = "./voucher.pdf";
+
+        // Kirim email dengan attachment file PDF
+        await sendMailWithAttachment(email, mailSubject, content, filePath);
 
         res.json({ message: 'Konfirmasi berhasil dikirim dan status diupdate' });
     } catch (error) {
