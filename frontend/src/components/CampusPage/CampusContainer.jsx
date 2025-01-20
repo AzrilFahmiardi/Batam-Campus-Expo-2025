@@ -73,7 +73,7 @@ const CampusContainer = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3 md:px-16 lg:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid grid-cols-1 items-center gap-5 px-3 md:grid-cols-3 md:px-16 lg:grid-cols-3 2xl:grid-cols-4">
           {isLoading ? (
             Array(10)
               .fill(null)

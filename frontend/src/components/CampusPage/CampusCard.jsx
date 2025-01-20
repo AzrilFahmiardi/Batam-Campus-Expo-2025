@@ -66,7 +66,6 @@ const CampusCard = ({ university, delay }) => {
             alt="Campus Image"
             className="h-[100px] w-[200px] rounded-l-xl object-cover object-center sm:h-[190px] md:w-full md:rounded-t-xl md:rounded-bl-none"
             onError={() => setImageError(true)}
-
           />
           <p className="absolute left-2 top-2 rounded-xl bg-gradient-to-b from-[#EB5E0B] to-[#9E0202] px-2 py-1 font-montserrat text-[0.2em] font-bold text-white md:text-[0.8em]">
             Rank {university.rank_international}
@@ -82,7 +81,7 @@ const CampusCard = ({ university, delay }) => {
             className="md:w-cover hidden h-[90px] w-[100px] p-1 md:block md:object-cover"
           />
           <div className="text-left font-montserrat">
-            <p className="my-2 max-w-[85%] truncate text-xs font-bold text-[#3A3A3A] md:mb-1 md:text-base">
+            <p className="my-2 max-w-[65%] truncate text-xs font-bold text-[#3A3A3A] sm:max-w-[85%] md:mb-1 md:text-base">
               {/* {university.nama.length > 20
                 ? `${university.nama.substring(0, 20)}...`
                 : university.nama} */}
@@ -96,8 +95,8 @@ const CampusCard = ({ university, delay }) => {
                 <p className="mt-0 flex w-full items-center gap-1 text-[0.5em] font-semibold md:mt-2 md:w-[250px] md:text-[0.7em]">
                   <img src={locationLogo} alt="location" className="size-4" />
                   {(university?.lokasi?.length || 0) > 30
-        ? `${university?.lokasi?.substring(0, 20)}...`
-        : university?.lokasi || 'Lokasi tidak tersedia'}
+                    ? `${university?.lokasi?.substring(0, 20)}...`
+                    : university?.lokasi || "Lokasi tidak tersedia"}
                 </p>
               </div>
             </div>
