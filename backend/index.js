@@ -741,7 +741,8 @@ app.post('/send-confirmation', async (req, res) => {
         const filePath = "./voucher.pdf";
 
         // Kirim email dengan attachment file PDF
-        await sendMailWithAttachment(email, mailSubject, content, filePath);
+        // await sendMailWithAttachment(email, mailSubject, content, filePath);
+        await sendMail(email, mailSubject, content);
 
         res.json({ message: 'Konfirmasi berhasil dikirim dan status diupdate' });
     } catch (error) {
