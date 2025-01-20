@@ -733,6 +733,9 @@ app.post('/send-confirmation', async (req, res) => {
 
             <p>We can’t wait to see you at Batam Campus Expo 2025! Let’s find your dream campus together! 💼✨</p>
 
+            <p>link Voucher Privat Al Faiz : https://drive.google.com/file/d/16xjXm4lied7Cj-nSP2_GYNHbJrG2hMwZ/view?usp=sharing </p>
+
+
             <p>Best regards,<br>
             Batam Campus Expo 2025 Team.</p>
         `;
