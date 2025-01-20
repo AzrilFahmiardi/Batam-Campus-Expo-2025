@@ -170,6 +170,9 @@ const TicketPage = () => {
               Jika kamu tidak menerima email, silahkan hubungi admin melalui
               instagram <b>@batamcampusexpo</b>
             </li>
+            <li>
+              Pembayaran sebesar <b>Rp5.000</b> dan silakan upload bukti pembayaran
+            </li>
           </ul>
         </div>
         {!isLoading && (
