@@ -47,7 +47,7 @@ const TopWinners = ({ votingData }) => {
           </div>
           <img
             src={Shadow}
-            className="absolute -bottom-2 -z-20 translate-y-2 md:translate-y-4 lg:-bottom-6 lg:translate-y-1"
+            className="absolute -bottom-2 -z-20 aspect-square translate-y-2 md:translate-y-4 lg:-bottom-6 lg:translate-y-1"
           />
         </div>
       ))}

@@ -8,7 +8,9 @@ const SwagCard = ({ img, name, description, price, isPreOrder }) => {
         {img ? (
           <img src={img} alt="item" className="rounded-2xl" />
         ) : (
-          <p className="text-lg font-semibold text-white">No Image</p>
+          <p className="text-base font-semibold text-white sm:text-lg">
+            No Image
+          </p>
         )}
       </div>
       <div className="grid grid-rows-[1fr_auto] p-2">
@@ -16,7 +18,7 @@ const SwagCard = ({ img, name, description, price, isPreOrder }) => {
           <p className="font-montserrat text-sm font-semibold text-gray-800 sm:text-xl">
             {name}
           </p>
-          <p className="w-fit rounded-full bg-[#EB5E0B] px-2 py-0.5 font-montserrat text-xs text-white">
+          <p className="w-fit rounded-full font-montserrat text-xs font-semibold text-[#EB5E0B] sm:bg-[#EB5E0B] sm:px-2 sm:py-0.5 sm:text-white">
             Rp. {formatCurrency(price)}
           </p>
           <p className="line-clamp-3 text-justify font-montserrat text-[0.6rem] text-gray-800 sm:line-clamp-5 sm:text-xs">
