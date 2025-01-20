@@ -24,7 +24,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchTicketCount = async () => {
       try {
-        const response = await axios.get(`${SERVER_URL}/ticket-count`);
+        const response = await axios.get(`${SERVER_URL}/total-ticket`);
         console.log('woi',response);
         
         setPendaftar(response.data.totalTickets);

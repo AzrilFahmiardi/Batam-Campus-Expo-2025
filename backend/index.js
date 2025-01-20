@@ -658,6 +658,19 @@ app.get('/ticket-count', async (req, res) => {
     }
 });
 
+// TOTAL TIKET
+app.get('/total-ticket', async (req, res) => {
+    try {
+        const [result] = await db.query('SELECT COUNT(*) as total FROM ticket');
+        
+        res.json({ totalTickets: result[0].total });
+    } catch (error) {
+        console.error('Error counting tickets:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 // GET ALL TICKET
 app.get('/tickets', async (req, res) => {
     try {
