@@ -53,8 +53,7 @@ const TopLeaderboard = () => {
           Top Leaderboard From Voting
         </h2>
         <p className="text-center font-montserrat text-xs font-light text-white sm:text-sm">
-          20 kampus yang terpilih melalui voting tertinggi akan mengadakan{" "}
-          <i>booth</i> dikegiatan offline nanti !!!
+        yang mana nih kampus idamanmu?!!!
         </p>
       </div>
       <div className="mx-auto max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-3xl">

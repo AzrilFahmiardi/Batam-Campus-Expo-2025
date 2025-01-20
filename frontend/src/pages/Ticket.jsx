@@ -6,6 +6,7 @@ import CloudBottom from "../assets/images/LoginPage/CloudBottom.png";
 import CloudTop from "../assets/images/LoginPage/CloudTop.png";
 import { useAuth } from "../utils/AuthProvider";
 import axios from "axios";
+import qr from "../assets/images/LandingPage/qrcode.jpg"
 const SERVER_URL = import.meta.env.VITE_API_URL;
 
 const TicketPage = () => {
@@ -99,6 +100,8 @@ const TicketPage = () => {
   };
 
   return (
+    <>
+    
     <div className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden bg-login font-pixelify">
       <img
         src={CloudBottomLeft}
@@ -112,6 +115,9 @@ const TicketPage = () => {
         className="animate__animated animate__fadeInRight animate__slower absolute bottom-0 right-0"
         draggable="false"
       />
+      <div className="flex justify-center gap-10 flex-wrap py-10">
+
+      
       <div className="relative w-[80vw] min-w-[300px] rounded-[1.5rem] border-2 border-white bg-[#ffffffcc] px-8 pt-3 shadow-lg backdrop-blur-3xl sm:w-[450px] sm:rounded-[2rem]">
         <img
           src={CloudTop}
@@ -251,7 +257,13 @@ const TicketPage = () => {
         )}
         <div className="mb-7 mt-4 text-center">{/* {!isLoading && ()} */}</div>
       </div>
+      <div className="relative w-[80vw] min-w-[300px] rounded-[1.5rem] border-2 border-white bg-[#ffffffcc] px-8 py-3 shadow-lg backdrop-blur-3xl sm:w-[450px] sm:rounded-[2rem]">
+      <img src={qr} alt="" />
+      </div>
     </div>
+    </div>
+    
+    </>
   );
 };
 
