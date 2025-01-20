@@ -49,34 +49,35 @@ const TicketPage = () => {
         throw new Error("Something went wrong");
       }
 
-      if (!user?.email) {
-        throw new Error("Email pengguna tidak ditemukan");
-      }
+      // if (!user?.email) {
+      //   throw new Error("Email pengguna tidak ditemukan");
+      // }
 
-      const updateTicketResponse = await axios.patch(
-        `${SERVER_URL}/api/users/ticket`,
-        {
-          email: user.email,
-          has_ticket: true,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // Tambahkan ini untuk mengirim cookies
-        },
-      );
+    //   const updateTicketResponse = await axios.patch(
+    //     `${SERVER_URL}/api/users/ticket`,
+    //     {
+    //       email: user.email,
+    //       has_ticket: true,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //         "Content-Type": "application/json",
+    //       },
+    //       withCredentials: true, // Tambahkan ini untuk mengirim cookies
+    //     },
+    //   );
 
-      if (updateTicketResponse.status === 200) {
-        setshowAlert(true);
-      } else {
-        throw new Error("Gagal mengupdate status tiket");
-      }
-    } catch (error) {
-      console.error("Error detail:", error);
+    //   if (updateTicketResponse.status === 200) {
+    //   } else {
+    //     throw new Error("Gagal mengupdate status tiket");
+    //   }
+    // } catch (error) {
+    //   console.error("Error detail:", error);
+    setshowAlert(true);
 
       // Menampilkan pesan error yang lebih spesifik
+
       if (error.response) {
         // Error response dari server
         alert(
