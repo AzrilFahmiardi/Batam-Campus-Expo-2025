@@ -733,7 +733,6 @@ app.post('/send-confirmation', async (req, res) => {
 
             <p>We can’t wait to see you at Batam Campus Expo 2025! Let’s find your dream campus together! 💼✨</p>
 
-            <p>link Voucher Privat Al Faiz : https://drive.google.com/file/d/16xjXm4lied7Cj-nSP2_GYNHbJrG2hMwZ/view?usp=sharing </p>
 
 
             <p>Best regards,<br>
@@ -744,8 +743,8 @@ app.post('/send-confirmation', async (req, res) => {
         const filePath = "./voucher.pdf";
 
         // Kirim email dengan attachment file PDF
-        // await sendMailWithAttachment(email, mailSubject, content, filePath);
-        await sendMail(email, mailSubject, content);
+        await sendMailWithAttachment(email, mailSubject, content, filePath);
+        // await sendMail(email, mailSubject, content);
 
         res.json({ message: 'Konfirmasi berhasil dikirim dan status diupdate' });
     } catch (error) {
