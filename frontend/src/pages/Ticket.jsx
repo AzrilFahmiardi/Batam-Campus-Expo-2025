@@ -210,7 +210,7 @@ const TicketPage = () => {
                   name="email"
                   className="mt-1 w-full rounded-xl border-2 border-gray-300 px-2 py-1 text-sm placeholder:text-xs placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:p-2 placeholder:md:text-base"
                   placeholder="Your email"
-                  value={user?.email || ""}
+                  // value={user?.email || ""}
                   required
                 />
               </div>
