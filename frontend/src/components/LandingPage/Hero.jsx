@@ -98,7 +98,7 @@ const Hero = ({ user }) => {
           </div>
         </div>
         <div className="mt-5">
-          {user ? (
+          {/* {user ? (
             <Link
               to={"/ticket"}
               className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
@@ -116,7 +116,13 @@ const Hero = ({ user }) => {
             >
               Get Your Ticket Now!
             </Link>
-          )}
+          )} */}
+          <Link
+              to={"/ticket"}
+              className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+            >
+              Get Your Ticket Now!
+            </Link>
         </div>
       </div>
     </section>
