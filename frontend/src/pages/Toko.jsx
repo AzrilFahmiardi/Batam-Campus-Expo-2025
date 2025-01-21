@@ -83,7 +83,6 @@ const Toko = () => {
             name="Jersey Batam Campus Expo"
             description="Jersey eksklusif Batam Campus Expo dengan bahan yang lembut, nyaman, serta menyerap keringat. "
             price={150000}
-            isPreOrder={true}
           />
           <SwagCard
             img={kaosb}
@@ -92,7 +91,6 @@ const Toko = () => {
               "Jersey eksklusif Batam Campus Expo dengan bahan yang lembut, nyaman, serta menyerap keringat."
             }
             price={150000}
-            isPreOrder={true}
           />
           <SwagCard
             name={"Totebag"}
