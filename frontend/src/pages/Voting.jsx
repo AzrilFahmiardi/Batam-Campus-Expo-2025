@@ -109,7 +109,7 @@ const Voting = () => {
         setIsOpen={setIsMax}
       />
       <Header user={user} />
-      <div className="relative z-10 h-auto bg-blue-gradient p-10 pb-20 sm:pb-24 md:pb-28 lg:pb-60">
+      <div className="relative z-10 h-auto bg-blue-gradient pb-20 pt-10 sm:p-10 sm:pb-24 sm:pt-0 md:pb-28 lg:pb-60">
         <BackgroundBars />
         <BackgroundClouds />
 
@@ -148,7 +148,7 @@ const Voting = () => {
                   className="grow space-y-2 sm:space-y-3"
                   onSubmit={onSubmit}
                 >
-                  <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
+                  <div className="custom-scrollbar custom-scrollbar-red overflow-y-auto p-1 lg:h-auto lg:p-2">
                     <div className="grid w-full grid-cols-4 place-items-center gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
                       {universities.map((uni, index) => (
                         <VoteItem
@@ -201,14 +201,12 @@ const Voting = () => {
                     className="abosolute left-0 top-0 block h-full w-full object-cover sm:hidden"
                   />
                 </div>
-                <NavLink to={"/login"}
-                className="absolute z-20 transform rounded-xl bg-footer-gradient px-5 py-2 font-pixelify text-white shadow-md transition duration-100 ease-linear hover:scale-110 md:px-7 md:py-3 md:text-[1.5em]">
-                <button
+                <NavLink
+                  to={"/login"}
+                  className="absolute z-20 transform rounded-xl bg-footer-gradient px-5 py-2 font-pixelify text-white shadow-md transition duration-100 ease-linear hover:scale-110 md:px-7 md:py-3 md:text-[1.5em]"
                 >
-                  Sign Up First
-                </button>
+                  <button>Sign Up First</button>
                 </NavLink>
-                
 
                 <h1 className="inline-block bg-gradient-to-r from-orange-600 to-red-800 bg-clip-text text-center font-montserrat text-[15px] font-bold text-transparent sm:text-xl md:text-2xl lg:p-2 lg:text-4xl">
                   CHOOSE YOUR FAVORITE COLLEGE!!!
@@ -217,7 +215,7 @@ const Voting = () => {
                   className="grow space-y-2 sm:space-y-3"
                   onSubmit={onSubmit}
                 >
-                  <div className="custom-scrollbar custom-scrollbar-red h-[375px] overflow-y-auto p-1 md:h-[420px] lg:h-auto lg:p-2">
+                  <div className="custom-scrollbar custom-scrollbar-red overflow-y-auto p-1 lg:h-auto lg:p-2">
                     <div className="grid w-full grid-cols-4 place-items-center gap-1 sm:grid-cols-5 sm:gap-3 md:grid-cols-6 md:gap-3 lg:grid-cols-7">
                       {universities.map((uni, index) => (
                         <VoteItem
