@@ -8,6 +8,22 @@ import dice from "../assets/images/Toko/dice.png";
 import SwagCard from "../components/Toko/SwagCard";
 import kaosa from "../assets/images/Toko/kaosa.jpg";
 import kaosb from "../assets/images/Toko/kaosb.jpg";
+import ipb_keychain from "../assets/images/Toko/ipb_keychain.PNG";
+import itb_keychain from "../assets/images/Toko/itb_keychain.PNG";
+import its_keychain from "../assets/images/Toko/its_keychain.JPG";
+import poltek_batam_keychain from "../assets/images/Toko/poltek_batam_keychain.JPG";
+import ub_keychain from "../assets/images/Toko/ub_keychain.JPG";
+import ugm_keychain from "../assets/images/Toko/ugm_keychain.JPG";
+import ui_keychain from "../assets/images/Toko/ui_keychain.PNG";
+import unair_keychain from "../assets/images/Toko/unair_keychain.JPG";
+import undip_keychain from "../assets/images/Toko/undip_keychain.JPG";
+import unpad_keychain from "../assets/images/Toko/unpad_keychain.JPG";
+import uns_keychain from "../assets/images/Toko/uns_keychain.JPG";
+import Lanyard from "../assets/images/Toko/Lanyard.JPG";
+import totebag_bce_v1 from "../assets/images/Toko/totebag_bce_v1.JPG";
+import totebag_bce_v2 from "../assets/images/Toko/totebag_bce_v2.JPG";
+import totebag_bce_v3 from "../assets/images/Toko/totebag_bce_v3.JPG";
+import sticker_pack from "../assets/images/Toko/sticker_pack.JPG";
 
 const Toko = () => {
   return (
@@ -40,6 +56,29 @@ const Toko = () => {
 
         <div className="grid w-full grid-cols-1 gap-3 py-5 sm:grid-cols-2 sm:py-10 md:py-20 xl:grid-cols-3">
           <SwagCard
+            name={"Sticker Pack"}
+            description="Tersedia 2 Variasi:
+            1. Sticker pack
+            2. Kampus Impian: UNS. UNPAD, UNNES, UNDIP, UI, UGM, UB, PPNS, POLTEK BATAM, ITS, ITB, UNAND (dapat dibeli satuan)"
+            price={10000}
+            img={sticker_pack}
+          />
+          <SwagCard
+            name={"Lanyard"}
+            description={
+              "Lanyard dengan panjang ±90 cm dan lebar ±2cm bahan tali terbuat dari nylon yang tahan lama. "
+            }
+            img={Lanyard}
+            price={20000}
+          />
+          <SwagCard
+            name={"Kipas"}
+            description={
+              "kipas berbahan art cartoon ukuran 15 × 15 cm yang ringan dan mudah dibawa kemanapun. "
+            }
+            price={10000}
+          />
+          <SwagCard
             img={kaosa}
             name="Jersey Batam Campus Expo"
             description="Jersey eksklusif Batam Campus Expo dengan bahan yang lembut, nyaman, serta menyerap keringat. "
@@ -56,38 +95,112 @@ const Toko = () => {
             isPreOrder={true}
           />
           <SwagCard
-            name={"Sticker Pack"}
-            description="Tersedia 2 Variasi:
-            1. Sticker pack
-            2. Kampus Impian: UNS. UNPAD, UNNES, UNDIP, UI, UGM, UB, PPNS, POLTEK BATAM, ITS, ITB, UNAND (dapat dibeli satuan)
-"
-            price={10000}
-          />
-          <SwagCard
-            name={"Keychain Akrilik"}
-            description={
-              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
-            }
-            price={10000}
-          />
-          <SwagCard
-            name={"Kipas"}
-            description={
-              "kipas berbahan art cartoon ukuran 15 × 15 cm yang ringan dan mudah dibawa kemanapun. "
-            }
-            price={10000}
-          />
-          <SwagCard
-            name={"Lanyard"}
-            description={
-              "Lanyard dengan panjang ±90 cm dan lebar ±2cm bahan tali terbuat dari nylon yang tahan lama. "
-            }
+            name={"Totebag"}
+            description="Totebag dengan bahan kanvas drill berukuran 40 × 33 ×7 cm, disertai dengan resleting."
             price={20000}
+            img={totebag_bce_v1}
           />
           <SwagCard
             name={"Totebag"}
             description="Totebag dengan bahan kanvas drill berukuran 40 × 33 ×7 cm, disertai dengan resleting."
             price={20000}
+            img={totebag_bce_v2}
+          />
+          <SwagCard
+            name={"Totebag"}
+            description="Totebag dengan bahan kanvas drill berukuran 40 × 33 ×7 cm, disertai dengan resleting."
+            price={20000}
+            img={totebag_bce_v3}
+          />
+          <SwagCard
+            name={"Keychain Akrilik UI"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={ui_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik ITB"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={itb_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik UGM"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={ugm_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik Polibatam"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={poltek_batam_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik IPB"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={ipb_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik ITS"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={its_keychain}
+          />
+
+          <SwagCard
+            name={"Keychain Akrilik UB"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={ub_keychain}
+          />
+
+          <SwagCard
+            name={"Keychain Akrilik UNAIR"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={unair_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik UNDIP"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={undip_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik UNPAD"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={unpad_keychain}
+          />
+          <SwagCard
+            name={"Keychain Akrilik UNS"}
+            description={
+              "Variasi gambar: UI, ITB, UGM, ITS, UB, UNAIR, UNDIP, UNPAD, UNS, POLTEK BATAM, IPB"
+            }
+            price={10000}
+            img={uns_keychain}
           />
         </div>
       </div>

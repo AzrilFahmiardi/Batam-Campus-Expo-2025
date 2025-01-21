@@ -1,17 +1,19 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Kampus from "../pages/Kampus";
-import Kegiatan from "../pages/Kegiatan";
-import LandingPage from "../pages/LandingPage";
-import NotFound from "../pages/NotFound";
-import Voting from "../pages/Voting";
+import React, { lazy, Suspense } from "react";
 import RouterErrorBoundary from "./RouterErrorBoundary";
 import { AuthProvider } from "../utils/AuthProvider";
-import DetailKampus from "../pages/DetailKampus";
-import LoginPage from "../pages/Login";
-import Toko from "../pages/Toko";
-import TicketPage from "../pages/Ticket";
-import TicketManagement from "../pages/TicketManagement";
 import TokoComingSoon from "../pages/ComingSoon";
+import LoadingScreen from "../components/LoadingScreen";
+const Kampus = lazy(() => import("../pages/Kampus"));
+const Kegiatan = lazy(() => import("../pages/Kegiatan"));
+const LandingPage = lazy(() => import("../pages/LandingPage"));
+const Toko = lazy(() => import("../pages/Toko"));
+const TicketPage = lazy(() => import("../pages/Ticket"));
+const TicketManagement = lazy(() => import("../pages/TicketManagement"));
+const LoginPage = lazy(() => import("../pages/Login"));
+const DetailKampus = lazy(() => import("../pages/DetailKampus"));
+const Voting = lazy(() => import("../pages/Voting"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const routes = [
   {
@@ -36,8 +38,8 @@ const routes = [
   },
   {
     path: "/toko",
-    // element: <Toko />,
-    element: <TokoComingSoon />,
+    element: <Toko />,
+    // element: <TokoComingSoon />,
   },
   {
     path: "/login",
@@ -64,8 +66,10 @@ const router = createBrowserRouter([
   },
 ]);
 const Router = () => (
-  <AuthProvider>
-    <RouterProvider router={router} />
-  </AuthProvider>
+  <Suspense fallback={<LoadingScreen />}>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </Suspense>
 );
 export default Router;
