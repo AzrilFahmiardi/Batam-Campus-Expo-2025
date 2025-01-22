@@ -674,7 +674,7 @@ app.get('/total-ticket', async (req, res) => {
 // GET ALL TICKET
 app.get('/tickets', async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT email,username_ig,status_ticket FROM ticket WHERE status_ticket=0");
+        const [rows] = await db.query("SELECT email,username_ig,status_ticket FROM ticket");
 
         res.json(rows);
     } catch (error) {
