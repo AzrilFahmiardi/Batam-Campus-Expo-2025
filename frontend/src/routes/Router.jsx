@@ -51,7 +51,7 @@ const routes = [
   },
   {
     path: "/admin",
-    element: <TicketManagement />,
+    // element: <TicketManagement />,
   },
   {
     path: "*",
