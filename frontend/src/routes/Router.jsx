@@ -39,7 +39,7 @@ const routes = [
   {
     path: "/toko",
     element: <Toko />,
-    // element: <TokoComingSoon />,
+    // element: <TokoComingSoon />
   },
   {
     path: "/login",
@@ -51,7 +51,7 @@ const routes = [
   },
   {
     path: "/admin",
-    // element: <TicketManagement />,
+    element: <TicketManagement />,
   },
   {
     path: "*",
