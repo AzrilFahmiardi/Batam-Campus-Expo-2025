@@ -71,13 +71,13 @@ const Toko = () => {
             img={Lanyard}
             price={20000}
           />
-          <SwagCard
+          {/* <SwagCard
             name={"Kipas"}
             description={
               "kipas berbahan art cartoon ukuran 15 × 15 cm yang ringan dan mudah dibawa kemanapun. "
             }
             price={10000}
-          />
+          /> */}
           <SwagCard
             img={kaosa}
             name="Jersey Batam Campus Expo"
