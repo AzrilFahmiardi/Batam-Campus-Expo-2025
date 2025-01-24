@@ -45,10 +45,10 @@ const routes = [
     path: "/login",
     element: <LoginPage />,
   },
-  {
-    path: "/ticket",
-    element: <TicketPage />,
-  },
+  // {
+  //   path: "/ticket",
+  //   element: <TicketPage />,
+  // },
   {
     path: "/admin",
     element: <TicketManagement />,

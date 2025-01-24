@@ -118,11 +118,11 @@ const Hero = ({ user }) => {
             </Link>
           )} */}
           <Link
-              to={"/ticket"}
-              className="rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
-            >
-              Get Your Ticket Now!
-            </Link>
+            to={"/"}
+            className="brightness-70 rounded-full bg-[#EB5E0B] px-4 py-2 font-pixelify text-sm font-bold text-white shadow-lg hover:cursor-not-allowed hover:opacity-80 sm:px-5 sm:py-2 sm:text-base md:px-8 md:py-4"
+          >
+            Ticket Closed!
+          </Link>
         </div>
       </div>
     </section>
